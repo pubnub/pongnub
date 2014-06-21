@@ -25,6 +25,11 @@ body {
     font-size: 20pt;
     text-align: center;
 }
+
+#settings {
+    font-size: 25px;
+    margin: 5px 0px;
+}
 /*
 #name {
     font-size: .7em;
