@@ -5,7 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-  <link href="./css/pong.css" media="screen, print" rel="stylesheet" type="text/css"/>
+  <link href="./css/pong.css" rel="stylesheet" type="text/css"/>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <style type="text/css">
   input[type="checkbox"] {
   appearance: none;
@@ -62,10 +63,10 @@ input[type="checkbox"]:checked:after {
 
 <div id="fetch">
   
-<div class="input-group">
+<div class="input-group" id="setup">
       <input type="text" class="form-control" id="name" placeholder="Enter a Username.">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="login">Login</button>
+        <button class="btn btn-default pubred" type="button" id="login">Login</button>
       </span>
     </div>
 </div>
@@ -75,13 +76,23 @@ Sound <input id="sound" type="checkbox" checked>
 </div>
 
 <!--   <div id="findorhost">
+    <button type="button" class="btn btn-default">Find Match</button>
+    <button type="button" class="btn btn-default">Default</button>
     <button id="find">Find <i class="fa fa-search"></i></button>
     <button id="host">Host <i class="fa fa-home"></i></button>
-  </div>
- -->
-  <div id="lobby">
+  </div> -->
 
+  <div id="lobby">
+    <div class="panel panel-default">
+        <div class="panel-heading"><div class="pubred">Lobby</div></div>
+        <div class="list-group" id="users">
+          <!-- <li class="list-group-item">Hi</li> -->
+
+        </div>
+      </div>
   </div>
+
+  <div id="challenge"></div>
 
 
   <canvas id="game">
@@ -91,29 +102,33 @@ Sound <input id="sound" type="checkbox" checked>
   </canvas>
 
 
-  </div>
-  </div>
-</div>
-
 
 
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src=http://cdn.pubnub.com/pubnub.js ></script>
-  <script src="./js/pubgame.js" type="text/javascript"></script>
   <script src="./js/game.js" type="text/javascript"></script>
   <script src="./js/pong.js" type="text/javascript"></script>
+  <script src="./js/pubgame.js" type="text/javascript"></script>
   <script type="text/javascript">
+window.addEventListener("keydown", function(e) {
+    if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
   Game.ready(function() {
-    // var size        = document.getElementById('size');
-    var sound       = $("#sound").prop("checked");
+    var sound       = document.getElementById('sound');
 
     var pong = Game.start('game', Pong, {
-      sound:       sound,
+      sound:       sound.checked,
+      // stats:       true,
+      // footprints:  true,
+      // predictions: true
     });
-    Game.addEvent(sound,       'change', function() { pong.enableSound(sound);});
+
+    Game.addEvent(sound,       'change', function() { pong.enableSound(sound.checked);           });
   });
-  // $('#game').hide();
   </script>
   <script src="./js/prefixfree.min.js" type="text/javascript"></script>
 </body>

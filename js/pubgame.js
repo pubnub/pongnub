@@ -1,127 +1,137 @@
 $(document).ready(function () {
     var name;
+    var pubnub;
+
     var login = function () {
         name = $("#name").val();
         if (name.length > 0) {
             $('#name').attr("disabled", "disabled");
-            $('#submit').attr("disabled", "disabled");
-            pubInit(name, type);
+            $('#login').attr("disabled", "disabled");
+            $("#setup").fadeOut();
+            pubInit();
         }
     };
 
-    var pubInit = function (name, type) {
-        initz = {
+    var pubInit = function() {
+        $("#lobby").fadeIn();
+
+        pubnub = PUBNUB.init({
             publish_key: 'demo',
-            subscribe_key: 'demo'
+            subscribe_key: 'demo',
+            uuid: name
+        });
+
+        var users = [];
+
+        var onPresence = function(m) {
+            if (m.action === "join") {
+                users.push(m.uuid);
+            }
+            else if (m.action === "timeout" || m.action === "leave") {
+                users = _.without(users, m.uuid);
+            }
+            users.sort();
+            userUpdate();
         };
-        initz['uuid'] = name;
-        window.pubnub = PUBNUB.init(initz);
 
-        if (type === 'find') {
-            pubnub.subscribe({
-                channel: 'multipongLobby',
-                message: function (m) {
-                    finding(m)
+        var userUpdate = function() {
+            $("#users").html('');
+            for (var i = 0; i < users.length; i++) {
+                if (users[i] === name) {
+                    $("#users").prepend('<li class="list-group-item list-group-item-danger">' + users[i] + '</li>');
                 }
-            });
-            setTimeout(function () {
-                loadlobby();
-            }, 1000);
-
-        } else {
-            pubnub.subscribe({
-                channel: 'multipongLobby',
-                message: function (m) {
-                    hosting(m)
+                else {
+                    $("#users").append('<li class="list-group-item challenge" id="' + users[i] + '">' + users[i] + '</li>');
+                    $("#" + users[i]).click(function() {
+                        challenge($(this).attr('id'));
+                    });
                 }
-            })
-        }
-    };
-
-    var finding = function (m) {
-        console.log('finding has been called');
-        window.myType = 'Find';
-        if (m['finder'] === name) {
-            window.hoster = m['hoster'];
-            pubnub.unsubscribe({
-                channel: 'multipongLobby'
-            });
-            //pubnub.subscribe({channel: 'multipongGame', message: function(m){playgame(m)}});
-            $('#game').show();
-            window.gameReady = true;
-            window.subscribed = false;
-        }
-    };
-
-    var hosting = function (m) {
-        console.log('hosting has been called');
-        window.myType = 'Host';
-        if (m['hoster'] === name) {
-            window.finder = m['find'];
-            msg = {
-                'finder': window.finder,
-                'hoster': name
             };
-            pubnub.publish({
-                channel: 'multipongLobby',
-                message: msg
-            });
-            pubnub.unsubscribe({
-                channel: 'multipongLobby'
-            });
-            //pubnub.subscribe({channel: 'multipongGame', message: function(m){playgame(m)}});
-            $('#game').show();
-            window.gameReady = true;
-            window.subscribed = false;
-        }
-    };
+        };
 
-    var loadlobby = function () {
-        console.log('lobby should be loading');
-        pubnub.here_now({
-            channel: 'multipongLobby',
-            callback: function (m) {
-                displayLobby(m)
+
+        var challenger;
+        var challenges = [];
+
+        var challenge = function(user) {
+            $("#lobby").fadeOut();
+
+            if (challenges.indexOf(user) > -1) {
+                $("#challenge").append('<h3>Accepting ' + user +"'s challenge <i class='fa fa-spinner fa-spin'></i></h3>")
+                $("#challenge").fadeIn();
+                pubnub.publish({
+                    channel: 'pongnub lobby',
+                    message: {
+                        sender: name,
+                        recipient: user
+                    }
+                });
+
+                gameInit(user, 2);
             }
-        });
-    };
+            else {
+                $("#challenge").append('<h3>Challenging ' + user +' <i class="fa fa-spinner fa-spin"></i></h3>')
+                $("#challenge").fadeIn();
+                pubnub.publish({
+                    channel: 'pongnub lobby',
+                    message: {
+                        sender: name,
+                        recipient: user
+                    }
+                });
+                challenger = user;
+            }
+        };
 
-    var displayLobby = function (m) {
-        console.log(m)
-        if (m['occupancy'] >= 1) {
-            ids = m['uuids']
-            $('#lobby').html('Here is a list of players currently hosting a game.<br>');
-            for (var i = 0; i < ids.length; i++) {
-                id = ids[i].split('.');
-                if (id[id.length - 1] === 'host') {
-                    $('#lobby').append(id[0]); // Doesn't work if name includes period.
-                    $('#lobby').append(' <button class="play" value=' + ids[i] + '>Play me</button>')
-                    $('#lobby').append('<br>');
+        var onMessage = function(m) {
+            console.log(m);
+            if (m.recipient === name) {
+                if (challenger === m.sender) {
+                    gameInit(m.sender, 1);
+                }
+                else {
+                    challenges.push(m.sender);
+                    $("#" + m.sender).append('<span class="badge">!!!</span>');
                 }
             }
-            $('.play').click(function () {
-                //console.log('u want to play a game??');
-                chooseHost($(this).attr("value"));
-                $('#findorhost').hide();
-                $('#lobby').hide();
-            });
-        } else {
-            $('#lobby').html('Looks like nobody is hosting a game at the moment.<br> Press find to try again, or press host to host a game.');
+        };
+
+        pubnub.subscribe({
+            channel: 'pongnub lobby',
+            callback: onMessage,
+            presence: onPresence
+        });
+    };
+
+    var gameInit = function(user, num) {
+        $("#challenge").fadeOut();
+        $("#game").fadeIn();
+        window.num = num;
+        window.game_start = true;
+
+        pubnub.unsubscribe({
+            channel: 'pongnub lobby'
+        });
+        
+        if (num === 1) { // Control Left Side
+            pubnub.subscribe
+
+        }
+        else if (num === 2) { // Control Right Side
+
         }
     }
 
-    var chooseHost = function (player) {
-        pubnub.publish({
-            channel: 'multipongLobby',
-            message: {
-                'find': name,
-                'hoster': player
-            }
-        });
-    }
 
-    $('#login').click(function () {
+
+
+    // Login
+    $("#login").click(function() {
         login();
     });
-
+    $("#name").keypress(function(e) {
+        if (e.which === 13) {
+            login();
+        }
+    });
 });

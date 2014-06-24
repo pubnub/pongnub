@@ -1,3 +1,17 @@
+//=============================================================================
+//
+// We need some ECMAScript 5 methods but we need to implement them ourselves
+// for older browsers (compatibility: http://kangax.github.com/es5-compat-table/)
+//
+//  Function.bind:        https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
+//  Object.create:        http://javascript.crockford.com/prototypal.html
+//  Object.extend:        (defacto standard like jquery $.extend or prototype's Object.extend)
+//
+//  Object.construct:     our own wrapper around Object.create that ALSO calls
+//                        an initialize constructor method if one exists
+//
+//=============================================================================
+
 if (!Function.prototype.bind) {
   Function.prototype.bind = function(obj) {
     var slice = [].slice,
@@ -5,7 +19,7 @@ if (!Function.prototype.bind) {
         self  = this,
         nop   = function () {},
         bound = function () {
-          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));
+          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));   
         };
     nop.prototype   = self.prototype;
     bound.prototype = new nop();
@@ -40,6 +54,22 @@ if (!Object.extend) {
   };
 }
 
+/* NOT READY FOR PRIME TIME
+if (!window.requestAnimationFrame) {// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+  window.requestAnimationFrame = window.webkitRequestAnimationFrame || 
+                                 window.mozRequestAnimationFrame    || 
+                                 window.oRequestAnimationFrame      || 
+                                 window.msRequestAnimationFrame     || 
+                                 function(callback, element) {
+                                   window.setTimeout(callback, 1000 / 60);
+                                 }
+}
+*/
+
+//=============================================================================
+// GAME
+//=============================================================================
+
 Game = {
 
   compatible: function() {
@@ -70,7 +100,7 @@ Game = {
     } catch (e) {}
 
     return {
-      full:      ua,
+      full:      ua, 
       name:      key + (version ? " " + version.toString() : ""),
       version:   version,
       isFirefox: (key == "firefox"),
@@ -126,7 +156,7 @@ Game = {
     return (min + (Math.random() * (max - min)));
   },
 
-  timestamp: function() {
+  timestamp: function() { 
     return new Date().getTime();
   },
 
@@ -215,7 +245,7 @@ Game = {
         count:  0,
         fps:    0,
         update: 0,
-        draw:   0,
+        draw:   0, 
         frame:  0  // update + draw
       };
     },
@@ -244,8 +274,8 @@ Game = {
       Game.addEvent(document, 'keyup',   this.onkeyup.bind(this));
     },
 
-    onkeydown: function(ev) { if (this.game.onkeydown) this.game.onkeydown(ev.keyCode); },
-    onkeyup:   function(ev) { if (this.game.onkeyup)   this.game.onkeyup(ev.keyCode);   },
+    onkeydown: function(ev) { if (this.game.onkeydown && window.game_start === true) this.game.onkeydown(ev.keyCode); },
+    onkeyup:   function(ev) { if (this.game.onkeyup && window.game_start === true)   this.game.onkeyup(ev.keyCode);   },
 
     hideCursor: function() { this.canvas.style.cursor = 'none'; },
     showCursor: function() { this.canvas.style.cursor = 'auto'; },

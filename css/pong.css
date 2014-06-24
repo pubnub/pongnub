@@ -27,15 +27,11 @@ body {
 }
 
 #settings {
+    display: none;
     font-size: 25px;
     margin: 5px 0px;
 }
-/*
-#name {
-    font-size: .7em;
-    margin: 10px auto;
-    width: 44%;
-}*/
+
 
 #findorhost {
     margin-left:auto;
@@ -45,15 +41,21 @@ body {
 }
 
 #lobby {
+    display: none;
     margin-left:auto;
     margin-right:auto;
-    width: 50%;
+    width: 300px;
     text-align: center;
+    margin-top: 20px;
+}
+
+#game{
+    display: none;
 }
 
 
 @media screen and (min-width: 0px) {
-  #game    { display: block; width: 480px; height: 360px; margin: 0 auto; }
+  #game    { display: none; width: 480px; height: 360px; margin: 0 auto; }
 }
 
 @media screen and (min-width: 800px) {
@@ -73,3 +75,24 @@ body {
   #game    { width: 1024px; height: 768px; }
 }
 
+.pubred {
+    color: #ba3925;
+}
+
+#users {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.challenge {
+    cursor: pointer;
+}
+
+.challenge:hover {
+    background-color: #a94442;
+    color: white;
+}
+
+#challenge {
+    display: none;
+}
