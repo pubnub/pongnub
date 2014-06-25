@@ -136,20 +136,21 @@ Game = {
   },
 
   loadImages: function(sources, callback) { /* load multiple images and callback when ALL have finished loading */
-    var images = {};
-    var count = sources ? sources.length : 0;
-    if (count == 0) {
-      callback(images);
-    }
-    else {
-      for(var n = 0 ; n < sources.length ; n++) {
-        var source = sources[n];
-        var image = document.createElement('img');
-        images[source] = image;
-        Game.addEvent(image, 'load', function() { if (--count == 0) callback(images); });
-        image.src = source;
-      }
-    }
+    // var images = {};
+    // var count = sources ? sources.length : 0;
+    // if (count == 0) {
+    //   callback(images);
+    // }
+    // else {
+    //   for(var n = 0 ; n < sources.length ; n++) {
+    //     var source = sources[n];
+    //     var image = document.createElement('img');
+    //     images[source] = image;
+    //     Game.addEvent(image, 'load', function() { if (--count == 0) callback(images); });
+    //     image.src = source;
+    //   }
+    // }
+    callback({});
   },
 
   random: function(min, max) {

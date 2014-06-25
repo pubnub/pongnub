@@ -26,12 +26,6 @@ Pong = {
     predictionExact: 'red'
   },
 
-  Images: [
-    "images/press1.png",
-    "images/press2.png",
-    "images/winner.png"
-  ],
-
   Levels: [
     {aiReaction: 0.2, aiError:  40}, // 0:  ai is losing by 8
     {aiReaction: 0.3, aiError:  50}, // 1:  ai is losing by 7
@@ -55,7 +49,8 @@ Pong = {
   //-----------------------------------------------------------------------------
 
   initialize: function(runner, cfg) {
-    Game.loadImages(Pong.Images, function(images) {
+    window.PongGame = this;
+    Game.loadImages([], function(images) {
       this.cfg         = cfg;
       this.runner      = runner;
       this.width       = runner.width;
@@ -73,8 +68,6 @@ Pong = {
     }.bind(this));
   },
 
-  startDemo:         function() { this.start(0); },
-  startSinglePlayer: function() { this.start(1); },
   startDoublePlayer: function() { this.start(2); },
 
   start: function(numPlayers) {
@@ -107,7 +100,8 @@ Pong = {
     this.sounds.goal();
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == 9) {
-      this.menu.declareWinner(playerNo);
+      // this.menu.declareWinner(playerNo);
+      alert("Someone Won");
       this.stop();
     }
     else {
@@ -149,37 +143,65 @@ Pong = {
   },
 
   onkeydown: function(keyCode) {
-    if (window.num === 1) {
-
-    }
-    else if (window.num === 2) {
-
-    }
-    switch(keyCode) {
-      case Game.KEY.ZERO: this.startDemo();            break;
-      case Game.KEY.ONE:  this.startSinglePlayer();    break;
-      case Game.KEY.TWO:  this.startDoublePlayer();    break;
-      case Game.KEY.ESC:  this.stop(true);             break;
-      case Game.KEY.Q:    if (!this.leftPaddle.auto)  this.leftPaddle.moveUp();    break;
-      case Game.KEY.A:    if (!this.leftPaddle.auto)  this.leftPaddle.moveDown();  break;
-      case Game.KEY.P:    if (!this.rightPaddle.auto) this.rightPaddle.moveUp();   break;
-      case Game.KEY.L:    if (!this.rightPaddle.auto) this.rightPaddle.moveDown(); break;
-    }
+    pubnub.publish({
+      channel: channel,
+      message: {
+        type: 'keydown',
+        user: num,
+        keyCode: keyCode
+      }
+    });
+    // if (window.num === 1) {
+    //     switch(keyCode) {
+    //       case Game.KEY.UP: this.leftPaddle.moveUp(); break;
+    //       case Game.KEY.DOWN: this.leftPaddle.moveDown(); break;
+    //     }
+    // }
+    // else if (window.num === 2) {
+    //     switch(keyCode) {
+    //       case Game.KEY.UP: this.rightPaddle.moveUp(); break;
+    //       case Game.KEY.DOWN: this.rightPaddle.moveDown(); break;
+    //     }
+    // }
+    // switch(keyCode) {
+    //   case Game.KEY.ZERO: this.startDemo();            break;
+    //   case Game.KEY.ONE:  this.startSinglePlayer();    break;
+    //   case Game.KEY.TWO:  this.startDoublePlayer();    break;
+    //   case Game.KEY.ESC:  this.stop(true);             break;
+    //   case Game.KEY.Q:    if (!this.leftPaddle.auto)  this.leftPaddle.moveUp();    break;
+    //   case Game.KEY.A:    if (!this.leftPaddle.auto)  this.leftPaddle.moveDown();  break;
+    //   case Game.KEY.P:    if (!this.rightPaddle.auto) this.rightPaddle.moveUp();   break;
+    //   case Game.KEY.L:    if (!this.rightPaddle.auto) this.rightPaddle.moveDown(); break;
+    // }
   },
 
   onkeyup: function(keyCode) {
-    if (window.num === 1) {
-
-    }
-    else if (window.num === 2) {
-
-    }
-    switch(keyCode) {
-      case Game.KEY.Q: if (!this.leftPaddle.auto)  this.leftPaddle.stopMovingUp();    break;
-      case Game.KEY.A: if (!this.leftPaddle.auto)  this.leftPaddle.stopMovingDown();  break;
-      case Game.KEY.P: if (!this.rightPaddle.auto) this.rightPaddle.stopMovingUp();   break;
-      case Game.KEY.L: if (!this.rightPaddle.auto) this.rightPaddle.stopMovingDown(); break;
-    }
+    pubnub.publish({
+      channel: channel,
+      message: {
+        type: 'keyup',
+        user: num,
+        keyCode: keyCode
+      }
+    });
+    // if (window.num === 1) {
+    //     switch(keyCode) {
+    //       case Game.KEY.UP: this.leftPaddle.stopMovingUp(); break;
+    //       case Game.KEY.DOWN: this.leftPaddle.stopMovingDown(); break;
+    //     }
+    // }
+    // else if (window.num === 2) {
+    //     switch(keyCode) {
+    //       case Game.KEY.UP: this.rightPaddle.stopMovingUp(); break;
+    //       case Game.KEY.DOWN: this.rightPaddle.stopMovingDown(); break;
+    //     }
+    // }
+    // switch(keyCode) {
+    //   case Game.KEY.Q: if (!this.leftPaddle.auto)  this.leftPaddle.stopMovingUp();    break;
+    //   case Game.KEY.A: if (!this.leftPaddle.auto)  this.leftPaddle.stopMovingDown();  break;
+    //   case Game.KEY.P: if (!this.rightPaddle.auto) this.rightPaddle.stopMovingUp();   break;
+    //   case Game.KEY.L: if (!this.rightPaddle.auto) this.rightPaddle.stopMovingDown(); break;
+    // }
   },
 
   showStats:       function(on) { this.cfg.stats = on; },
@@ -197,10 +219,10 @@ Pong = {
       var press1 = pong.images["images/press1.png"];
       var press2 = pong.images["images/press2.png"];
       var winner = pong.images["images/winner.png"];
-      this.press1  = { image: press1, x: 10,                                                 y: pong.cfg.wallWidth     };
-      this.press2  = { image: press2, x: (pong.width - press2.width - 10),                   y: pong.cfg.wallWidth     };
-      this.winner1 = { image: winner, x: (pong.width/2) - winner.width - pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
-      this.winner2 = { image: winner, x: (pong.width/2)                + pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
+      // this.press1  = { image: press1, x: 10,                                                 y: pong.cfg.wallWidth     };
+      // this.press2  = { image: press2, x: (pong.width - press2.width - 10),                   y: pong.cfg.wallWidth     };
+      // this.winner1 = { image: winner, x: (pong.width/2) - winner.width - pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
+      // this.winner2 = { image: winner, x: (pong.width/2)                + pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
     },
 
     declareWinner: function(playerNo) {
@@ -208,12 +230,12 @@ Pong = {
     },
 
     draw: function(ctx) {
-      ctx.drawImage(this.press1.image, this.press1.x, this.press1.y);
-      ctx.drawImage(this.press2.image, this.press2.x, this.press2.y);
-      if (this.winner == 0)
-        ctx.drawImage(this.winner1.image, this.winner1.x, this.winner1.y);
-      else if (this.winner == 1)
-        ctx.drawImage(this.winner2.image, this.winner2.x, this.winner2.y);
+      // ctx.drawImage(this.press1.image, this.press1.x, this.press1.y);
+      // ctx.drawImage(this.press2.image, this.press2.x, this.press2.y);
+      // if (this.winner == 0)
+      //   ctx.drawImage(this.winner1.image, this.winner1.x, this.winner1.y);
+      // else if (this.winner == 1)
+      //   ctx.drawImage(this.winner2.image, this.winner2.x, this.winner2.y);
     }
 
   },
@@ -487,7 +509,7 @@ Pong = {
 
     reset: function(playerNo) {
       this.footprints = [];
-      this.setpos(playerNo == 1 ?   this.maxX : this.minX,  Game.random(this.minY, this.maxY));
+      this.setpos(playerNo == 1 ?   this.maxX : this.minX,  (this.minY + this.maxY)/2);
       this.setdir(playerNo == 1 ? -this.speed : this.speed, this.speed);
     },
 

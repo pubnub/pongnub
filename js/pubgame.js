@@ -1,13 +1,13 @@
 $(document).ready(function () {
     var name;
-    var pubnub;
+    window.pubnub;
 
     var login = function () {
         name = $("#name").val();
         if (name.length > 0) {
             $('#name').attr("disabled", "disabled");
             $('#login').attr("disabled", "disabled");
-            $("#setup").fadeOut();
+            $("#setup").hide();
             pubInit();
         }
     };
@@ -54,7 +54,7 @@ $(document).ready(function () {
         var challenges = [];
 
         var challenge = function(user) {
-            $("#lobby").fadeOut();
+            $("#lobby").hide();
 
             if (challenges.indexOf(user) > -1) {
                 $("#challenge").append('<h3>Accepting ' + user +"'s challenge <i class='fa fa-spinner fa-spin'></i></h3>")
@@ -84,7 +84,6 @@ $(document).ready(function () {
         };
 
         var onMessage = function(m) {
-            console.log(m);
             if (m.recipient === name) {
                 if (challenger === m.sender) {
                     gameInit(m.sender, 1);
@@ -104,23 +103,96 @@ $(document).ready(function () {
     };
 
     var gameInit = function(user, num) {
-        $("#challenge").fadeOut();
+        $("#challenge").hide();
         $("#game").fadeIn();
+        $("#settings").fadeIn();
         window.num = num;
-        window.game_start = true;
+        // window.game_start = true;
 
         pubnub.unsubscribe({
             channel: 'pongnub lobby'
         });
+
         
         if (num === 1) { // Control Left Side
-            pubnub.subscribe
+            window.channel = name + user;
+            $("#versus").append(name + " VS " + user);
 
         }
         else if (num === 2) { // Control Right Side
+            window.channel = user + name;
+            $("#versus").append(user + " VS " + name);
 
         }
-    }
+
+        pubnub.subscribe({
+            channel: channel,
+            callback: onMessage
+        });
+
+        z = setInterval(function() {
+            pubnub.here_now({
+                channel: channel,
+                callback: function(m) {
+                    if (m.occupancy == 2) {
+                        pubnub.publish({
+                            channel: channel,
+                            message: "start"
+                        });
+                    }
+                }
+            });
+        }, 1000);
+    };
+
+    var onMessage = function(m) {
+        console.log(m);
+        if (m === "start") {
+            window.game_start = true;
+            window.PongGame.startDoublePlayer();
+            clearInterval(z);
+        }
+        else {
+            if (m.type === 'keydown') {
+                if (m.user === 1) {
+                    if (m.keyCode === Game.KEY.UP) {
+                        PongGame.leftPaddle.moveUp();
+                    }
+                    else if (m.keyCode === Game.KEY.DOWN) {
+                        PongGame.leftPaddle.moveDown();
+                    }
+                }
+                else if (m.user === 2) {
+                    if (m.keyCode === Game.KEY.UP) {
+                        PongGame.rightPaddle.moveUp();
+                    }
+                    else if (m.keyCode === Game.KEY.DOWN) {
+                        PongGame.rightPaddle.moveDown();
+                    }
+                }
+            }
+            else if (m.type === 'keyup') {
+                if (m.user === 1) {
+                    if (m.keyCode === Game.KEY.UP) {
+                        PongGame.leftPaddle.stopMovingUp();
+                    }
+                    else if (m.keyCode === Game.KEY.DOWN) {
+                        PongGame.leftPaddle.stopMovingDown();
+                    }
+                }
+                else if (m.user === 2) {
+                    if (m.keyCode === Game.KEY.UP) {
+                        PongGame.rightPaddle.stopMovingUp();
+                    }
+                    else if (m.keyCode === Game.KEY.DOWN) {
+                        PongGame.rightPaddle.stopMovingDown();
+                    }
+                }       
+            }
+        }
+    };
+
+
 
 
 
