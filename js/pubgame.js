@@ -107,7 +107,6 @@ $(document).ready(function () {
         $("#game").fadeIn();
         $("#settings").fadeIn();
         window.num = num;
-        // window.game_start = true;
 
         pubnub.unsubscribe({
             channel: 'pongnub lobby'
@@ -191,12 +190,6 @@ $(document).ready(function () {
             }
         }
     };
-
-
-
-
-
-
     // Login
     $("#login").click(function() {
         login();
@@ -206,4 +199,17 @@ $(document).ready(function () {
             login();
         }
     });
+
+
+    $("#playBot").click(function() {
+        window.oldSchoolCool = true;
+        window.game_start = true;
+        $("#playBot").hide();
+        $("#lobby").hide();
+        $("#challenge").hide();
+        $("#game").fadeIn();
+        $("#settings").fadeIn();
+        PongGame.startSinglePlayer();
+    });
+
 });

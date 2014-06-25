@@ -68,6 +68,7 @@ Pong = {
     }.bind(this));
   },
 
+  startSinglePlayer: function() { this.start(1); },
   startDoublePlayer: function() { this.start(2); },
 
   start: function(numPlayers) {
@@ -143,14 +144,22 @@ Pong = {
   },
 
   onkeydown: function(keyCode) {
-    pubnub.publish({
-      channel: channel,
-      message: {
-        type: 'keydown',
-        user: num,
-        keyCode: keyCode
+    if (window.oldSchoolCool) {
+      switch(keyCode) {
+        case Game.KEY.UP: this.leftPaddle.moveUp(); break;
+        case Game.KEY.DOWN: this.leftPaddle.moveDown(); break;
       }
-    });
+    }
+    else {
+      pubnub.publish({
+        channel: channel,
+        message: {
+          type: 'keydown',
+          user: num,
+          keyCode: keyCode
+        }
+      });
+    }
     // if (window.num === 1) {
     //     switch(keyCode) {
     //       case Game.KEY.UP: this.leftPaddle.moveUp(); break;
@@ -176,19 +185,27 @@ Pong = {
   },
 
   onkeyup: function(keyCode) {
-    pubnub.publish({
-      channel: channel,
-      message: {
-        type: 'keyup',
-        user: num,
-        keyCode: keyCode
+    if (oldSchoolCool) {
+      switch(keyCode) {
+        case Game.KEY.UP: this.leftPaddle.stopMovingUp(); break;
+        case Game.KEY.DOWN: this.leftPaddle.stopMovingDown(); break;
       }
-    });
+    }
+    else {
+      pubnub.publish({
+        channel: channel,
+        message: {
+          type: 'keyup',
+          user: num,
+          keyCode: keyCode
+        }
+      });
+    }
     // if (window.num === 1) {
-    //     switch(keyCode) {
-    //       case Game.KEY.UP: this.leftPaddle.stopMovingUp(); break;
-    //       case Game.KEY.DOWN: this.leftPaddle.stopMovingDown(); break;
-    //     }
+    //     
+    //     
+    //     
+    //     
     // }
     // else if (window.num === 2) {
     //     switch(keyCode) {
