@@ -155,6 +155,9 @@ $(document).ready(function () {
             PongGame.startDoublePlayer();
             $("#playAgain").html('');
         }
+        else if (m === "lobby") {
+            // Implement this?
+        }
         else {
             if (m.type === 'keydown') {
                 if (m.user === 1) {
