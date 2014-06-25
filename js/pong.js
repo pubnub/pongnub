@@ -102,8 +102,20 @@ Pong = {
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == 9) {
       // this.menu.declareWinner(playerNo);
-      alert("Someone Won");
       this.stop();
+      console.log("GG");
+      $("#playAgain").html('<h1>Game Over.</h1><button class="btn btn-default pubred" type="button" id="play2">Play again?</button><hr>');
+      $("#play2").click(function() {
+        if (window.oldSchoolCool) {
+          PongGame.startSinglePlayer();
+        }
+        else {
+          pubnub.publish({
+            channel: channel,
+            message: 'playagain'
+          });
+        }
+      });
     }
     else {
       this.ball.reset(playerNo);

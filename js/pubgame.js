@@ -145,11 +145,15 @@ $(document).ready(function () {
     };
 
     var onMessage = function(m) {
-        console.log(m);
+        // console.log(m);
         if (m === "start") {
             window.game_start = true;
             window.PongGame.startDoublePlayer();
             clearInterval(z);
+        }
+        else if (m === "playagain") {
+            PongGame.startDoublePlayer();
+            $("#playAgain").html('');
         }
         else {
             if (m.type === 'keydown') {
