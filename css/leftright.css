@@ -6,5 +6,15 @@ body {
 }
 
 h1 {
-    font-size: 100px;
+    font-size: 120px;
+}
+
+#name {
+    height: 100px;
+    font-size: 70px;
+}
+
+#login {
+    height: 100px;
+    font-size: 60px;
 }
