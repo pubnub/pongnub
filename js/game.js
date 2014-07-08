@@ -1,17 +1,3 @@
-//=============================================================================
-//
-// We need some ECMAScript 5 methods but we need to implement them ourselves
-// for older browsers (compatibility: http://kangax.github.com/es5-compat-table/)
-//
-//  Function.bind:        https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind
-//  Object.create:        http://javascript.crockford.com/prototypal.html
-//  Object.extend:        (defacto standard like jquery $.extend or prototype's Object.extend)
-//
-//  Object.construct:     our own wrapper around Object.create that ALSO calls
-//                        an initialize constructor method if one exists
-//
-//=============================================================================
-
 if (!Function.prototype.bind) {
   Function.prototype.bind = function(obj) {
     var slice = [].slice,
@@ -53,22 +39,6 @@ if (!Object.extend) {
     return destination;
   };
 }
-
-/* NOT READY FOR PRIME TIME
-if (!window.requestAnimationFrame) {// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-  window.requestAnimationFrame = window.webkitRequestAnimationFrame || 
-                                 window.mozRequestAnimationFrame    || 
-                                 window.oRequestAnimationFrame      || 
-                                 window.msRequestAnimationFrame     || 
-                                 function(callback, element) {
-                                   window.setTimeout(callback, 1000 / 60);
-                                 }
-}
-*/
-
-//=============================================================================
-// GAME
-//=============================================================================
 
 Game = {
 
@@ -294,8 +264,5 @@ Game = {
       this.start();
       return result;
     }
-
-    //-------------------------------------------------------------------------
-
-  } // Game.Runner
-} // Game
+  }
+}

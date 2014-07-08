@@ -207,7 +207,6 @@ $(document).ready(function () {
         }
     });
 
-
     $("#playBot").click(function() {
         window.oldSchoolCool = true;
         window.game_start = true;
@@ -218,5 +217,4 @@ $(document).ready(function () {
         $("#settings").fadeIn();
         PongGame.startSinglePlayer();
     });
-
 });
