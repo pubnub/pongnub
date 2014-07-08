@@ -11,7 +11,7 @@ $(document).ready(function(){
             pubnub.here_now({
                 channel: 'pongnub_lobby',
                 callback: function(m) {
-                    console.log("HAI");
+                    console.log(m);
                     $("#spinner").hide();
                     if (m.occupancy >= 3) {
                         $("#full").show();
