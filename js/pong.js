@@ -98,7 +98,7 @@ Pong = {
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == 9) {
       this.stop();
-      console.log("GG");
+      this.start(0);
       $("#playAgain").html('<h1>Game Over.</h1><button class="btn btn-default pubred" type="button" id="play2">Play again?</button><hr>');
       $("#play2").click(function() {
         if (window.oldSchoolCool) {

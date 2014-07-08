@@ -96,3 +96,7 @@ body {
     font-size: 40px;
     font-weight: 700;
 }
+
+#setup {
+    margin: 10px auto;
+}
