@@ -11,24 +11,16 @@ $(document).ready(function(){
             pubnub.here_now({
                 channel: 'pongnub_lobby',
                 callback: function(m) {
+                    console.log("HAI");
+                    $("#spinner").hide();
                     if (m.occupancy >= 3) {
-                        multiPlayer(m);
+                        $("#full").show();
                     }
-                    else if (m.occupancy >= 2) {
-                        singlePlayer(m);
+                    else {
+                        $("#setup").show();
                     }
                 }
             });
         }
     });
 });
-
-var singlePlayer = function(m) {
-    for (var i = 0; i < m.uuids.length; i++) {
-        m.uuids[i]
-    };
-}
-
-var multiPlayer = function(m) {
-
-}
