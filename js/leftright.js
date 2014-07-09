@@ -156,7 +156,7 @@ var gliderino = function (p) {
         "publish" : throttle(function () {
             alert("HELLO WORLD");
             p.publish({
-                "channel"   : "webgl-visualization-control",
+                "channel"   : "pongnub_game",
                 "message"   : {
                     "type"      : "move",
                     "x"         : globe.delta.x,
