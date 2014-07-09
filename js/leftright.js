@@ -48,4 +48,4 @@ $(document).ready(function(){
     });
 });
 
-$("#controls").css("font-size", ($(window).height() - 200) + "px");
+$("#controls").css("font-size", ($(window).height() - 100) + "px");
