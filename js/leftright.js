@@ -154,6 +154,7 @@ var gliderino = function (p) {
         },
 
         "publish" : throttle(function () {
+            alert("HELLO WORLD");
             p.publish({
                 "channel"   : "webgl-visualization-control",
                 "message"   : {
