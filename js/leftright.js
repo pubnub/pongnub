@@ -154,7 +154,6 @@ var gliderino = function (p) {
         },
 
         "publish" : throttle(function () {
-            alert("HELLO WORLD");
             p.publish({
                 "channel"   : "pongnub_game",
                 "message"   : {
@@ -186,3 +185,4 @@ var gliderino = function (p) {
     }, false);
 }
 
+document.addEventListener("touchstart",  function(){alert("PLZ");}, false);
