@@ -21,13 +21,18 @@ $(document).ready(function(){
                     else {
                         $("#setup").show();
                         $("#login").click(function() {
-                            pubnub.subscribe({
-                                channel: "pongnub_game",
-                                callback: function(m) {console.log(m)},
-                                state: {
-                                    side: window.side
-                                }
-                            });
+                            var name = $("#name").val();
+                            if (name.length > 0) {
+                                $("#setup").hide();
+                                pubnub.subscribe({
+                                    channel: "pongnub_game",
+                                    callback: function(m) {console.log(m)},
+                                    state: {
+                                        side: window.side,
+                                        name: name
+                                    }
+                                });
+                            }
                         });
                         $("#name").keypress(function(e) {
                             if (e.which === 13) {
