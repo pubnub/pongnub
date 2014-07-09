@@ -51,3 +51,4 @@ $(document).ready(function(){
 
 $("#controls").css("font-size", ($(window).height() - 95) + "px");
 $("#controls").css("margin-top", "-" + ($(window).height()/6) + "px");
+$("#controls").css("height", ($(window).height() + ($(window).height()/6)) + "px");
