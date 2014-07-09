@@ -59,6 +59,3 @@ $(window).resize(function() {
     $("#controls").css("height", ($(window).height() + ($(window).height()/6)) + "px");
 });
 
-$(window).on("swipe", function(event) {
-    alert("It's a swipe!");
-});
