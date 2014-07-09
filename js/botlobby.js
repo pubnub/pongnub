@@ -7,7 +7,7 @@ $(document).ready(function(){
     pubnub.subscribe({
         channel: 'pongnub_lobby',
         callback: function(m) {console.log(m)},
-        connect: function() {
+        presence: function(m) {
             pubnub.here_now({
                 channel: 'pongnub_lobby',
                 callback: function(m) {

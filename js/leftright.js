@@ -12,14 +12,32 @@ $(document).ready(function(){
                 channel: 'pongnub_lobby',
                 callback: function(m) {
                     $("#spinner").hide();
-                    if (m.occupancy >= 3) {
+                    if (m.occupancy >= 2) {
                         $("#full").show();
+                        pubnub.unsubscribe({
+                            channel: "pongnub_lobby"
+                        });
                     }
                     else {
                         $("#setup").show();
+                        $("#login").click(function() {
+                            pubnub.subscribe({
+                                channel: "pongnub_game",
+                                callback: function(m) {console.log(m)},
+                                state: {
+                                    side: window.side
+                                }
+                            });
+                        });
+                        $("#name").keypress(function(e) {
+                            if (e.which === 13) {
+                                $("#login").click();
+                            }
+                        });
                     }
                 }
             });
-        }
+        },
+    heartbeat: 10
     });
 });
