@@ -24,6 +24,7 @@ $(document).ready(function(){
                             var name = $("#name").val();
                             if (name.length > 0) {
                                 $("#setup").hide();
+                                $("#controls").show();
                                 pubnub.subscribe({
                                     channel: "pongnub_game",
                                     callback: function(m) {console.log(m)},

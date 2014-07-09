@@ -27,3 +27,8 @@ h1 {
 #setup {
     display: none;
 }
+
+#controls {
+    display: none;
+    font-size: 400px;
+}
