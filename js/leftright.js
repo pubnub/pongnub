@@ -47,3 +47,5 @@ $(document).ready(function(){
     heartbeat: 10
     });
 });
+
+$("#controls").css("font-size", ($(window).height() - 200) + "px");
