@@ -49,4 +49,4 @@ $(document).ready(function(){
     });
 });
 
-$("#controls").css("font-size", ($(window).height() - 100) + "px");
+$("#controls").css("font-size", ($(window).height() - 95) + "px");
