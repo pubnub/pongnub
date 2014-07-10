@@ -29,7 +29,7 @@ $(document).ready(function(){
         var right = false;
 
         for (var i = 0; i < m.uuids.length; i++) {
-            if (m.state !== undefined) {
+            if (m.uuids[i].state !== undefined) {
                 if (m.uuids[i].state.side === "left") {
                     left = true;
                 }
