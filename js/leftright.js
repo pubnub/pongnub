@@ -80,8 +80,7 @@ var initTouchers = function(name, pubnub) {
         var type = eve.type;
         var time = eve.time;
 
-        // console.log(Object.keys(target));
-        // console.log(target.id);
+        // console.log(target);
 
         publishAction({"target": target, "type": type});
     }

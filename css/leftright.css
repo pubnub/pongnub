@@ -35,7 +35,7 @@ h1 {
     overflow: hidden;
 }
 
-#down {
+.down {
     background-color: #ba3925;
     color: #f9f9f9;
 }

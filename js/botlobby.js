@@ -14,21 +14,12 @@ $(document).ready(function(){
                     if (m.occupancy >= 3) {
                         multiPlayer(m);
                     }
-                    else if (m.occupancy >= 2) {
-                        singlePlayer(m);
-                    }
                 }
             });
         }
     });
 });
 
-var singlePlayer = function(m) {
-    for (var i = 0; i < m.uuids.length; i++) {
-        m.uuids[i]
-    };
-}
-
 var multiPlayer = function(m) {
-
+    
 }
