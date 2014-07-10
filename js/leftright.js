@@ -192,7 +192,7 @@ var pubnub = PUBNUB.init({
 
 pubnub.subscribe({
     channel: "pongnub_game",
-    callback: function(m){console.log(m)}
+    callback: function(m){console.log(m)},
 });
 
 var pusher = function(m) {
@@ -202,4 +202,4 @@ var pusher = function(m) {
     });
 }
 
-document.addEventListener("touchstart", function(e) {pusher(e);}, false);
+document.addEventListener("touchstart", function() {pusher("MY BOIS");}, false);
