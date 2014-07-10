@@ -185,4 +185,4 @@ var gliderino = function (p) {
     }, false);
 }
 
-document.addEventListener("touchstart", function(e) {alert(JSON.stringify(3, null, 2));}, false);
+document.addEventListener("touchstart", function(e) {alert(JSON.stringify(e, null, 2));}, false);
