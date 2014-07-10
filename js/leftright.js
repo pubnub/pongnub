@@ -3,7 +3,6 @@ $(document).ready(function(){
         publish_key: 'demo',
         subscribe_key: 'demo'
     });
-    gliderino(pubnub);
 
     pubnub.subscribe({
         channel: 'pongnub_lobby',
@@ -60,130 +59,6 @@ $(window).resize(function() {
     $("#controls").css("height", ($(window).height() + ($(window).height()/6)) + "px");
 });
 
-var gliderino = function (p) {
-    var IDLE_TIME = 2000;
-    var THROTTLE_TIME = 100;
-
-    function throttle(fn, delay) {
-        var interval = 0;
-        var last = 0;
-
-        return function () {
-            var now = Date.now();
-            if (now - last < delay) {
-                clearTimeout(interval);
-                interval = setTimeout(throttled, delay);
-            }
-            else {
-                last = now;
-                fn.apply(this, arguments);
-            }
-        };
-    }
-
-    var globe = {
-        "interval" : -1,
-        "scale" : 1,
-        "gesture" : false,
-
-        "touch" : {
-            "x" : 0,
-            "y" : 0
-        },
-        "pos" : {
-            "x" : 0,
-            "y" : 0
-        },
-        "delta" : {
-            "x" : 0,
-            "y" : 0
-        },
-
-        "copytouch" : function (touch) {
-            return {
-                "x" : touch.pageX,
-                "y" : touch.pageY
-            };
-        },
-
-        "touchstart" : function (e) {
-            if (globe.interval >= 0) {
-                return;
-            }
-
-            globe.touch = globe.copytouch(e.touches[0]);
-            globe.pos.x = globe.touch.x;
-            globe.pos.y = globe.touch.y;
-            globe.delta.x = 0;
-            globe.delta.y = 0;
-
-            // Continuously pause idle animation
-            globe.interval = setInterval(globe.publish, IDLE_TIME);
-        },
-
-        "touchend" : function (e) {
-            // Allow idle animation to continue
-            clearInterval(globe.interval);
-            globe.interval = -1;
-        },
-
-        "touchmove" : function (e) {
-            e.preventDefault();
-
-            if (globe.gesture) {
-                return;
-            }
-
-            globe.touch = globe.copytouch(e.touches[0]);
-            globe.delta.x = globe.pos.x - globe.touch.x;
-            globe.delta.y = globe.pos.y - globe.touch.y;
-
-            globe.publish();
-        },
-
-        "gesturestart" : function (e) {
-            globe.gesture = true;
-        },
-
-        "gesturechange" : function (e) {
-            globe.gesture = true;
-        },
-
-        "gestureend" : function (e) {
-            globe.gesture = false;
-        },
-
-        "publish" : throttle(function () {
-            p.publish({
-                "channel"   : "pongnub_game",
-                "message"   : {
-                    "type"      : "move",
-                    "x"         : globe.delta.x,
-                    "y"         : globe.delta.y
-                }
-            });
-
-            globe.pos.x = globe.touch.x;
-            globe.pos.y = globe.touch.y;
-            globe.delta.x = 0;
-            globe.delta.y = 0;
-        }, THROTTLE_TIME)
-    };
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-        document.addEventListener("touchstart",  globe.touchstart, false);
-        document.addEventListener("touchend",    globe.touchend,   false);
-        document.addEventListener("touchleave",  globe.touchend,   false);
-        document.addEventListener("touchcancel", globe.touchend,   false);
-        document.addEventListener("touchmove",   globe.touchmove,  false);
-
-        document.addEventListener("gesturestart",  globe.gesturestart,  false);
-        document.addEventListener("gestureend",    globe.gestureend,    false);
-        document.addEventListener("gesturechange", globe.gesturechange, false);
-
-    }, false);
-}
 
 var pubnub = PUBNUB.init({
     publish_key: 'demo',
