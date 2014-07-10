@@ -26,7 +26,7 @@ $(document).ready(function(){
                                 $("#setup").hide();
                                 $("#title").hide();
                                 $("#controls").show();
-                                initTouchers(name);
+                                initTouchers(name, pubnub);
                             }
                         });
                         $("#name").keypress(function(e) {
@@ -56,16 +56,12 @@ $(window).resize(function() {
     $("#down").css("height", ($(window).height()/2) + "px");
 });
 
-var initTouchers = function(name) {
+var initTouchers = function(name, pubnub) {
     var mySide = window.side;
-    var pubnub = PUBNUB.init({
-        publish_key: 'demo',
-        subscribe_key: 'demo'
-    });
 
     pubnub.subscribe({
         channel: "pongnub_game",
-        callback: function(m){console.log(m)},
+        callback: function(m){},
         state: {
             side: mySide,
             name: name
@@ -79,10 +75,28 @@ var initTouchers = function(name) {
         });
     }
 
-    document.addEventListener("touchstart", function(e) {publishAction("SOMEONE IS TOUCHING ME!!!");}, false);
-    document.addEventListener("touchend", function(e) {publishAction("SOMEONE STOPPED TOUCHING ME...");}, false);
-    document.addEventListener("touchleave", function(e) {publishAction("TOUCHLEAVE");}, false);
-    document.addEventListener("touchcancel", function(e) {publishAction("SOMEONE CANCELED ME?????");}, false);
-    document.addEventListener("touchmove", function(e) {publishAction("TOUCHMOVE");}, false);
+    var touchHandler = function(eve) {
+        var target = eve.target.id;
+        var type = eve.type;
+        var time = eve.time;
+
+        // console.log(Object.keys(target));
+        // console.log(target.id);
+
+        publishAction({"target": target, "type": type});
+    }
+
+    // document.addEventListener("touchstart", function(e) {publishAction("SOMEONE IS TOUCHING ME!!!")}, false);
+    // document.addEventListener("touchend", function(e) {publishAction("SOMEONE STOPPED TOUCHING ME...");}, false);
+    // document.addEventListener("touchleave", function(e) {publishAction("TOUCHLEAVE");}, false);
+    // document.addEventListener("touchcancel", function(e) {publishAction("SOMEONE CANCELED ME?????");}, false);
+    // document.addEventListener("touchmove", function(e) {publishAction("TOUCHMOVE");}, false);
+
+    document.addEventListener("touchstart", function(e) {touchHandler(e)}, false);
+    document.addEventListener("touchend", function(e) {touchHandler(e);}, false);
+    document.addEventListener("touchleave", function(e) {touchHandler(e);}, false);
+    document.addEventListener("touchcancel", function(e) {touchHandler(e);}, false);
+    document.addEventListener("touchmove", function(e) {touchHandler(e);}, false);
+
 }
 
