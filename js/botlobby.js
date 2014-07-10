@@ -12,6 +12,7 @@ $(document).ready(function(){
                 channel: 'pongnub_lobby',
                 state: true,
                 callback: function(m) {
+                    console.log(m);
                     if (m.occupancy >= 3) {
                         multiPlayer(m);
                     }
@@ -26,11 +27,13 @@ var multiPlayer = function(m) {
     var right = false;
 
     for (var i = 0; i < m.uuids.length; i++) {
-        if (m.uuids[i].state.side === "left") {
-            left = true;
-        }
-        else if (m.uuids[i].state.side === "right") {
-            right = true;
+        if (m.state !== undefined) {
+            if (m.uuids[i].state.side === "left") {
+                left = true;
+            }
+            else if (m.uuids[i].state.side === "right") {
+                right = true;
+            }
         }
     };
 
