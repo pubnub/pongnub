@@ -202,4 +202,4 @@ var pusher = function(m) {
     });
 }
 
-document.addEventListener("touchstart", function() {pusher("MY BOIS");}, false);
+document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!");pusher(e);}, false);
