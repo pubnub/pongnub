@@ -81,5 +81,5 @@ var pusher = function(m) {
 document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!!!");}, false);
 document.addEventListener("touchend", function(e) {pusher("SOMEONE STOPPED TOUCHING ME...");}, false);
 // document.addEventListener("touchleave", function(e) {pusher("TOUCHLEAVE");}, false);
-// document.addEventListener("touchcancel", function(e) {pusher("TOUCHCANCEL");}, false);
+document.addEventListener("touchcancel", function(e) {pusher("SOMEONE CANCELED ME?????");}, false);
 // document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
