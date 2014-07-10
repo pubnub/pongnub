@@ -75,7 +75,7 @@ var initTouchers = function(name) {
     var publishAction = function(action) {
         pubnub.publish({
             channel: "pongnub_game",
-            message: m
+            message: action
         });
     }
 
