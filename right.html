@@ -12,17 +12,15 @@
 
 <body>
 
-<div class="page-header">
+<div class="page-header" id="title">
   <h1>PongNub</h1>
 </div>
 <i class="fa fa-spinner fa-spin" id="spinner"></i>
 <div class="container">
   <div class="row">
-    <div class="input-group col-sm-12" id="setup">
+    <div class="col-sm-12" id="setup">
       <input type="text" class="form-control" id="name" placeholder="Username">
-      <span class="input-group-btn">
-        <button class="btn btn-default pubred" type="button" id="login">Login</button>
-      </span>
+      <button class="btn btn-default pubred" type="button" id="login">Login</button>
     </div>
   </div>
   <div class="row">
@@ -32,11 +30,21 @@
   </div>
 </div>
 
+<div id="controls">
+  <div id="up">
+    <i class="fa fa-arrow-up" id="up"></i>
+  </div>
+  <div id="down" class="down">
+    <i class="fa fa-arrow-down" id="down"></i>
+  </div>
+</div>
 
-  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="http://cdn.pubnub.com/pubnub.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
   <script type="text/javascript">
     window.side = "right";
   </script>
