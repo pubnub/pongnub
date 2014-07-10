@@ -185,4 +185,21 @@ var gliderino = function (p) {
     }, false);
 }
 
-document.addEventListener("touchstart", function(e) {alert(JSON.stringify(e));}, false);
+var pubnub = PUBNUB.init({
+    publish_key: 'demo',
+    subscribe_key: 'demo'
+});
+
+pubnub.subscribe({
+    channel: "pongnub_game",
+    callback: function(m){console.log(m)}
+});
+
+var pusher = function(m) {
+    pubnub.publish({
+        channel: "pongnub_game",
+        message: m
+    });
+}
+
+document.addEventListener("touchstart", function(e) {pusher(e);}, false);
