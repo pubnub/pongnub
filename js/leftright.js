@@ -26,14 +26,7 @@ $(document).ready(function(){
                                 $("#setup").hide();
                                 $("#title").hide();
                                 $("#controls").show();
-                                pubnub.subscribe({
-                                    channel: "pongnub_game",
-                                    callback: function(m) {console.log(m)},
-                                    state: {
-                                        side: window.side,
-                                        name: name
-                                    }
-                                });
+                                initTouchers(name);
                             }
                         });
                         $("#name").keypress(function(e) {
