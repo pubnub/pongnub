@@ -10,34 +10,36 @@ $(document).ready(function(){
         presence: function(m) {
             pubnub.here_now({
                 channel: 'pongnub_lobby',
-                state: true,
                 callback: function(m) {
-                    console.log(m);
                     if (m.occupancy >= 3) {
-                        multiPlayer(m);
+                        pubnub.here_now({
+                            channel: 'pongnub_game',
+                            state: true,
+                            callback: multiPlayer
+                        });
                     }
                 }
             });
         }
     });
-});
 
-var multiPlayer = function(m) {
-    var left = false;
-    var right = false;
+    var multiPlayer = function(m) {
+        var left = false;
+        var right = false;
 
-    for (var i = 0; i < m.uuids.length; i++) {
-        if (m.state !== undefined) {
-            if (m.uuids[i].state.side === "left") {
-                left = true;
+        for (var i = 0; i < m.uuids.length; i++) {
+            if (m.state !== undefined) {
+                if (m.uuids[i].state.side === "left") {
+                    left = true;
+                }
+                else if (m.uuids[i].state.side === "right") {
+                    right = true;
+                }
             }
-            else if (m.uuids[i].state.side === "right") {
-                right = true;
-            }
+        };
+
+        if (left && right) {
+            window.location.href = 'http://larrywu.com/pongnub';
         }
-    };
-
-    if (left && right) {
-        window.location.href = 'http://larrywu.com/pongnub';
     }
-}
+});
