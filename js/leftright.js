@@ -72,7 +72,7 @@ var initTouchers = function(name) {
         }
     });
 
-    var publishAction = function(m) {
+    var publishAction = function(action) {
         pubnub.publish({
             channel: "pongnub_game",
             message: m

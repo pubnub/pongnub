@@ -34,3 +34,8 @@ h1 {
     display: none;
     overflow: hidden;
 }
+
+#down {
+    background-color: #ba3925;
+    color: #f9f9f9;
+}
