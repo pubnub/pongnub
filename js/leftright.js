@@ -49,37 +49,47 @@ $(document).ready(function(){
     });
 });
 
-$("#controls").css("font-size", ($(window).height() - 95) + "px");
-$("#controls").css("margin-top", "-" + ($(window).height()/6) + "px");
-$("#controls").css("height", ($(window).height() + ($(window).height()/6)) + "px");
+$("#controls").css("font-size", ($(window).height()) /3+ "px");
+// $("#controls").css("margin-top", "-" + ($(window).height()/) + "px");
+$("#controls").css("height", ($(window).height()) + "px");
+$("#up").css("height", ($(window).height()/2) + "px");
+$("#down").css("height", ($(window).height()/2) + "px");
 
 $(window).resize(function() {
-    $("#controls").css("font-size", ($(window).height() - 95) + "px");
-    $("#controls").css("margin-top", "-" + ($(window).height()/6) + "px");
-    $("#controls").css("height", ($(window).height() + ($(window).height()/6)) + "px");
+    $("#controls").css("font-size", ($(window).height()) /3+ "px");
+    // $("#controls").css("margin-top", "-" + ($(window).height()/) + "px");
+    $("#controls").css("height", ($(window).height()) + "px");
+    $("#up").css("height", ($(window).height()/2) + "px");
+    $("#down").css("height", ($(window).height()/2) + "px");
 });
 
-
-var pubnub = PUBNUB.init({
-    publish_key: 'demo',
-    subscribe_key: 'demo'
-});
-
-pubnub.subscribe({
-    channel: "pongnub_game",
-    callback: function(m){console.log(m)},
-});
-
-var pusher = function(m) {
-    pubnub.publish({
-        channel: "pongnub_game",
-        message: m
+var initTouchers = function(name) {
+    var mySide = window.side;
+    var pubnub = PUBNUB.init({
+        publish_key: 'demo',
+        subscribe_key: 'demo'
     });
-}
 
-// document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!");}, false);
-document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!!!");}, false);
-document.addEventListener("touchend", function(e) {pusher("SOMEONE STOPPED TOUCHING ME...");}, false);
-// document.addEventListener("touchleave", function(e) {pusher("TOUCHLEAVE");}, false);
-document.addEventListener("touchcancel", function(e) {pusher("SOMEONE CANCELED ME?????");}, false);
-// document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
+    pubnub.subscribe({
+        channel: "pongnub_game",
+        callback: function(m){console.log(m)},
+        state: {
+            side: mySide,
+            name: name
+        }
+    });
+
+    var publishAction = function(m) {
+        pubnub.publish({
+            channel: "pongnub_game",
+            message: m
+        });
+    }
+
+    // document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!");}, false);
+    document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!!!");}, false);
+    document.addEventListener("touchend", function(e) {pusher("SOMEONE STOPPED TOUCHING ME...");}, false);
+    // document.addEventListener("touchleave", function(e) {pusher("TOUCHLEAVE");}, false);
+    document.addEventListener("touchcancel", function(e) {pusher("SOMEONE CANCELED ME?????");}, false);
+    // document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
+}
