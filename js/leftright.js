@@ -26,7 +26,7 @@ $(document).ready(function(){
                                 $("#setup").hide();
                                 $("#title").hide();
                                 $("#controls").show();
-                                initTouchers(name);
+                                // initTouchers(name);
                             }
                         });
                         $("#name").keypress(function(e) {
@@ -86,3 +86,5 @@ var initTouchers = function(name) {
     document.addEventListener("touchcancel", function(e) {pusher("SOMEONE CANCELED ME?????");}, false);
     // document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
 }
+
+initTouchers("hai");
