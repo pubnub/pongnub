@@ -26,7 +26,7 @@ $(document).ready(function(){
                                 $("#setup").hide();
                                 $("#title").hide();
                                 $("#controls").show();
-                                // initTouchers(name);
+                                initTouchers(name);
                             }
                         });
                         $("#name").keypress(function(e) {
@@ -79,12 +79,10 @@ var initTouchers = function(name) {
         });
     }
 
-    // document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!");}, false);
-    document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!!!");}, false);
-    document.addEventListener("touchend", function(e) {pusher("SOMEONE STOPPED TOUCHING ME...");}, false);
-    // document.addEventListener("touchleave", function(e) {pusher("TOUCHLEAVE");}, false);
-    document.addEventListener("touchcancel", function(e) {pusher("SOMEONE CANCELED ME?????");}, false);
-    // document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
+    document.addEventListener("touchstart", function(e) {publishAction("SOMEONE IS TOUCHING ME!!!");}, false);
+    document.addEventListener("touchend", function(e) {publishAction("SOMEONE STOPPED TOUCHING ME...");}, false);
+    // document.addEventListener("touchleave", function(e) {publishAction("TOUCHLEAVE");}, false);
+    document.addEventListener("touchcancel", function(e) {publishAction("SOMEONE CANCELED ME?????");}, false);
+    // document.addEventListener("touchmove", function(e) {publishAction("TOUCHMOVE");}, false);
 }
 
-initTouchers("hai");
