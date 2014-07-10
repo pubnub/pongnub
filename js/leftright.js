@@ -81,8 +81,8 @@ var initTouchers = function(name) {
 
     document.addEventListener("touchstart", function(e) {publishAction("SOMEONE IS TOUCHING ME!!!");}, false);
     document.addEventListener("touchend", function(e) {publishAction("SOMEONE STOPPED TOUCHING ME...");}, false);
-    // document.addEventListener("touchleave", function(e) {publishAction("TOUCHLEAVE");}, false);
+    document.addEventListener("touchleave", function(e) {publishAction("TOUCHLEAVE");}, false);
     document.addEventListener("touchcancel", function(e) {publishAction("SOMEONE CANCELED ME?????");}, false);
-    // document.addEventListener("touchmove", function(e) {publishAction("TOUCHMOVE");}, false);
+    document.addEventListener("touchmove", function(e) {publishAction("TOUCHMOVE");}, false);
 }
 
