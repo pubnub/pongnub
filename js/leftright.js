@@ -203,8 +203,8 @@ var pusher = function(m) {
 }
 
 // document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!");}, false);
-document.addEventListener("touchstart", function(e) {pusher("TOUCHSTART");}, false);
-document.addEventListener("touchend", function(e) {pusher("TOUCHEND");}, false);
-document.addEventListener("touchleave", function(e) {pusher("TOUCHLEAVE");}, false);
-document.addEventListener("touchcancel", function(e) {pusher("TOUCHCANCEL");}, false);
-document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
+document.addEventListener("touchstart", function(e) {pusher("SOMEONE IS TOUCHING ME!!!");}, false);
+document.addEventListener("touchend", function(e) {pusher("SOMEONE STOPPED TOUCHING ME...");}, false);
+// document.addEventListener("touchleave", function(e) {pusher("TOUCHLEAVE");}, false);
+// document.addEventListener("touchcancel", function(e) {pusher("TOUCHCANCEL");}, false);
+// document.addEventListener("touchmove", function(e) {pusher("TOUCHMOVE");}, false);
