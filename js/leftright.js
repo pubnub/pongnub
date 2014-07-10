@@ -110,6 +110,7 @@ var gliderino = function (p) {
             if (globe.interval >= 0) {
                 return;
             }
+            alert("STUFF IS HAPPENING");
 
             globe.touch = globe.copytouch(e.touches[0]);
             globe.pos.x = globe.touch.x;
@@ -184,5 +185,3 @@ var gliderino = function (p) {
 
     }, false);
 }
-
-document.addEventListener("touchstart",  function(){alert("PLZ");}, false);
