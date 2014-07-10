@@ -24,6 +24,7 @@ $(document).ready(function(){
     });
 
     var multiPlayer = function(m) {
+        console.log(m);
         var left = false;
         var right = false;
 
