@@ -7,7 +7,26 @@ $(document).ready(function(){
     pubnub.subscribe({
         channel: 'pongnub_lobby',
         callback: function(m) {console.log(m)},
-        presence: function(m) {
+        presence: function(m) { // Move this to a timeout loop or for pongnub_game.
+            pubnub.here_now({
+                channel: 'pongnub_lobby',
+                callback: function(m) {
+                    if (m.occupancy >= 3) {
+                        pubnub.here_now({
+                            channel: 'pongnub_game',
+                            state: true,
+                            callback: multiPlayer
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    pubnub.subscribe({
+        channel: 'pongnub_game',
+        callback: function(m) {console.log(m)},
+        presence: function(m) { // Move this to a timeout loop or for pongnub_game.
             pubnub.here_now({
                 channel: 'pongnub_lobby',
                 callback: function(m) {

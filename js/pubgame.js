@@ -11,7 +11,7 @@ $(document).ready(function () {
                     PongGame.leftPaddle.moveUp();
                 }
                 else {
-                    PongGame.leftPaddle.moveDown();
+                    PongGame.leftPaddle.stopMovingUp();
                 }
             }
             else if (m.target === "down") {
@@ -29,7 +29,7 @@ $(document).ready(function () {
                     PongGame.rightPaddle.moveUp();
                 }
                 else {
-                    PongGame.rightPaddle.moveDown();
+                    PongGame.rightPaddle.stopMovingUp();
                 }
             }
             else if (m.target === "down") {
