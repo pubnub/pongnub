@@ -82,7 +82,7 @@ var initTouchers = function(name, pubnub) {
 
         // console.log(target);
 
-        publishAction({"target": target, "type": type});
+        publishAction({"target": target, "type": type, side: mySide});
     }
 
     // document.addEventListener("touchstart", function(e) {publishAction("SOMEONE IS TOUCHING ME!!!")}, false);
