@@ -6,7 +6,7 @@ Pong = {
     wallWidth:    12,
     paddleWidth:  12,
     paddleHeight: 60,
-    paddleSpeed:  2,     // should be able to cross court vertically   in 2 seconds
+    paddleSpeed:  1.5,
     ballSpeed:    4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
     ballAccel:    8,     // ... but accelerate as time passes
     ballRadius:   5,
