@@ -12,7 +12,7 @@ $(document).ready(function(){
                 channel: 'pongnub_lobby',
                 callback: function(m) {
                     $("#spinner").hide();
-                    if (m.occupancy >= 999) { // Change 999 to 2
+                    if (m.occupancy >= 999) { // change 999 to 2 when ready
                         $("#full").show();
                         pubnub.unsubscribe({
                             channel: "pongnub_lobby"
