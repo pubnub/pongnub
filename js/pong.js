@@ -98,7 +98,7 @@ Pong = {
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == 9) {
       this.stop();
-      if (this.oldSchoolCool) {
+      if (window.oldSchoolCool) {
         this.start(2);
       }
       else {
