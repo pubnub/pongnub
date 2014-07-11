@@ -98,7 +98,12 @@ Pong = {
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == 9) {
       this.stop();
-      this.start(0);
+      if (this.oldSchoolCool) {
+        this.start(2);
+      }
+      else {
+        this.start(0);
+      }
       // $("#playAgain").html('<h1>Game Over.</h1><button class="btn btn-default pubred" type="button" id="play2">Play again?</button><hr>');
       $("#play2").click(function() {
         if (window.oldSchoolCool) {
@@ -152,22 +157,22 @@ Pong = {
   },
 
   onkeydown: function(keyCode) {
-    if (window.oldSchoolCool) {
-      switch(keyCode) {
-        case Game.KEY.UP: this.leftPaddle.moveUp(); break;
-        case Game.KEY.DOWN: this.leftPaddle.moveDown(); break;
-      }
-    }
-    else {
-      pubnub.publish({
-        channel: channel,
-        message: {
-          type: 'keydown',
-          user: num,
-          keyCode: keyCode
-        }
-      });
-    }
+    // if (window.oldSchoolCool) {
+    //   switch(keyCode) {
+    //     case Game.KEY.UP: this.leftPaddle.moveUp(); break;
+    //     case Game.KEY.DOWN: this.leftPaddle.moveDown(); break;
+    //   }
+    // }
+    // else {
+    //   pubnub.publish({
+    //     channel: channel,
+    //     message: {
+    //       type: 'keydown',
+    //       user: num,
+    //       keyCode: keyCode
+    //     }
+    //   });
+    // }
     // if (window.num === 1) {
     //     switch(keyCode) {
     //       case Game.KEY.UP: this.leftPaddle.moveUp(); break;
@@ -193,22 +198,22 @@ Pong = {
   },
 
   onkeyup: function(keyCode) {
-    if (oldSchoolCool) {
-      switch(keyCode) {
-        case Game.KEY.UP: this.leftPaddle.stopMovingUp(); break;
-        case Game.KEY.DOWN: this.leftPaddle.stopMovingDown(); break;
-      }
-    }
-    else {
-      pubnub.publish({
-        channel: channel,
-        message: {
-          type: 'keyup',
-          user: num,
-          keyCode: keyCode
-        }
-      });
-    }
+    // if (oldSchoolCool) {
+    //   switch(keyCode) {
+    //     case Game.KEY.UP: this.leftPaddle.stopMovingUp(); break;
+    //     case Game.KEY.DOWN: this.leftPaddle.stopMovingDown(); break;
+    //   }
+    // }
+    // else {
+    //   pubnub.publish({
+    //     channel: channel,
+    //     message: {
+    //       type: 'keyup',
+    //       user: num,
+    //       keyCode: keyCode
+    //     }
+    //   });
+    // }
     // if (window.num === 1) {
     //     
     //     
