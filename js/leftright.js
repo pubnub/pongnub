@@ -95,7 +95,7 @@ var initTouchers = function(name, pubnub) {
     document.addEventListener("touchend", function(e) {touchHandler(e);}, false);
     document.addEventListener("touchleave", function(e) {touchHandler(e);}, false);
     document.addEventListener("touchcancel", function(e) {touchHandler(e);}, false);
-    document.addEventListener("touchmove", function(e) {touchHandler(e);}, false);
+    // document.addEventListener("touchmove", function(e) {touchHandler(e);}, false);
 
 }
 

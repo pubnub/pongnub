@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     var presenceHandler = function(m) {
         if (m.occupancy < 3) { // Someone RQ
-
+            window.location.href = 'http://larrywu.com/pongnub/botlobby';
         }
     }
 
