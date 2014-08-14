@@ -58,6 +58,9 @@ $(window).resize(function() {
 
 var initTouchers = function(name, pubnub) {
     var mySide = window.side;
+    document.ontouchstart = function(e){ 
+      e.preventDefault(); 
+    }
 
     pubnub.subscribe({
         channel: "pongnub_game",
