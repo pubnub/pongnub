@@ -1,8 +1,8 @@
 var id = getURLParameter("id");
 $(document).ready(function(){
     var pubnub = PUBNUB.init({
-        publish_key: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
-        subscribe_key: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
+        publish_key: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+        subscribe_key: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
 
     $("#controls").show();
@@ -38,7 +38,10 @@ var initTouchers = function(name, pubnub) {
     });
     pubnub.subscribe({
         channel: "pongnub" + id,
-        callback: function(){}
+        callback: function(){},
+        connect: function() {
+          console.log("pongnub" + id);
+        }
     });
 
     var publishAction = function(action) {

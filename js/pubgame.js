@@ -1,7 +1,7 @@
 $(document).ready(function () {
     window.pubnub = PUBNUB.init({
-        publish_key: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
-        subscribe_key: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
+        publish_key: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+        subscribe_key: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
 
     var pongnub = function(m) {
@@ -43,11 +43,7 @@ $(document).ready(function () {
         }
     }
 
-    var presenceHandler = function(m) {
-        if (m.occupancy < 3) { // Someone RQ
-            window.location.href = 'http://larrywu.com/pongnub/botlobby';
-        }
-    }
+    var presenceHandler = function(m) {}
 
     var id = getURLParameter("id"); 
 
