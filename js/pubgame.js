@@ -49,8 +49,10 @@ $(document).ready(function () {
         }
     }
 
+    var id = getURLParameter("id"); 
+
     pubnub.subscribe({
-        channel: "pongnub_game",
+        channel: "pongnub" + id,
         callback: pongnub,
         presence: presenceHandler
     });
