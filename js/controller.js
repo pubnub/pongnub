@@ -36,6 +36,10 @@ var initTouchers = function(name, pubnub) {
             name: name
         }
     });
+    pubnub.subscribe({
+        channel: "pongnub" + id,
+        callback: function(){}
+    });
 
     var publishAction = function(action) {
         pubnub.publish({

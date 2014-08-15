@@ -503,10 +503,22 @@
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script>
     var rand = Math.random().toString() + Math.random().toString() + Math.random().toString();
+    rand = "test";
     var pubnub = PUBNUB.init({
       publish_key: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
       subscribe_key: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe',
     });
+
+    var chan = "pongnub" + rand;
+
+    var z = setInterval(function() { 
+        pubnub.here_now({
+          channel: chan,
+          callback: function(m) {
+            console.log(m);
+          }
+        });
+    }, 1000);
 
   </script>
 
