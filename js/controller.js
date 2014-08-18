@@ -72,4 +72,15 @@ var initTouchers = function(name, pubnub) {
     document.addEventListener("mousedown", function(e) {touchHandler(e);}, false);
     document.addEventListener("mouseup", function(e) {touchHandler(e);}, false);
     document.addEventListener("mouseleave", function(e) {touchHandler(e);}, false);   
+
+    $(document).keydown(function(e) {
+      if (e.which == "40") touchHandler({target: {id : "down"}, type: "mousedown" });
+      if (e.which == "38") touchHandler({target: {id: "up"}, type: "mousedown" });
+      
+    });
+
+    $(document).keyup(function(e) {
+      if (e.which == "40") touchHandler({target: {id : "down"}, type: "mouseup" });
+      if (e.which == "38") touchHandler({target: {id : "up"}, type: "mousup" });
+    });
 }
