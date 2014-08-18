@@ -518,7 +518,7 @@
             console.log(m);
             if (m.occupancy) {
               console.log("GG");
-              if ($("#game").attr('src') !== "game.html") $("#game").attr("src", "game.html");
+              if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
             }
           }
         });

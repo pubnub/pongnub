@@ -59,7 +59,6 @@ var initTouchers = function(name, pubnub) {
         if (type === "mousleave") type = "touchend";
         var time = eve.time;
 
-        console.log(type);
 
         publishAction({"target": target, "type": type, side: mySide});
     }
