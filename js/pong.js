@@ -98,6 +98,7 @@ Pong = {
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == 9) {
       this.stop();
+      $("#playAgain").modal('show');
 //      if (window.oldSchoolCool) {
 //        this.start(1);
 //      }
