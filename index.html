@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="http://www.pubnub.com/static/css/styles.css?ts=1404164785">
   <!--[if lt IE 9]> <script src="/static/js/ie.js?ts=1404164785"></script> <![endif]-->
 
-  <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
  
 </head>
 
@@ -230,6 +230,14 @@
       display: block;
       margin: 0 auto;
     }
+    #qrcode {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    #qrcode img{
+      margin: 0 auto;
+    }
   </style>
 
   <div class="section gray padding-extra" id="app-hero">
@@ -240,11 +248,16 @@
           <p class="text-center">
             Pong with Friends.
           </p>
+          <p class="text-center">
+          Link to the <a href="" id="controlLink">Controls</a>
+          </p>
+          <div id="qrcode"></div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3 padding-top text-center">
-          <a class="btn btn-primary card">GitHub</a>
+          <a href="https://github.com/pubnub/pongnub" target="_blank" class="btn btn-primary card">GitHub</a>
+          <a href="#tutorial" class="btn btn-primary card">Tutorial</a>
         </div>
       </div>
     </div>
@@ -296,12 +309,12 @@
                   <li>12</li>
                 </ol>
               </li>
-              <li style="font-style: italic;">// Initialize VideoSync</li>
-              <li>var <span class="blue">sync</span> = new VideoSync("RoomName", "UserName");</li>
+              <li style="font-style: italic;">// Initialize PubNub</li>
+              <li>var <span class="blue">pubnub</span> = new PUBNUB.init({...});</li>
               <li>
                 <br>
               </li>
-              <li><span style="font-style: italic;"> // Your standard YouTube embed code.</span>
+              <li><span style="font-style: italic;"> // Subscribe to a channel</span>
               </li>
               <li>var player = new YT.player('player', {</li>
               <li class="indent">videoId: <span class="red">'A9HV5O8Un6k'</span>, // The Video ID</li>
@@ -318,7 +331,7 @@
         </div>
       </div>
       <div class="col-sm-7">
-        <div class="headline h3">Adding Synchronized Playback.</div>
+        <div class="headline h3">RealTime Multiplayer doesn't have to be hard</div>
         <p>
           You can add synchronized playback to Embedded YouTube videos with two simple steps.
           <br>First, initialize a VideoSync object with a room name and a user name.
@@ -499,7 +512,7 @@
 
   <script src="./assets/pubnub.min.js"></script>
   <script src="./assets/main.js"></script>
-
+  <script src="https://rawgit.com/davidshimjs/qrcodejs/master/qrcode.min.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script>
     var rand = Math.random().toString() + Math.random().toString() + Math.random().toString();
@@ -515,15 +528,22 @@
         pubnub.here_now({
           channel: chan,
           callback: function(m) {
-            console.log(m);
             if (m.occupancy) {
-              console.log("GG");
               if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
             }
           }
         });
     }, 1000);
 
+  $("#controlLink").attr("href", "http://pubnub.github.io/pongnub/controller?id=" + rand);
+
+new QRCode(document.getElementById("qrcode"), { 
+  text: "http://pubnub.github.io/pongnub/controller?id=" + rand, 
+  width: 128,
+  height: 128,
+  colorDark: "#000000",
+  colorLight: "#ffffff"
+});
   </script>
 
   <div id="loading">
