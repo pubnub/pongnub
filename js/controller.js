@@ -52,10 +52,12 @@ var initTouchers = function(name, pubnub) {
     }
 
     var touchHandler = function(eve) {
+      console.log(eve);
         var target = eve.target.id;
         var type = eve.type;
         if (type === "mousedown") type = "touchstart";
         if (type === "mouseup") type = "touchend";
+        if (type === "mouseleave") type = "touchend";
         if (type === "mousleave") type = "touchend";
         var time = eve.time;
 
