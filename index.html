@@ -510,14 +510,16 @@
     });
 
     var chan = "pongnub" + rand;
-    console.log(chan);
 
     var z = setInterval(function() { 
         pubnub.here_now({
           channel: chan,
           callback: function(m) {
-          console.log(chan);
             console.log(m);
+            if (m.occupancy) {
+              console.log("GG");
+              if ($("#game").attr('src') !== "game.html") $("#game").attr("src", "game.html");
+            }
           }
         });
     }, 1000);
