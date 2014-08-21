@@ -246,7 +246,7 @@
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3" style="margin-bottom: -40px;">
           <p class="text-center">
-          <a href="" id="controlLink"><h4 class="text-center">Controls</h4></a>
+          <h4 class="text-center"><a href="" id="controlLink">Controls</a></h4>
           </p>
           <div id="qrcode"></div>
         </div>
@@ -519,7 +519,7 @@
         });
     }, 1000);
 
-  $("#controlLink").attr("href", "http://pubnub.github.io/pongnub/controller?id=" + rand);
+  $("#controlLink").attr("href", "controller?id=" + rand);
 
 new QRCode(document.getElementById("qrcode"), { 
   text: "http://pubnub.github.io/pongnub/controller?id=" + rand, 
