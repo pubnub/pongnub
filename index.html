@@ -273,72 +273,41 @@
 
   <a name="tutorial"></a>
 
-  <div class="section gray padding-extra">
-    <div class="container">
-      <div class="col-sm-5">
-        <div class="code-wrap flex">
-          <div class="code-header">
-            <ul>
-              <li class="red"><i class="fa fa-circle"></i>
-              </li>
-              <li class="yellow"><i class="fa fa-circle"></i>
-              </li>
-              <li class="green"><i class="fa fa-circle"></i>
-              </li>
-            </ul>
-          </div>
-          <div class="code-content">
-
-            <ol class="list-code animate" data-type="one">
-              <li class="code-line-wrap">
-                <ol class="code-line-numbers">
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                  <li>5</li>
-                  <li>6</li>
-                  <li>7</li>
-                  <li>8</li>
-                </ol>
-              </li>
-              <li style="font-style: italic;">// Initialize PubNub</li>
-              <li>var <span class="blue">pubnub</span> = new PUBNUB.init({...});</li>
-              <li><br></li>
-              <li><span style="font-style: italic;"> // Subscribe to a channel</span>
-              </li>
-              <li>pubnub.subscribe({channel: pongnub, ...});</li>
-              <li><br></li>
-              <li><span style="font-style: italic;">// Publish your actions</span>
-              </li>
-              <li>
-                pubnub.publish({channel: pongnub, ...});
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
+<!-- It should be pretty clear how to add or remove lines -->
+<div class="section gray  padding-extra">
+  <div class="container">
+    <div class="row">
       <div class="col-sm-7">
-        <div class="headline h3">Second Screen Gaming made Easy</div>
-        <p>
-          S
-        </p>
+        <script src="https://gist.github.com/codyjb/598715d5a6d71417e5fb.js"></script>
       </div>
-    </div>
-  </div>
+      <div class="col-sm-5">
+          <div class="headline h5">Second Screen Gaming Made Easy</div>
+        <p>
+          Setting up a Pong match is as easy as initializing PubNub, publishing actions, and subscribing to messages.
 
-  <div class="section white padding-extra">
-    <div class="container">
-      <div class="col-sm-9">
-        <div class="headline h3"></div>
-        <p>
-        </p>
-      </div>
-      <div class="col-sm-3">
-        <img src="./assets/cloud-red.png" alt="Realtime Red cloud">
+        And use PubNub <a href=“www.pubnub.com/how-it-works/presence/”>Presence</a> to detect when users start engaging with your Pong app.</p>
       </div>
     </div>
   </div>
+</div>
+
+<div class="section white  padding-extra">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7">
+          <div class="headline h5">PubNub Data Streams and Presence</div>
+        <p>
+          PubNub <a href=”http://www.pubnub.com/how-it-works/presence/”>Presence</a> allows you to detect when users enter or leave your app.  With PongNub, <code>presence</code> is called within the subscribe call.  And that subscribe selects a unique channel name by using a randomly generated ID, so that multiple users do not subscribe to the same channel and try to play Pong on top of one another!
+        </p>
+      </div>
+      <div class="col-sm-5">
+        <div class="col-sm-6"><img src="http://websiteblog1.us-west-2.pubnub.com/static/images/demos/icons/Icon_DataStreams.png" alt="" /></div>
+        <div class="col-sm-6"><img src="http://websiteblog1.us-west-2.pubnub.com/static/images/demos/icons/Icon_Presence.png" algt="" /></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <section class="red">
     <div class="container">
