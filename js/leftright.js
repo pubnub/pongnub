@@ -1,45 +1,59 @@
 $(document).ready(function(){
-    var pubnub = PUBNUB.init({
-        publish_key: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
-        subscribe_key: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
+    var pubnub = new PubNu({
+        publishKey: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
+        subscribeKey: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
     });
 
-    pubnub.subscribe({
-        channel: 'pongnub_lobby',
-        callback: function(m) {console.log(m)},
-        connect: function() {
-            pubnub.here_now({
-                channel: 'pongnub_lobby',
-                callback: function(m) {
-                    $("#spinner").hide();
-                    if (m.occupancy >= 999) { // change 999 to 2 when ready
-                        $("#full").show();
-                        pubnub.unsubscribe({
-                            channel: "pongnub_lobby"
-                        });
-                    }
-                    else {
-                        $("#setup").show();
-                        $("#login").click(function() {
-                            var name = $("#name").val();
-                            if (name.length > 0) {
-                                $("#setup").hide();
-                                $("#title").hide();
-                                $("#controls").show();
-                                initTouchers(name, pubnub);
-                            }
-                        });
-                        $("#name").keypress(function(e) {
-                            if (e.which === 13) {
-                                $("#login").click();
-                            }
-                        });
-                    }
-                }
-            });
-        },
-    heartbeat: 10
+    pubnub.addEventListener({
+      message: function(m){
+
+      },
+
+      status: function(e){
+        if(e.category === "PNConnectedCategory" ){
+          handleConnect();
+        }
+      }
+
+
     });
+
+    var handleConnect = function(){
+      function() {
+         pubnub.hereNow({
+             channels: ['pongnub_lobby'],
+             callback: function(m) {
+                 $("#spinner").hide();
+                 if (m.occupancy >= 999) { // change 999 to 2 when ready
+                     $("#full").show();
+                     pubnub.unsubscribe({
+                         channel: "pongnub_lobby"
+                     });
+                 }
+                 else {
+                     $("#setup").show();
+                     $("#login").click(function() {
+                         var name = $("#name").val();
+                         if (name.length > 0) {
+                             $("#setup").hide();
+                             $("#title").hide();
+                             $("#controls").show();
+                             initTouchers(name, pubnub);
+                         }
+                     });
+                     $("#name").keypress(function(e) {
+                         if (e.which === 13) {
+                             $("#login").click();
+                         }
+                     });
+                 }
+             }
+    }
+
+
+    pubnub.subscribe({channels: ['pongnub_lobby'], withPresence: true});
+
+
 });
 
 $("#controls").css("font-size", ($(window).height()) /3+ "px");
@@ -58,9 +72,11 @@ $(window).resize(function() {
 
 var initTouchers = function(name, pubnub) {
     var mySide = window.side;
-    document.ontouchstart = function(e){ 
-      e.preventDefault(); 
+    document.ontouchstart = function(e){
+      e.preventDefault();
     }
+
+
 
     pubnub.subscribe({
         channel: "pongnub_game",
@@ -101,4 +117,3 @@ var initTouchers = function(name, pubnub) {
     // document.addEventListener("touchmove", function(e) {touchHandler(e);}, false);
 
 }
-

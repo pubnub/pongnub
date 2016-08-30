@@ -1,8 +1,13 @@
 $(document).ready(function () {
-    window.pubnub = PUBNUB.init({
-        publish_key: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
-        subscribe_key: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
-    });
+
+
+    window.pubnub = new PubNub({
+      publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+      subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
+    })
+
+
+
 
     var pongnub = function(m) {
         if (m.side === "left") {
@@ -45,12 +50,23 @@ $(document).ready(function () {
 
     var presenceHandler = function(m) {}
 
-    var id = getURLParameter("id"); 
+    var id = getURLParameter("id");
+
+    PubNub.addEventListener({
+      status: function(statusEvent) {
+            if (statusEvent.category === "PNConnectedCategory") {
+                publishSampleMessage();
+            }
+        },
+        message: pongnub
+        ,presence: presenceHandler
+            // handle presence
+        });
+
 
     pubnub.subscribe({
-        channel: "pongnub" + id,
-        callback: pongnub,
-        presence: presenceHandler
+        channel: ["pongnub" + id],
+        withPresence: true
     });
 
 });
