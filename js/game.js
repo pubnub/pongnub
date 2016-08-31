@@ -5,7 +5,7 @@ if (!Function.prototype.bind) {
         self  = this,
         nop   = function () {},
         bound = function () {
-          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));   
+          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));
         };
     nop.prototype   = self.prototype;
     bound.prototype = new nop();
@@ -70,7 +70,7 @@ Game = {
     } catch (e) {}
 
     return {
-      full:      ua, 
+      full:      ua,
       name:      key + (version ? " " + version.toString() : ""),
       version:   version,
       isFirefox: (key == "firefox"),
@@ -127,7 +127,7 @@ Game = {
     return (min + (Math.random() * (max - min)));
   },
 
-  timestamp: function() { 
+  timestamp: function() {
     return new Date().getTime();
   },
 
@@ -160,6 +160,7 @@ Game = {
   //-----------------------------------------------------------------------------
 
   Runner: {
+    
 
     initialize: function(id, game, cfg) {
       this.cfg          = Object.extend(game.Defaults || {}, cfg || {}); // use game defaults (if any) and extend with custom cfg (if any)
@@ -216,7 +217,7 @@ Game = {
         count:  0,
         fps:    0,
         update: 0,
-        draw:   0, 
+        draw:   0,
         frame:  0  // update + draw
       };
     },
