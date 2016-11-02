@@ -1,0 +1,44 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h2>PongNub</h2>
+    </body>
+    <script type="text/javascript">
+        
+function init() {
+    var rand = Math.floor(Math.random()*10000); 
+    console.log("innitting with id",rand);
+
+    var pubnub = PUBNUB.init({
+      publish_key: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+      subscribe_key: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
+    });
+
+    var chan = "pongnub" + rand;
+
+    var z = setInterval(function() { 
+        pubnub.here_now({
+          channel: chan,
+          callback: function(m) {
+            if (m.occupancy) {
+              if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
+            }
+          }
+        });
+    }, 1000);
+
+  $("#controlLink").attr("href", "controller?id=" + rand);
+
+    new QRCode(document.getElementById("qrcode"), { 
+      text: "http://pubnub.github.io/pongnub/controller?id=" + rand, 
+      width: 164,
+      height: 164,
+      colorDark: "#444",
+      colorLight: "#ffffff"
+    });
+}
+
+setTimeout(init,1000);
+</script>
+</html>
