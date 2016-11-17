@@ -1,0 +1,41 @@
+body { 
+    background-color: #f9f9f9;
+    color: #ba3925;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 140px;
+}
+
+h1 {
+    font-size: 120px;
+}
+
+#name {
+    height: 100px;
+    font-size: 70px;
+}
+
+#login {
+    height: 100px;
+    font-size: 60px;
+    width: 100%;
+    margin-top: -50px;
+}
+
+#full {
+    display: none;
+}
+
+#setup {
+    display: none;
+}
+
+#controls {
+    display: none;
+    overflow: hidden;
+}
+
+.down {
+    background-color: #ba3925;
+    color: #f9f9f9;
+}
