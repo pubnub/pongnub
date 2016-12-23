@@ -104,68 +104,12 @@
 
   <a name="tutorial"></a>
 
-<!-- It should be pretty clear how to add or remove lines -->
-<div class="section gray  padding-extra">
-  <div class="container">
-    <div class="row">
-      <!--<div class="col-sm-7">
-        <script src="https://gist.github.com/codyjb/598715d5a6d71417e5fb.js"></script>
-      </div>-->
-      <div class="col-sm-5">
-          <div class="headline h5">Second Screen Gaming Made Easy</div>
-        <p>
-          Setting up a Pong match is as easy as initializing PubNub, publishing actions, and subscribing to messages.
 
-        And use PubNub <a href=“www.pubnub.com/how-it-works/presence/”>Presence</a> to detect when users start engaging with your Pong app.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="section white  padding-extra">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-7">
-          <div class="headline h5">PubNub Data Streams and Presence</div>
-        <p>
-          PubNub <a href=”http://www.pubnub.com/how-it-works/presence/”>Presence</a> allows you to detect when users enter or leave your app.  With PongNub, <code>presence</code> is called within the subscribe call.  And that subscribe selects a unique channel name by using a randomly generated ID, so that multiple users do not subscribe to the same channel and try to play Pong on top of one another!
-        </p>
-      </div>
-      <div class="col-sm-5">
-        <div class="col-sm-6"><img src="http://websiteblog1.us-west-2.pubnub.com/static/images/demos/icons/Icon_DataStreams.png" alt="" /></div>
-        <div class="col-sm-6"><img src="http://websiteblog1.us-west-2.pubnub.com/static/images/demos/icons/Icon_Presence.png" algt="" /></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="section padding-extra gray">
-  <div class="container">
-    <div class="col-sm-6">
-      <div class="headline h3">Blog Posts</div>
-      <ul>
-        <li>None yet, but stay tuned!</li>
-        <li><a href="/blog/">Visit the Blog</a></li>
-      </ul>
-    </div>
-    <div class="col-sm-6">
-      <div class="headline h3">Features Used</div>
-      <ul>
-        <li><a href="/how-it-works/data-streams/" target="_blank">Data Streams</a></li>
-        <li><a href="/how-it-works/presence/" target="_blank">Presence</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  <script src="//cdn.pubnub.com/sdk/javascript/pubnub.4.0.8.min.js"></script>
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.3.3.min.js"></script>
   <!--<script src="./assets/main.js"></script> -->
   <script src="https://rawgit.com/davidshimjs/qrcodejs/master/qrcode.min.js"></script>
-  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.3.3.min.js"></script>
   <script>
     var rand = Math.floor(Math.random()*10000);
 
@@ -189,6 +133,7 @@
 
   $("#controlLink").attr("href", "controller.html?id=" + rand);
 
+
 new QRCode(document.getElementById("qrcode"), {
   text: "http://pubnub.github.io/pongnub/controller.html?id=" + rand,
   width: 164,
@@ -205,33 +150,11 @@ new QRCode(document.getElementById("qrcode"), {
       <h3 class="text-red">Loading...</h3>
     </div>
   </div>
-  <script type="text/javascript">
-    /* <![CDATA[ */
-    var google_conversion_id = 1009365105;
-    var google_custom_params = window.google_tag_params;
-    var google_remarketing_only = true;
-    /* ]]> */
-  </script>
-  <script type="text/javascript" src="./assets/conversion.js">
-  </script>
-  <iframe name="google_conversion_frame" title="Google conversion frame" width="300" height="13" src="./assets/saved_resource.html" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none !important;">&lt;img height="1" width="1" border="0" alt="" src="http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1009365105/?frame=0&amp;random=1404231211816&amp;cv=7&amp;fst=1404231211816&amp;num=1&amp;fmt=1&amp;guid=ON&amp;u_h=1440&amp;u_w=2560&amp;u_ah=1418&amp;u_aw=2560&amp;u_cd=24&amp;u_his=1&amp;u_tz=-420&amp;u_java=true&amp;u_nplug=14&amp;u_nmime=72&amp;frm=0&amp;url=http%3A//www.pubnub.com/style-guide/demo-template/&amp;ref=http%3A//getpocket.com/a/queue/" /&gt;</iframe>
-  <noscript>
-    &lt;div style="display:inline;"&gt; &lt;img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1009365105/?value=0&amp;amp;guid=ON&amp;amp;script=0"/&gt; &lt;/div&gt;
-  </noscript>
-  <script type="text/javascript">
-    var bf_url = "pubnub";
-    (function () {
-      var e = document.createElement("script");
-      e.type = "text/javascript";
-      e.async = !0;
-      e.src = "//d2sdf28wg0skh3.cloudfront.net/bf.min.js";
-      var t = document.getElementsByTagName("script")[0];
-      t.parentNode.insertBefore(e, t)
-    })();
-  </script>
 
 
-  <!--<script type="text/javascript" src="chrome-extension://bmdblncegkenkacieihfhpjfppoconhi/in-page-script.js"></script> -->
+
+
+
 </body>
 
 </html>
