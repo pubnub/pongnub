@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--<![endif]-->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+  <!-- <meta name="google-site-verification" content="X-NyWbTQ-1CgZ7cvLZYPOc0BzO7PblJv201J3PJXAJI"> -->
+
+
+  <title>PongNub</title>
+
+  <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
+  <!-- <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5;"> -->
+
+
+  <!-- <script type="text/javascript" src="./assets/main.js"></script> -->
+  <!-- <script type="text/javascript" src="./assets/pd.js"></script> -->
+  <script type="text/javascript" async="" src="./assets/inpage_linkid.js" id="undefined"></script>
+  <!-- <script type="text/javascript" async="" src="./assets/bf.min.js"></script> -->
+  <!-- <script type="text/javascript" async="" src="./assets/ga.js"></script> -->
+  <!-- <script src="./assets/30715011.js"></script> -->
+
+  <link rel="icon" type="image/png" href="//www.pubnub.com/static/images/structure/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Press+Start+2P">
+  <link rel="stylesheet" href="//www.pubnub.com/static/css/styles.css?ts=1404164785">
+  <link rel="stylesheet" href="bower_components/jquery.qrcode.js/dist/css/jquery.qrcode.min.css" />
+  <!--[if lt IE 9]> <script src="/static/js/ie.js?ts=1404164785"></script> <![endif]-->
+
+  <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body id="app" class="satemplate">
+<!-- Google Tag Manager -->
+
+
+  <div id="alert_container" class="alert  hidden"></div>
+  <style media="screen">
+    a[name=tutorial]:before {
+      content: "";
+      display: block;
+      height: 100px;
+      /* fixed header height*/
+      margin: -100px 0 0;
+      /* negative fixed header height */
+    }
+    #app-hero {
+      background:white;
+      background-attachment: fixed;
+    }
+    #demo {
+      background: white;
+      background-attachment: fixed;
+    }
+    .code {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 15px;
+    }
+    #game {
+      display: block;
+      margin: 0 auto;
+    }
+    #qrcode {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+    }
+    #qrcode img{
+      margin: 0 auto;
+    }
+  </style>
+
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/pubnub/dist/web/pubnub.min.js"></script>
+  <script src="./assets/main.js"></script>
+  <script src="bower_components/jquery.qrcode.js/dist/js/jquery.qrcode.min.js"></script>
+
+
+  <div class="container">
+    <div id="qrcode">
+      The freakin qrcode should be here
+    </div>
+  </div>
+
+
+  <script>
+    var rand = Math.floor(Math.random()*10000);
+
+    var pubnub = new PubNub({
+      publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+      subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
+    });
+
+    var chan = "pongnub" + rand;
+
+    var z = setInterval(function() {
+        pubnub.hereNow({
+          channel: chan,
+          callback: function(m) {
+            if (m.occupancy) {
+              if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
+            }
+          }
+        });
+    }, 1000);
+
+   $("#controlLink").attr("href", "controller.html?id=" + rand);
+
+   var controllerURL = window.location.protocol + "://"
+                       + window.location.hostname
+                       + "/pongnub/controller.html?id=" + rand
+
+    var props = { text: controllerURL,
+                  // width: 200
+                  // ,height: 200
+                  // ,colorDark: "#444",
+                  // ,colorLight: "#ffffff"
+                };
+
+    // new QRCode($('qrcode'), props);
+    //new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+
+    $('#qrcode').qrcode("WQRCCCC");
+    //$('#qrcode').css('display:block');
+
+  </script>
+
+  <div id="loading">
+    <div class="mask"></div>
+    <div class="indication">
+      <img src="./assets/loading.gif">
+      <h3 class="text-red">Loading...</h3>
+    </div>
+  </div>
+
+
+
+
+
+</body>
+
+</html>

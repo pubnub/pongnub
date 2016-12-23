@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>basic example</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+<!--<script type="text/javascript" src="../jquery.qrcode.min.js"></script> -->
+<!-- <script type="text/javascript" src="../src/jquery.qrcode.js"></script> -->
+<!-- <script type="text/javascript" src="../src/qrcode.js"></script> -->
+
+<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
+<!-- <script src="bower_components/pubnub/dist/web/pubnub.min.js"></script> -->
+<!-- <script src="./assets/main.js"></script> -->
+<script src="bower_components/jquery.qrcode.js/dist/js/jquery.qrcode.min.js"></script>
+
+<p>Render in table</p>
+<div id="qrcodeTable"></div>
+<p>Render in canvas</p>
+<div id="qrcode"></div>
+
+<script>
+
+  new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+
+
+</script>
+
+</body>
+</html>
