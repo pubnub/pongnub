@@ -118,7 +118,7 @@
     var makeQRCode = function(props){
        var gameQRCode = qrcode(6,'H' );
 
-       gameQRCode.addData(props.text);
+       gameQRCode.addData({props.text});
        gameQRCode.make();
        return gameQRCode.createSvgTag();
     }
