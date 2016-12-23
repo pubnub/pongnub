@@ -117,9 +117,10 @@
 
     var makeQRCode = function(props){
        var gameQRCode = qrcode(4,'M' );
+
        gameQRCode.addData(props);
        gameQRCode.make();
-       var imageTag = gameQRCode.createImgTag();
+       var imageTag = gameQRCode.createSvgTag();
        console.log(imageTag);
        return gameQRCode.createImgTag();
     }
