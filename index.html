@@ -12,7 +12,7 @@
   <title>PongNub</title>
 
   <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
-  <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5;">
+  <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5">
 
 
   <script type="text/javascript" src="./assets/main.js"></script>
@@ -120,9 +120,7 @@
 
        gameQRCode.addData(props.text);
        gameQRCode.make();
-       var imageTag = gameQRCode.createSvgTag();
-       console.log(imageTag);
-       return gameQRCode.createImgTag();
+       return gameQRCode.createSvgTag();
     }
 
 
