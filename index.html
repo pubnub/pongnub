@@ -156,7 +156,8 @@
                 colorLight: "#ffffff"
               };
 
-  $('#qrcode').innerHTML = makeQRCode(props);
+  var qrCode = document.getElementById('qrcode');
+  qrCode.addChild(makeQRCode(props));
 
   </script>
 
