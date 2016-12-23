@@ -120,7 +120,7 @@
 
        var t = props.text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
        console.log(t);
-       gameQRCode.addData(t);
+       gameQRCode.addData([t]);
        gameQRCode.make();
        return gameQRCode.createSvgTag();
     }
