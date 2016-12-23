@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="http://www.pubnub.com/static/css/styles.css?ts=1404164785">
   <!--[if lt IE 9]> <script src="/static/js/ie.js?ts=1404164785"></script> <![endif]-->
 
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
@@ -134,9 +134,12 @@
 
   $("#controlLink").attr("href", "controller.html?id=" + rand);
 
+   var controllerURL = window.location.protocol + "://"
+                       + window.location.hostname
+                       + "/pongnub/controller.html?id=" + rand
 
 new QRCode(document.getElementById("qrcode"), {
-  text: "http://pubnub.github.io/pongnub/controller.html?id=" + rand,
+  text: id=controllerURL
   width: 164,
   height: 164,
   colorDark: "#444",
