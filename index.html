@@ -108,10 +108,21 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/pubnub/dist/web/pubnub.min.js"></script>
   <script src="./assets/main.js"></script>
-  <script src="bower_components/qrcode.js/lib/qrcode.min.js"></script>
+  <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
 
 
   <script>
+
+    var makeQRCode = function(props){
+       var gameQRCode = qrcode(4,'M' );
+       gameQRCode.addData(props);
+       gameQRCode.make();
+       var imageTag = gameQRCode.createImgTag();
+       console.log(imageTag);
+       return gameQRCode.createImgTag();
+    }
+
+
     var rand = Math.floor(Math.random()*10000);
 
     var pubnub = new PubNub({
@@ -138,13 +149,15 @@
                        + window.location.hostname
                        + "/pongnub/controller.html?id=" + rand
 
-    new QRCode(document.getElementById("qrcode"), {
-  text: controllerURL,
-  width: 164,
-  height: 164,
-  colorDark: "#444",
-  colorLight: "#ffffff"
-});
+  var props = { text: controllerURL,
+                width: 164,
+                height: 164,
+                colorDark: "#444",
+                colorLight: "#ffffff"
+              };
+
+  $('#container').innerHTML = makeQRCode(props);
+
   </script>
 
   <div id="loading">
