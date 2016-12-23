@@ -1,8 +1,26 @@
 $(document).ready(function(){
-    var pubnub = PUBNUB.init({
-        publish_key: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
-        subscribe_key: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
+    var pubnub = new PubNub({
+        publishKey: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
+        subscribeKey: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
     });
+
+
+    var handlePresence = function(){
+      pubnub.hereNow({
+          channel: 'pongnub_lobby',
+          callback: function(m) {
+              if (m.occupancy >= 3) {
+                  pubnub.hereNow({
+                      channel: 'pongnub_game',
+                      state: true,
+                      callback: multiPlayer
+                  });
+              }
+          }
+      });
+    };
+
+
 
     pubnub.subscribe({
         channel: 'pongnub_lobby',

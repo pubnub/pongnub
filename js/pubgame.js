@@ -52,19 +52,18 @@ $(document).ready(function () {
 
     var id = getURLParameter("id");
 
-    PubNub.addEventListener({
+    window.pubnub.addEventListener({
       status: function(statusEvent) {
             if (statusEvent.category === "PNConnectedCategory") {
                 publishSampleMessage();
             }
-        },
-        message: pongnub
-        ,presence: presenceHandler
-            // handle presence
-        });
+      }
+      ,message: pongnub
+      ,presence: presenceHandler
+    });
 
 
-    pubnub.subscribe({
+    window.pubnub.subscribe({
         channel: ["pongnub" + id],
         withPresence: true
     });
