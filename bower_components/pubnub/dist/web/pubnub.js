@@ -1,4 +1,4 @@
-/*! 4.0.8 / Consumer  */
+/*! 4.3.3 / Consumer  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _pubnubCommon2 = _interopRequireDefault(_pubnubCommon);
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -113,13 +113,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, setup));
 
 	    window.addEventListener('offline', function () {
-	      _this._listenerManager.announceNetworkDown();
-	      _this.stop();
+	      _this.__networkDownDetected();
 	    });
 
 	    window.addEventListener('online', function () {
-	      _this._listenerManager.announceNetworkUp();
-	      _this.reconnect();
+	      _this.__networkUpDetected();
 	    });
 	    return _this;
 	  }
@@ -129,8 +127,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=index.js.map
-
 
 /***/ },
 /* 1 */
@@ -148,119 +144,127 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _networking = __webpack_require__(4);
+	var _networking = __webpack_require__(7);
 
 	var _networking2 = _interopRequireDefault(_networking);
 
-	var _config = __webpack_require__(12);
+	var _config = __webpack_require__(15);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _index = __webpack_require__(11);
+	var _index = __webpack_require__(14);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _subscription_manager = __webpack_require__(16);
+	var _subscription_manager = __webpack_require__(19);
 
 	var _subscription_manager2 = _interopRequireDefault(_subscription_manager);
 
-	var _listener_manager = __webpack_require__(19);
+	var _listener_manager = __webpack_require__(20);
 
 	var _listener_manager2 = _interopRequireDefault(_listener_manager);
 
-	var _endpoint = __webpack_require__(22);
+	var _endpoint = __webpack_require__(25);
 
 	var _endpoint2 = _interopRequireDefault(_endpoint);
 
-	var _add_channels = __webpack_require__(23);
+	var _add_channels = __webpack_require__(26);
 
 	var addChannelsChannelGroupConfig = _interopRequireWildcard(_add_channels);
 
-	var _remove_channels = __webpack_require__(24);
+	var _remove_channels = __webpack_require__(27);
 
 	var removeChannelsChannelGroupConfig = _interopRequireWildcard(_remove_channels);
 
-	var _delete_group = __webpack_require__(25);
+	var _delete_group = __webpack_require__(28);
 
 	var deleteChannelGroupConfig = _interopRequireWildcard(_delete_group);
 
-	var _list_groups = __webpack_require__(26);
+	var _list_groups = __webpack_require__(29);
 
 	var listChannelGroupsConfig = _interopRequireWildcard(_list_groups);
 
-	var _list_channels = __webpack_require__(27);
+	var _list_channels = __webpack_require__(30);
 
 	var listChannelsInChannelGroupConfig = _interopRequireWildcard(_list_channels);
 
-	var _add_push_channels = __webpack_require__(28);
+	var _add_push_channels = __webpack_require__(31);
 
 	var addPushChannelsConfig = _interopRequireWildcard(_add_push_channels);
 
-	var _remove_push_channels = __webpack_require__(29);
+	var _remove_push_channels = __webpack_require__(32);
 
 	var removePushChannelsConfig = _interopRequireWildcard(_remove_push_channels);
 
-	var _list_push_channels = __webpack_require__(30);
+	var _list_push_channels = __webpack_require__(33);
 
 	var listPushChannelsConfig = _interopRequireWildcard(_list_push_channels);
 
-	var _remove_device = __webpack_require__(31);
+	var _remove_device = __webpack_require__(34);
 
 	var removeDevicePushConfig = _interopRequireWildcard(_remove_device);
 
-	var _leave = __webpack_require__(32);
+	var _leave = __webpack_require__(35);
 
 	var presenceLeaveEndpointConfig = _interopRequireWildcard(_leave);
 
-	var _where_now = __webpack_require__(33);
+	var _where_now = __webpack_require__(36);
 
 	var presenceWhereNowEndpointConfig = _interopRequireWildcard(_where_now);
 
-	var _heartbeat = __webpack_require__(34);
+	var _heartbeat = __webpack_require__(37);
 
 	var presenceHeartbeatEndpointConfig = _interopRequireWildcard(_heartbeat);
 
-	var _get_state = __webpack_require__(35);
+	var _get_state = __webpack_require__(38);
 
 	var presenceGetStateConfig = _interopRequireWildcard(_get_state);
 
-	var _set_state = __webpack_require__(36);
+	var _set_state = __webpack_require__(39);
 
 	var presenceSetStateConfig = _interopRequireWildcard(_set_state);
 
-	var _here_now = __webpack_require__(37);
+	var _here_now = __webpack_require__(40);
 
 	var presenceHereNowConfig = _interopRequireWildcard(_here_now);
 
-	var _audit = __webpack_require__(38);
+	var _audit = __webpack_require__(41);
 
 	var auditEndpointConfig = _interopRequireWildcard(_audit);
 
-	var _grant = __webpack_require__(39);
+	var _grant = __webpack_require__(42);
 
 	var grantEndpointConfig = _interopRequireWildcard(_grant);
 
-	var _publish = __webpack_require__(40);
+	var _publish = __webpack_require__(43);
 
 	var publishEndpointConfig = _interopRequireWildcard(_publish);
 
-	var _history = __webpack_require__(41);
+	var _history = __webpack_require__(44);
 
 	var historyEndpointConfig = _interopRequireWildcard(_history);
 
-	var _time = __webpack_require__(18);
+	var _fetch_messages = __webpack_require__(45);
+
+	var fetchMessagesEndpointConfig = _interopRequireWildcard(_fetch_messages);
+
+	var _time = __webpack_require__(22);
 
 	var timeEndpointConfig = _interopRequireWildcard(_time);
 
-	var _subscribe = __webpack_require__(17);
+	var _subscribe = __webpack_require__(46);
 
 	var subscribeEndpointConfig = _interopRequireWildcard(_subscribe);
 
-	var _package = __webpack_require__(14);
+	var _operations = __webpack_require__(23);
 
-	var _package2 = _interopRequireDefault(_package);
+	var _operations2 = _interopRequireDefault(_operations);
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _categories = __webpack_require__(18);
+
+	var _categories2 = _interopRequireDefault(_categories);
+
+	var _flow_interfaces = __webpack_require__(16);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -274,8 +278,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _classCallCheck(this, _class);
 
-	    var sendBeacon = setup.sendBeacon;
-	    var db = setup.db;
+	    var sendBeacon = setup.sendBeacon,
+	        db = setup.db;
 
 
 	    var config = this._config = new _config2.default({ setup: setup, db: db });
@@ -283,7 +287,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var networking = new _networking2.default({ config: config, crypto: crypto, sendBeacon: sendBeacon });
 
 	    var modules = { config: config, networking: networking, crypto: crypto };
-	    var listenerManager = this._listenerManager = new _listener_manager2.default();
 
 	    var timeEndpoint = _endpoint2.default.bind(this, modules, timeEndpointConfig);
 	    var leaveEndpoint = _endpoint2.default.bind(this, modules, presenceLeaveEndpointConfig);
@@ -291,11 +294,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var setStateEndpoint = _endpoint2.default.bind(this, modules, presenceSetStateConfig);
 	    var subscribeEndpoint = _endpoint2.default.bind(this, modules, subscribeEndpointConfig);
 
+	    var listenerManager = this._listenerManager = new _listener_manager2.default();
 
 	    var subscriptionManager = new _subscription_manager2.default({
 	      timeEndpoint: timeEndpoint,
-	      leaveEndpoint: leaveEndpoint, heartbeatEndpoint: heartbeatEndpoint, setStateEndpoint: setStateEndpoint,
+	      leaveEndpoint: leaveEndpoint,
+	      heartbeatEndpoint: heartbeatEndpoint,
+	      setStateEndpoint: setStateEndpoint,
 	      subscribeEndpoint: subscribeEndpoint,
+	      crypto: modules.crypto,
 	      config: modules.config,
 	      listenerManager: listenerManager
 	    });
@@ -336,21 +343,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    this.history = _endpoint2.default.bind(this, modules, historyEndpointConfig);
+	    this.fetchMessages = _endpoint2.default.bind(this, modules, fetchMessagesEndpointConfig);
 
 	    this.time = timeEndpoint;
 
 	    this.subscribe = subscriptionManager.adaptSubscribeChange.bind(subscriptionManager);
 	    this.unsubscribe = subscriptionManager.adaptUnsubscribeChange.bind(subscriptionManager);
+	    this.disconnect = subscriptionManager.disconnect.bind(subscriptionManager);
 	    this.reconnect = subscriptionManager.reconnect.bind(subscriptionManager);
-	    this.stop = function () {
+
+	    this.destroy = function () {
 	      subscriptionManager.unsubscribeAll();
 	      subscriptionManager.disconnect();
 	    };
+
+	    this.stop = this.destroy;
 
 	    this.unsubscribeAll = subscriptionManager.unsubscribeAll.bind(subscriptionManager);
 
 	    this.getSubscribedChannels = subscriptionManager.getSubscribedChannels.bind(subscriptionManager);
 	    this.getSubscribedChannelGroups = subscriptionManager.getSubscribedChannelGroups.bind(subscriptionManager);
+
+	    this.encrypt = crypto.encrypt.bind(crypto);
+	    this.decrypt = crypto.decrypt.bind(crypto);
 
 	    this.getAuthKey = modules.config.getAuthKey.bind(modules.config);
 	    this.setAuthKey = modules.config.setAuthKey.bind(modules.config);
@@ -364,7 +379,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_class, [{
 	    key: 'getVersion',
 	    value: function getVersion() {
-	      return _package2.default.version;
+	      return this._config.getVersion();
+	    }
+	  }, {
+	    key: '__networkDownDetected',
+	    value: function __networkDownDetected() {
+	      this._listenerManager.announceNetworkDown();
+
+	      if (this._config.restore) {
+	        this.disconnect();
+	      } else {
+	        this.destroy();
+	      }
+	    }
+	  }, {
+	    key: '__networkUpDetected',
+	    value: function __networkUpDetected() {
+	      this._listenerManager.announceNetworkUp();
+	      this.reconnect();
 	    }
 	  }], [{
 	    key: 'generateUUID',
@@ -376,64 +408,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return _class;
 	}();
 
+	_class.OPERATIONS = _operations2.default;
+	_class.CATEGORIES = _categories2.default;
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=pubnub-common.js.map
-
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//     uuid.js
-	//
-	//     Copyright (c) 2010-2012 Robert Kieffer
-	//     MIT License - http://opensource.org/licenses/mit-license.php
+	var v1 = __webpack_require__(3);
+	var v4 = __webpack_require__(6);
+
+	var uuid = v4;
+	uuid.v1 = v1;
+	uuid.v4 = v4;
+
+	module.exports = uuid;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
 
 	// Unique ID creation requires a high quality random # generator.  We feature
 	// detect to determine the best RNG source, normalizing to a function that
 	// returns 128-bits of randomness, since that's what's usually required
-	var _rng = __webpack_require__(3);
-
-	// Maps for number <-> hex string conversion
-	var _byteToHex = [];
-	var _hexToByte = {};
-	for (var i = 0; i < 256; i++) {
-	  _byteToHex[i] = (i + 0x100).toString(16).substr(1);
-	  _hexToByte[_byteToHex[i]] = i;
-	}
-
-	// **`parse()` - Parse a UUID into it's component bytes**
-	function parse(s, buf, offset) {
-	  var i = (buf && offset) || 0, ii = 0;
-
-	  buf = buf || [];
-	  s.toLowerCase().replace(/[0-9a-f]{2}/g, function(oct) {
-	    if (ii < 16) { // Don't overflow!
-	      buf[i + ii++] = _hexToByte[oct];
-	    }
-	  });
-
-	  // Zero out remaining bytes if string was short
-	  while (ii < 16) {
-	    buf[i + ii++] = 0;
-	  }
-
-	  return buf;
-	}
-
-	// **`unparse()` - Convert UUID byte array (ala parse()) into a string**
-	function unparse(buf, offset) {
-	  var i = offset || 0, bth = _byteToHex;
-	  return  bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] + '-' +
-	          bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]] +
-	          bth[buf[i++]] + bth[buf[i++]];
-	}
+	var rng = __webpack_require__(4);
+	var bytesToUuid = __webpack_require__(5);
 
 	// **`v1()` - Generate time-based UUID**
 	//
@@ -441,7 +443,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// and http://docs.python.org/library/uuid.html
 
 	// random #'s we need to init node and clockseq
-	var _seedBytes = _rng();
+	var _seedBytes = rng();
 
 	// Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
 	var _nodeId = [
@@ -524,66 +526,33 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  // `node`
 	  var node = options.node || _nodeId;
-	  for (var n = 0; n < 6; n++) {
+	  for (var n = 0; n < 6; ++n) {
 	    b[i + n] = node[n];
 	  }
 
-	  return buf ? buf : unparse(b);
+	  return buf ? buf : bytesToUuid(b);
 	}
 
-	// **`v4()` - Generate random UUID**
-
-	// See https://github.com/broofa/node-uuid for API details
-	function v4(options, buf, offset) {
-	  // Deprecated - 'format' argument, as supported in v1.2
-	  var i = buf && offset || 0;
-
-	  if (typeof(options) == 'string') {
-	    buf = options == 'binary' ? new Array(16) : null;
-	    options = null;
-	  }
-	  options = options || {};
-
-	  var rnds = options.random || (options.rng || _rng)();
-
-	  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-	  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-	  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-	  // Copy bytes to buffer, if provided
-	  if (buf) {
-	    for (var ii = 0; ii < 16; ii++) {
-	      buf[i + ii] = rnds[ii];
-	    }
-	  }
-
-	  return buf || unparse(rnds);
-	}
-
-	// Export public API
-	var uuid = v4;
-	uuid.v1 = v1;
-	uuid.v4 = v4;
-	uuid.parse = parse;
-	uuid.unparse = unparse;
-
-	module.exports = uuid;
+	module.exports = v1;
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {
+	/* WEBPACK VAR INJECTION */(function(global) {// Unique ID creation requires a high quality random # generator.  In the
+	// browser this is a little complicated due to unknown quality of Math.random()
+	// and inconsistent support for the `crypto` API.  We do the best we can via
+	// feature-detection
 	var rng;
 
-	if (global.crypto && crypto.getRandomValues) {
-	  // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-	  // Moderately fast, high quality
-	  var _rnds8 = new Uint8Array(16);
+	var crypto = global.crypto || global.msCrypto; // for IE 11
+	if (crypto && crypto.getRandomValues) {
+	  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+	  var rnds8 = new Uint8Array(16);
 	  rng = function whatwgRNG() {
-	    crypto.getRandomValues(_rnds8);
-	    return _rnds8;
+	    crypto.getRandomValues(rnds8);
+	    return rnds8;
 	  };
 	}
 
@@ -592,24 +561,87 @@ return /******/ (function(modules) { // webpackBootstrap
 	  //
 	  // If all else fails, use Math.random().  It's fast, but is of unspecified
 	  // quality.
-	  var  _rnds = new Array(16);
+	  var  rnds = new Array(16);
 	  rng = function() {
 	    for (var i = 0, r; i < 16; i++) {
 	      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-	      _rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+	      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
 	    }
 
-	    return _rnds;
+	    return rnds;
 	  };
 	}
 
 	module.exports = rng;
 
-
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 4 */
+/* 5 */
+/***/ function(module, exports) {
+
+	/**
+	 * Convert array of 16 byte values to UUID string format of the form:
+	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+	 */
+	var byteToHex = [];
+	for (var i = 0; i < 256; ++i) {
+	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+	}
+
+	function bytesToUuid(buf, offset) {
+	  var i = offset || 0;
+	  var bth = byteToHex;
+	  return  bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] + '-' +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]] +
+	          bth[buf[i++]] + bth[buf[i++]];
+	}
+
+	module.exports = bytesToUuid;
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var rng = __webpack_require__(4);
+	var bytesToUuid = __webpack_require__(5);
+
+	function v4(options, buf, offset) {
+	  var i = buf && offset || 0;
+
+	  if (typeof(options) == 'string') {
+	    buf = options == 'binary' ? new Array(16) : null;
+	    options = null;
+	  }
+	  options = options || {};
+
+	  var rnds = options.random || (options.rng || rng)();
+
+	  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+	  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+	  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+	  // Copy bytes to buffer, if provided
+	  if (buf) {
+	    for (var ii = 0; ii < 16; ++ii) {
+	      buf[i + ii] = rnds[ii];
+	    }
+	  }
+
+	  return buf || bytesToUuid(rnds);
+	}
+
+	module.exports = v4;
+
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
@@ -620,19 +652,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _superagent = __webpack_require__(6);
+	var _superagent = __webpack_require__(9);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _index = __webpack_require__(11);
+	var _index = __webpack_require__(14);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _config = __webpack_require__(12);
+	var _config = __webpack_require__(15);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _categories = __webpack_require__(18);
+
+	var _categories2 = _interopRequireDefault(_categories);
+
+	var _flow_interfaces = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -640,9 +676,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _class = function () {
 	  function _class(_ref) {
-	    var config = _ref.config;
-	    var crypto = _ref.crypto;
-	    var sendBeacon = _ref.sendBeacon;
+	    var config = _ref.config,
+	        crypto = _ref.crypto,
+	        sendBeacon = _ref.sendBeacon;
 
 	    _classCallCheck(this, _class);
 
@@ -681,7 +717,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'shiftStandardOrigin',
 	    value: function shiftStandardOrigin() {
-	      var failover = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+	      var failover = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
 	      this._standardOrigin = this.nextOrigin(failover);
 
@@ -735,16 +771,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: '_detectErrorCategory',
 	    value: function _detectErrorCategory(err) {
-	      if (err.code === 'ENOTFOUND') return 'PNNetworkIssuesCategory';
-	      if (err.status === 0 || err.hasOwnProperty('status') && typeof err.status === 'undefined') return 'PNNetworkIssuesCategory';
-	      if (err.timeout) return 'PNTimeoutCategory';
+	      if (err.code === 'ENOTFOUND') return _categories2.default.PNNetworkIssuesCategory;
+	      if (err.status === 0 || err.hasOwnProperty('status') && typeof err.status === 'undefined') return _categories2.default.PNNetworkIssuesCategory;
+	      if (err.timeout) return _categories2.default.PNTimeoutCategory;
 
 	      if (err.response) {
-	        if (err.response.badRequest) return 'PNBadRequestCategory';
-	        if (err.response.forbidden) return 'PNAccessDeniedCategory';
+	        if (err.response.badRequest) return _categories2.default.PNBadRequestCategory;
+	        if (err.response.forbidden) return _categories2.default.PNAccessDeniedCategory;
 	      }
 
-	      return 'PNUnknownCategory';
+	      return _categories2.default.PNUnknownCategory;
 	    }
 	  }, {
 	    key: '_attachSuperagentLogger',
@@ -779,18 +815,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=networking.js.map
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports) {
 
 	
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {/**
@@ -807,9 +841,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  root = this;
 	}
 
-	var Emitter = __webpack_require__(7);
-	var requestBase = __webpack_require__(8);
-	var isObject = __webpack_require__(9);
+	var Emitter = __webpack_require__(10);
+	var requestBase = __webpack_require__(11);
+	var isObject = __webpack_require__(12);
 
 	/**
 	 * Noop.
@@ -821,7 +855,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(10).bind(null, Request);
+	var request = module.exports = __webpack_require__(13).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -1568,24 +1602,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  // progress
-	  var handleProgress = function(e){
+	  var handleProgress = function(direction, e) {
 	    if (e.total > 0) {
 	      e.percent = e.loaded / e.total * 100;
 	    }
-	    e.direction = 'download';
+	    e.direction = direction;
 	    self.emit('progress', e);
-	  };
-	  if (this.hasListeners('progress')) {
-	    xhr.onprogress = handleProgress;
 	  }
-	  try {
-	    if (xhr.upload && this.hasListeners('progress')) {
-	      xhr.upload.onprogress = handleProgress;
+	  if (this.hasListeners('progress')) {
+	    try {
+	      xhr.onprogress = handleProgress.bind(null, 'download');
+	      if (xhr.upload) {
+	        xhr.upload.onprogress = handleProgress.bind(null, 'upload');
+	      }
+	    } catch(e) {
+	      // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
+	      // Reported here:
+	      // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
 	    }
-	  } catch(e) {
-	    // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
-	    // Reported here:
-	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
 	  }
 
 	  // timeout
@@ -1770,10 +1804,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return req;
 	};
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -1942,13 +1976,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(9);
+	var isObject = __webpack_require__(12);
 
 	/**
 	 * Clear previous timeout.
@@ -2023,6 +2057,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	  return this._fullfilledPromise.then(resolve, reject);
 	}
+
+	exports.catch = function(cb) {
+	  return this.then(undefined, cb);
+	};
 
 	/**
 	 * Allow for extension
@@ -2113,21 +2151,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Write the field `name` and `val` for "multipart/form-data"
-	 * request bodies.
+	 * Write the field `name` and `val`, or multiple fields with one object
+	 * for "multipart/form-data" request bodies.
 	 *
 	 * ``` js
 	 * request.post('/upload')
 	 *   .field('foo', 'bar')
 	 *   .end(callback);
+	 *
+	 * request.post('/upload')
+	 *   .field({ foo: 'bar', baz: 'qux' })
+	 *   .end(callback);
 	 * ```
 	 *
-	 * @param {String} name
+	 * @param {String|Object} name
 	 * @param {String|Blob|File|Buffer|fs.ReadStream} val
 	 * @return {Request} for chaining
 	 * @api public
 	 */
 	exports.field = function(name, val) {
+
+	  // name should be either a string or an object.
+	  if (null === name ||  undefined === name) {
+	    throw new Error('.field(name, val) name can not be empty');
+	  }
+
+	  if (isObject(name)) {
+	    for (var key in name) {
+	      this.field(key, name[key]);
+	    }
+	    return this;
+	  }
+
+	  // val should be defined now
+	  if (null === val || undefined === val) {
+	    throw new Error('.field(name, val) val can not be empty');
+	  }
 	  this._getFormData().append(name, val);
 	  return this;
 	};
@@ -2295,7 +2354,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports) {
 
 	/**
@@ -2314,7 +2373,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -2352,7 +2411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2363,11 +2422,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _config = __webpack_require__(12);
+	var _config = __webpack_require__(15);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _hmacSha = __webpack_require__(15);
+	var _hmacSha = __webpack_require__(17);
 
 	var _hmacSha2 = _interopRequireDefault(_hmacSha);
 
@@ -2468,24 +2527,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }, {
 	    key: 'encrypt',
-	    value: function encrypt(data, options) {
-	      if (!this._config.cipherKey) return data;
+	    value: function encrypt(data, customCipherKey, options) {
+	      if (!customCipherKey && !this._config.cipherKey) return data;
 	      options = this._parseOptions(options);
 	      var iv = this._getIV(options);
 	      var mode = this._getMode(options);
-	      var cipherKey = this._getPaddedKey(this._config.cipherKey, options);
+	      var cipherKey = this._getPaddedKey(customCipherKey || this._config.cipherKey, options);
 	      var encryptedHexArray = _hmacSha2.default.AES.encrypt(data, cipherKey, { iv: iv, mode: mode }).ciphertext;
 	      var base64Encrypted = encryptedHexArray.toString(_hmacSha2.default.enc.Base64);
 	      return base64Encrypted || data;
 	    }
 	  }, {
 	    key: 'decrypt',
-	    value: function decrypt(data, options) {
-	      if (!this._config.cipherKey) return data;
+	    value: function decrypt(data, customCipherKey, options) {
+	      if (!customCipherKey && !this._config.cipherKey) return data;
 	      options = this._parseOptions(options);
 	      var iv = this._getIV(options);
 	      var mode = this._getMode(options);
-	      var cipherKey = this._getPaddedKey(this._config.cipherKey, options);
+	      var cipherKey = this._getPaddedKey(customCipherKey || this._config.cipherKey, options);
 	      try {
 	        var ciphertext = _hmacSha2.default.enc.Base64.parse(data);
 	        var plainJSON = _hmacSha2.default.AES.decrypt({ ciphertext: ciphertext }, cipherKey, { iv: iv, mode: mode }).toString(_hmacSha2.default.enc.Utf8);
@@ -2502,11 +2561,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=index.js.map
-
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2521,11 +2578,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _flow_interfaces = __webpack_require__(13);
-
-	var _package = __webpack_require__(14);
-
-	var _package2 = _interopRequireDefault(_package);
+	var _flow_interfaces = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2533,8 +2586,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _class = function () {
 	  function _class(_ref) {
-	    var setup = _ref.setup;
-	    var db = _ref.db;
+	    var setup = _ref.setup,
+	        db = _ref.db;
 
 	    _classCallCheck(this, _class);
 
@@ -2553,6 +2606,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    this.origin = setup.origin || 'pubsub.pubnub.com';
 	    this.secure = setup.ssl || false;
+	    this.restore = setup.restore || false;
 
 	    if (typeof location !== 'undefined' && location.protocol === 'https:') {
 	      this.secure = true;
@@ -2566,6 +2620,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    this.useInstanceId = setup.useInstanceId || false;
 	    this.useRequestId = setup.useRequestId || false;
+
+	    this.requestMessageCountThreshold = setup.requestMessageCountThreshold;
 
 	    this.setTransactionTimeout(setup.transactionalRequestTimeout || 15 * 1000);
 
@@ -2674,7 +2730,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'getVersion',
 	    value: function getVersion() {
-	      return _package2.default.version;
+	      return '4.3.3';
 	    }
 	  }, {
 	    key: '_decideUUID',
@@ -2696,115 +2752,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=config.js.map
-
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	module.exports = {};
-	//# sourceMappingURL=flow_interfaces.js.map
-
 
 /***/ },
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"name": "pubnub",
-		"preferGlobal": false,
-		"version": "4.0.8",
-		"author": "PubNub <support@pubnub.com>",
-		"description": "Publish & Subscribe Real-time Messaging with PubNub",
-		"bin": {},
-		"scripts": {
-			"codecov": "cat coverage/lcov.info | codecov"
-		},
-		"main": "./lib/node/index.js",
-		"react-native": "./lib/node/index.js",
-		"browser": "./dist/web/pubnub.min.js",
-		"repository": {
-			"type": "git",
-			"url": "git://github.com/pubnub/javascript.git"
-		},
-		"keywords": [
-			"cloud",
-			"publish",
-			"subscribe",
-			"websockets",
-			"comet",
-			"bosh",
-			"xmpp",
-			"real-time",
-			"messaging"
-		],
-		"dependencies": {
-			"superagent": "^2.0.0",
-			"uuid": "^2.0.2"
-		},
-		"noAnalyze": false,
-		"devDependencies": {
-			"babel-core": "^6.10.4",
-			"babel-eslint": "6.1.0",
-			"babel-plugin-add-module-exports": "^0.2.1",
-			"babel-plugin-transform-class-properties": "^6.10.2",
-			"babel-plugin-transform-flow-strip-types": "^6.8.0",
-			"babel-preset-es2015": "^6.9.0",
-			"babel-register": "^6.9.0",
-			"chai": "^3.5.0",
-			"eslint-config-airbnb": "9.0.1",
-			"eslint-plugin-flowtype": "2.3.1",
-			"eslint-plugin-import": "^1.9.2",
-			"eslint-plugin-mocha": "3.0.0",
-			"eslint-plugin-react": "5.2.2",
-			"flow-bin": "^0.31.1",
-			"gulp": "^3.9.1",
-			"gulp-babel": "^6.1.2",
-			"gulp-clean": "^0.3.2",
-			"gulp-eslint": "^2.0.0",
-			"gulp-exec": "^2.1.2",
-			"gulp-flowtype": "^0.4.9",
-			"gulp-gzip": "^1.4.0",
-			"gulp-istanbul": "^1.1.1",
-			"gulp-mocha": "^2.2.0",
-			"gulp-rename": "^1.2.2",
-			"gulp-sourcemaps": "^1.6.0",
-			"gulp-uglify": "^2.0.0",
-			"imports-loader": "0.6.5",
-			"isparta": "^4.0.0",
-			"json-loader": "0.5.4",
-			"karma": "1.1.1",
-			"karma-babel-preprocessor": "^6.0.1",
-			"karma-chai": "0.1.0",
-			"karma-chrome-launcher": "^1.0.1",
-			"karma-mocha": "^1.1.1",
-			"karma-phantomjs-launcher": "1.0.1",
-			"karma-spec-reporter": "0.0.26",
-			"mocha": "2.5.3",
-			"nock": "^8.0.0",
-			"phantomjs-prebuilt": "2.1.12",
-			"remap-istanbul": "^0.6.4",
-			"run-sequence": "^1.2.1",
-			"sinon": "^1.17.4",
-			"stats-webpack-plugin": "^0.4.0",
-			"uglify-js": "^2.6.4",
-			"underscore": "^1.8.3",
-			"webpack": "^1.13.1",
-			"webpack-dev-server": "1.15.0",
-			"webpack-stream": "^3.2.0"
-		},
-		"bundleDependencies": [],
-		"license": "MIT",
-		"engine": {
-			"node": ">=0.8"
-		}
-	};
-
-/***/ },
-/* 15 */
+/* 17 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -3266,11 +3224,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 	module.exports = CryptoJS;
-	//# sourceMappingURL=hmac-sha256.js.map
-
 
 /***/ },
-/* 16 */
+/* 18 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  PNNetworkUpCategory: 'PNNetworkUpCategory',
+
+	  PNNetworkDownCategory: 'PNNetworkDownCategory',
+
+	  PNNetworkIssuesCategory: 'PNNetworkIssuesCategory',
+
+	  PNTimeoutCategory: 'PNTimeoutCategory',
+
+	  PNBadRequestCategory: 'PNBadRequestCategory',
+
+	  PNAccessDeniedCategory: 'PNAccessDeniedCategory',
+
+	  PNUnknownCategory: 'PNUnknownCategory',
+
+	  PNReconnectedCategory: 'PNReconnectedCategory',
+
+	  PNConnectedCategory: 'PNConnectedCategory',
+
+	  PNRequestMessageCountExceededCategory: 'PNRequestMessageCountExceededCategory'
+
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3281,35 +3270,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _subscribe = __webpack_require__(17);
-
-	var _subscribe2 = _interopRequireDefault(_subscribe);
-
-	var _time = __webpack_require__(18);
-
-	var _time2 = _interopRequireDefault(_time);
-
-	var _cryptography = __webpack_require__(11);
+	var _cryptography = __webpack_require__(14);
 
 	var _cryptography2 = _interopRequireDefault(_cryptography);
 
-	var _config = __webpack_require__(12);
+	var _config = __webpack_require__(15);
 
 	var _config2 = _interopRequireDefault(_config);
 
-	var _listener_manager = __webpack_require__(19);
+	var _listener_manager = __webpack_require__(20);
 
 	var _listener_manager2 = _interopRequireDefault(_listener_manager);
 
-	var _reconnection_manager = __webpack_require__(20);
+	var _reconnection_manager = __webpack_require__(21);
 
 	var _reconnection_manager2 = _interopRequireDefault(_reconnection_manager);
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(24);
 
 	var _utils2 = _interopRequireDefault(_utils);
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _categories = __webpack_require__(18);
+
+	var _categories2 = _interopRequireDefault(_categories);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3317,14 +3302,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _class = function () {
 	  function _class(_ref) {
-	    var subscribeEndpoint = _ref.subscribeEndpoint;
-	    var leaveEndpoint = _ref.leaveEndpoint;
-	    var heartbeatEndpoint = _ref.heartbeatEndpoint;
-	    var setStateEndpoint = _ref.setStateEndpoint;
-	    var timeEndpoint = _ref.timeEndpoint;
-	    var config = _ref.config;
-	    var crypto = _ref.crypto;
-	    var listenerManager = _ref.listenerManager;
+	    var subscribeEndpoint = _ref.subscribeEndpoint,
+	        leaveEndpoint = _ref.leaveEndpoint,
+	        heartbeatEndpoint = _ref.heartbeatEndpoint,
+	        setStateEndpoint = _ref.setStateEndpoint,
+	        timeEndpoint = _ref.timeEndpoint,
+	        config = _ref.config,
+	        crypto = _ref.crypto,
+	        listenerManager = _ref.listenerManager;
 
 	    _classCallCheck(this, _class);
 
@@ -3344,6 +3329,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._channelGroups = {};
 	    this._presenceChannelGroups = {};
 
+	    this._pendingChannelSubscriptions = [];
+	    this._pendingChannelGroupSubscriptions = [];
+
 	    this._timetoken = 0;
 	    this._subscriptionStatusAnnounced = false;
 
@@ -3355,11 +3343,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function adaptStateChange(args, callback) {
 	      var _this = this;
 
-	      var state = args.state;
-	      var _args$channels = args.channels;
-	      var channels = _args$channels === undefined ? [] : _args$channels;
-	      var _args$channelGroups = args.channelGroups;
-	      var channelGroups = _args$channelGroups === undefined ? [] : _args$channelGroups;
+	      var state = args.state,
+	          _args$channels = args.channels,
+	          channels = _args$channels === undefined ? [] : _args$channels,
+	          _args$channelGroups = args.channelGroups,
+	          channelGroups = _args$channelGroups === undefined ? [] : _args$channelGroups;
 
 
 	      channels.forEach(function (channel) {
@@ -3370,20 +3358,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (channelGroup in _this._channelGroups) _this._channelGroups[channelGroup].state = state;
 	      });
 
-	      this._setStateEndpoint({ state: state, channels: channels, channelGroups: channelGroups }, callback);
+	      return this._setStateEndpoint({ state: state, channels: channels, channelGroups: channelGroups }, callback);
 	    }
 	  }, {
 	    key: 'adaptSubscribeChange',
 	    value: function adaptSubscribeChange(args) {
 	      var _this2 = this;
 
-	      var timetoken = args.timetoken;
-	      var _args$channels2 = args.channels;
-	      var channels = _args$channels2 === undefined ? [] : _args$channels2;
-	      var _args$channelGroups2 = args.channelGroups;
-	      var channelGroups = _args$channelGroups2 === undefined ? [] : _args$channelGroups2;
-	      var _args$withPresence = args.withPresence;
-	      var withPresence = _args$withPresence === undefined ? false : _args$withPresence;
+	      var timetoken = args.timetoken,
+	          _args$channels2 = args.channels,
+	          channels = _args$channels2 === undefined ? [] : _args$channels2,
+	          _args$channelGroups2 = args.channelGroups,
+	          channelGroups = _args$channelGroups2 === undefined ? [] : _args$channelGroups2,
+	          _args$withPresence = args.withPresence,
+	          withPresence = _args$withPresence === undefined ? false : _args$withPresence;
 
 
 	      if (timetoken) this._timetoken = timetoken;
@@ -3391,11 +3379,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      channels.forEach(function (channel) {
 	        _this2._channels[channel] = { state: {} };
 	        if (withPresence) _this2._presenceChannels[channel] = {};
+
+	        _this2._pendingChannelSubscriptions.push(channel);
 	      });
 
 	      channelGroups.forEach(function (channelGroup) {
 	        _this2._channelGroups[channelGroup] = { state: {} };
 	        if (withPresence) _this2._presenceChannelGroups[channelGroup] = {};
+
+	        _this2._pendingChannelGroupSubscriptions.push(channelGroup);
 	      });
 
 	      this._subscriptionStatusAnnounced = false;
@@ -3406,10 +3398,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function adaptUnsubscribeChange(args) {
 	      var _this3 = this;
 
-	      var _args$channels3 = args.channels;
-	      var channels = _args$channels3 === undefined ? [] : _args$channels3;
-	      var _args$channelGroups3 = args.channelGroups;
-	      var channelGroups = _args$channelGroups3 === undefined ? [] : _args$channelGroups3;
+	      var _args$channels3 = args.channels,
+	          channels = _args$channels3 === undefined ? [] : _args$channels3,
+	          _args$channelGroups3 = args.channelGroups,
+	          channelGroups = _args$channelGroups3 === undefined ? [] : _args$channelGroups3;
 
 
 	      channels.forEach(function (channel) {
@@ -3424,8 +3416,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (this._config.suppressLeaveEvents === false) {
 	        this._leaveEndpoint({ channels: channels, channelGroups: channelGroups }, function (status) {
+	          status.affectedChannels = channels;
+	          status.affectedChannelGroups = channelGroups;
 	          _this3._listenerManager.announceStatus(status);
 	        });
+	      }
+
+	      if (Object.keys(this._channels).length === 0 && Object.keys(this._presenceChannels).length === 0 && Object.keys(this._channelGroups).length === 0 && Object.keys(this._presenceChannelGroups).length === 0) {
+	        this._timetoken = 0;
+	        this._region = null;
+	        this._reconnectionManager.stopPolling();
 	      }
 
 	      this.reconnect();
@@ -3456,6 +3456,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function disconnect() {
 	      this._stopSubscribeLoop();
 	      this._stopHeartbeatTimer();
+	      this._reconnectionManager.stopPolling();
 	    }
 	  }, {
 	    key: '_registerHeartbeatTimer',
@@ -3551,22 +3552,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this5 = this;
 
 	      if (status.error) {
-	        if (status.category === 'PNTimeoutCategory') {
+	        if (status.category === _categories2.default.PNTimeoutCategory) {
 	          this._startSubscribeLoop();
-	        }
-
-	        if (status.category === 'PNNetworkIssuesCategory') {
+	        } else if (status.category === _categories2.default.PNNetworkIssuesCategory) {
 	          this.disconnect();
 	          this._reconnectionManager.onReconnection(function () {
 	            _this5.reconnect();
 	            _this5._subscriptionStatusAnnounced = true;
 	            var reconnectedAnnounce = {
-	              category: 'PNReconnectedCategory',
+	              category: _categories2.default.PNReconnectedCategory,
 	              operation: status.operation
 	            };
 	            _this5._listenerManager.announceStatus(reconnectedAnnounce);
 	          });
 	          this._reconnectionManager.startPolling();
+	          this._listenerManager.announceStatus(status);
+	        } else {
 	          this._listenerManager.announceStatus(status);
 	        }
 
@@ -3575,13 +3576,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (!this._subscriptionStatusAnnounced) {
 	        var connectedAnnounce = {};
-	        connectedAnnounce.category = 'PNConnectedCategory';
+	        connectedAnnounce.category = _categories2.default.PNConnectedCategory;
 	        connectedAnnounce.operation = status.operation;
+	        connectedAnnounce.affectedChannels = this._pendingChannelSubscriptions;
+	        connectedAnnounce.affectedChannelGroups = this._pendingChannelGroupSubscriptions;
 	        this._subscriptionStatusAnnounced = true;
 	        this._listenerManager.announceStatus(connectedAnnounce);
+
+	        this._pendingChannelSubscriptions = [];
+	        this._pendingChannelGroupSubscriptions = [];
 	      }
 
-	      payload.messages.forEach(function (message) {
+	      var messages = payload.messages || [];
+	      var requestMessageCountThreshold = this._config.requestMessageCountThreshold;
+
+
+	      if (requestMessageCountThreshold && messages.length >= requestMessageCountThreshold) {
+	        var countAnnouncement = {};
+	        countAnnouncement.category = _categories2.default.PNRequestMessageCountExceededCategory;
+	        countAnnouncement.operation = status.operation;
+	        this._listenerManager.announceStatus(countAnnouncement);
+	      }
+
+	      messages.forEach(function (message) {
 	        var channel = message.channel;
 	        var subscriptionMatch = message.subscriptionMatch;
 	        var publishMetaData = message.publishMetaData;
@@ -3592,8 +3609,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        if (_utils2.default.endsWith(message.channel, '-pnpres')) {
 	          var announce = {};
+	          announce.channel = null;
+	          announce.subscription = null;
+
 	          announce.actualChannel = subscriptionMatch != null ? channel : null;
 	          announce.subscribedChannel = subscriptionMatch != null ? subscriptionMatch : channel;
+
+
+	          if (channel) {
+	            announce.channel = channel.substring(0, channel.lastIndexOf('-pnpres'));
+	          }
+
+	          if (subscriptionMatch) {
+	            announce.subscription = subscriptionMatch.substring(0, subscriptionMatch.lastIndexOf('-pnpres'));
+	          }
+
 	          announce.action = message.payload.action;
 	          announce.state = message.payload.data;
 	          announce.timetoken = publishMetaData.publishTimetoken;
@@ -3603,9 +3633,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _this5._listenerManager.announcePresence(announce);
 	        } else {
 	          var _announce = {};
+	          _announce.channel = null;
+	          _announce.subscription = null;
+
 	          _announce.actualChannel = subscriptionMatch != null ? channel : null;
 	          _announce.subscribedChannel = subscriptionMatch != null ? subscriptionMatch : channel;
+
+
+	          _announce.channel = channel;
+	          _announce.subscription = subscriptionMatch;
 	          _announce.timetoken = publishMetaData.publishTimetoken;
+	          _announce.publisher = message.issuingClientId;
 
 	          if (_this5._config.cipherKey) {
 	            _announce.message = _this5._crypto.decrypt(message.payload);
@@ -3636,174 +3674,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=subscription_manager.js.map
-
 
 /***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.getOperation = getOperation;
-	exports.validateParams = validateParams;
-	exports.getURL = getURL;
-	exports.getRequestTimeout = getRequestTimeout;
-	exports.isAuthSupported = isAuthSupported;
-	exports.prepareParams = prepareParams;
-	exports.handleResponse = handleResponse;
-
-	var _flow_interfaces = __webpack_require__(13);
-
-	function getOperation() {
-	  return 'PNSubscribeOperation';
-	}
-
-	function validateParams(modules) {
-	  var config = modules.config;
-
-
-	  if (!config.subscribeKey) return 'Missing Subscribe Key';
-	}
-
-	function getURL(modules, incomingParams) {
-	  var config = modules.config;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
-
-	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
-	  return '/v2/subscribe/' + config.subscribeKey + '/' + encodeURIComponent(stringifiedChannels) + '/0';
-	}
-
-	function getRequestTimeout(_ref) {
-	  var config = _ref.config;
-
-	  return config.getSubscribeTimeout();
-	}
-
-	function isAuthSupported() {
-	  return true;
-	}
-
-	function prepareParams(_ref2, incomingParams) {
-	  var config = _ref2.config;
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
-	  var timetoken = incomingParams.timetoken;
-	  var filterExpression = incomingParams.filterExpression;
-	  var region = incomingParams.region;
-
-	  var params = {
-	    heartbeat: config.getPresenceTimeout()
-	  };
-
-	  if (channelGroups.length > 0) {
-	    params['channel-group'] = channelGroups.join(',');
-	  }
-
-	  if (filterExpression && filterExpression.length > 0) {
-	    params['filter-expr'] = filterExpression;
-	  }
-
-	  if (timetoken) {
-	    params.tt = timetoken;
-	  }
-
-	  if (region) {
-	    params.tr = region;
-	  }
-
-	  return params;
-	}
-
-	function handleResponse(modules, serverResponse) {
-	  var messages = [];
-
-	  serverResponse.m.forEach(function (rawMessage) {
-	    var publishMetaData = {
-	      publishTimetoken: rawMessage.p.t,
-	      region: rawMessage.p.r
-	    };
-	    var parsedMessage = {
-	      shard: parseInt(rawMessage.a, 10),
-	      subscriptionMatch: rawMessage.b,
-	      channel: rawMessage.c,
-	      payload: rawMessage.d,
-	      flags: rawMessage.f,
-	      issuingClientId: rawMessage.i,
-	      subscribeKey: rawMessage.k,
-	      originationTimetoken: rawMessage.o,
-	      publishMetaData: publishMetaData
-	    };
-	    messages.push(parsedMessage);
-	  });
-
-	  var metadata = {
-	    timetoken: serverResponse.t.t,
-	    region: serverResponse.t.r
-	  };
-
-	  return { messages: messages, metadata: metadata };
-	}
-	//# sourceMappingURL=subscribe.js.map
-
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.getOperation = getOperation;
-	exports.getURL = getURL;
-	exports.getRequestTimeout = getRequestTimeout;
-	exports.prepareParams = prepareParams;
-	exports.isAuthSupported = isAuthSupported;
-	exports.handleResponse = handleResponse;
-	exports.validateParams = validateParams;
-
-	var _flow_interfaces = __webpack_require__(13);
-
-	function getOperation() {
-	  return 'PNTimeOperation';
-	}
-
-	function getURL() {
-	  return '/time/0';
-	}
-
-	function getRequestTimeout(_ref) {
-	  var config = _ref.config;
-
-	  return config.getTransactionTimeout();
-	}
-
-	function prepareParams() {
-	  return {};
-	}
-
-	function isAuthSupported() {
-	  return false;
-	}
-
-	function handleResponse(modules, serverResponse) {
-	  return {
-	    timetoken: serverResponse[0]
-	  };
-	}
-
-	function validateParams() {}
-	//# sourceMappingURL=time.js.map
-
-
-/***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3814,7 +3687,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _categories = __webpack_require__(18);
+
+	var _categories2 = _interopRequireDefault(_categories);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3871,14 +3750,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'announceNetworkUp',
 	    value: function announceNetworkUp() {
 	      var networkStatus = {};
-	      networkStatus.category = 'PNNetworkUpCategory';
+	      networkStatus.category = _categories2.default.PNNetworkUpCategory;
 	      this.announceStatus(networkStatus);
 	    }
 	  }, {
 	    key: 'announceNetworkDown',
 	    value: function announceNetworkDown() {
 	      var networkStatus = {};
-	      networkStatus.category = 'PNNetworkDownCategory';
+	      networkStatus.category = _categories2.default.PNNetworkDownCategory;
 	      this.announceStatus(networkStatus);
 	    }
 	  }]);
@@ -3888,11 +3767,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=listener_manager.js.map
-
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3903,11 +3780,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _time = __webpack_require__(18);
+	var _time = __webpack_require__(22);
 
 	var _time2 = _interopRequireDefault(_time);
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3933,6 +3810,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this._timeTimer = setInterval(this._performTimeLoop.bind(this), 3000);
 	    }
 	  }, {
+	    key: 'stopPolling',
+	    value: function stopPolling() {
+	      clearInterval(this._timeTimer);
+	    }
+	  }, {
 	    key: '_performTimeLoop',
 	    value: function _performTimeLoop() {
 	      var _this = this;
@@ -3951,48 +3833,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = _class;
 	module.exports = exports['default'];
-	//# sourceMappingURL=reconnection_manager.js.map
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	function pamEncode(str) {
-	  return encodeURIComponent(str).replace(/[!'()*~]/g, function (c) {
-	    return '%' + c.charCodeAt(0).toString(16).toUpperCase();
-	  });
-	}
-
-	function objectToList(o) {
-	  var l = [];
-	  Object.keys(o).forEach(function (key) {
-	    return l.push(key);
-	  });
-	  return l;
-	}
-
-	function objectToListSorted(o) {
-	  return objectToList(o).sort();
-	}
-
-	function signPamFromParams(params) {
-	  var l = objectToListSorted(params);
-	  return l.map(function (paramKey) {
-	    return paramKey + '=' + pamEncode(params[paramKey]);
-	  }).join('&');
-	}
-
-	module.exports = {
-	  signPamFromParams: signPamFromParams,
-	  endsWith: function endsWith(searchString, suffix) {
-	    return searchString.indexOf(suffix, this.length - suffix.length) !== -1;
-	  }
-	};
-	//# sourceMappingURL=utils.js.map
-
 
 /***/ },
 /* 22 */
@@ -4003,30 +3843,187 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.getOperation = getOperation;
+	exports.getURL = getURL;
+	exports.getRequestTimeout = getRequestTimeout;
+	exports.prepareParams = prepareParams;
+	exports.isAuthSupported = isAuthSupported;
+	exports.handleResponse = handleResponse;
+	exports.validateParams = validateParams;
+
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getOperation() {
+	  return _operations2.default.PNTimeOperation;
+	}
+
+	function getURL() {
+	  return '/time/0';
+	}
+
+	function getRequestTimeout(_ref) {
+	  var config = _ref.config;
+
+	  return config.getTransactionTimeout();
+	}
+
+	function prepareParams() {
+	  return {};
+	}
+
+	function isAuthSupported() {
+	  return false;
+	}
+
+	function handleResponse(modules, serverResponse) {
+	  return {
+	    timetoken: serverResponse[0]
+	  };
+	}
+
+	function validateParams() {}
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  PNTimeOperation: 'PNTimeOperation',
+
+	  PNHistoryOperation: 'PNHistoryOperation',
+	  PNFetchMessagesOperation: 'PNFetchMessagesOperation',
+
+	  PNSubscribeOperation: 'PNSubscribeOperation',
+	  PNUnsubscribeOperation: 'PNUnsubscribeOperation',
+	  PNPublishOperation: 'PNPublishOperation',
+
+	  PNPushNotificationEnabledChannelsOperation: 'PNPushNotificationEnabledChannelsOperation',
+	  PNRemoveAllPushNotificationsOperation: 'PNRemoveAllPushNotificationsOperation',
+
+	  PNWhereNowOperation: 'PNWhereNowOperation',
+	  PNSetStateOperation: 'PNSetStateOperation',
+	  PNHereNowOperation: 'PNHereNowOperation',
+	  PNGetStateOperation: 'PNGetStateOperation',
+	  PNHeartbeatOperation: 'PNHeartbeatOperation',
+
+	  PNChannelGroupsOperation: 'PNChannelGroupsOperation',
+	  PNRemoveGroupOperation: 'PNRemoveGroupOperation',
+	  PNChannelsForGroupOperation: 'PNChannelsForGroupOperation',
+	  PNAddChannelsToGroupOperation: 'PNAddChannelsToGroupOperation',
+	  PNRemoveChannelsFromGroupOperation: 'PNRemoveChannelsFromGroupOperation',
+
+	  PNAccessManagerGrant: 'PNAccessManagerGrant',
+	  PNAccessManagerAudit: 'PNAccessManagerAudit'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function objectToList(o) {
+	  var l = [];
+	  Object.keys(o).forEach(function (key) {
+	    return l.push(key);
+	  });
+	  return l;
+	}
+
+	function encodeString(input) {
+	  return encodeURIComponent(input).replace(/[!~*'()]/g, function (x) {
+	    return '%' + x.charCodeAt(0).toString(16).toUpperCase();
+	  });
+	}
+
+	function objectToListSorted(o) {
+	  return objectToList(o).sort();
+	}
+
+	function signPamFromParams(params) {
+	  var l = objectToListSorted(params);
+	  return l.map(function (paramKey) {
+	    return paramKey + '=' + encodeString(params[paramKey]);
+	  }).join('&');
+	}
+
+	function endsWith(searchString, suffix) {
+	  return searchString.indexOf(suffix, this.length - suffix.length) !== -1;
+	}
+
+	function createPromise() {
+	  var successResolve = void 0;
+	  var failureResolve = void 0;
+	  var promise = new Promise(function (fulfill, reject) {
+	    successResolve = fulfill;
+	    failureResolve = reject;
+	  });
+
+	  return { promise: promise, reject: failureResolve, fulfill: successResolve };
+	}
+
+	module.exports = { signPamFromParams: signPamFromParams, endsWith: endsWith, createPromise: createPromise, encodeString: encodeString };
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	exports.default = function (modules, endpoint) {
-	  var networking = modules.networking;
-	  var config = modules.config;
-	  var crypto = modules.crypto;
+	  var networking = modules.networking,
+	      config = modules.config;
 
 	  var callback = null;
+	  var promiseComponent = null;
 	  var incomingParams = {};
 
-	  if (endpoint.getOperation() === 'PNTimeOperation' || endpoint.getOperation() === 'PNChannelGroupsOperation') {
+	  if (endpoint.getOperation() === _operations2.default.PNTimeOperation || endpoint.getOperation() === _operations2.default.PNChannelGroupsOperation) {
 	    callback = arguments.length <= 2 ? undefined : arguments[2];
 	  } else {
 	    incomingParams = arguments.length <= 2 ? undefined : arguments[2];
 	    callback = arguments.length <= 3 ? undefined : arguments[3];
 	  }
 
+	  if (typeof Promise !== 'undefined' && !callback) {
+	    promiseComponent = _utils2.default.createPromise();
+	  }
+
 	  var validationResult = endpoint.validateParams(modules, incomingParams);
 
 	  if (validationResult) {
-	    callback(createValidationError(validationResult));
+	    if (callback) {
+	      return callback(createValidationError(validationResult));
+	    } else if (promiseComponent) {
+	      promiseComponent.reject(new PubNubError('Validation failed, check status for details', createValidationError(validationResult)));
+	      return promiseComponent.promise;
+	    }
 	    return;
 	  }
 
 	  var outgoingParams = endpoint.prepareParams(modules, incomingParams);
+	  var url = decideURL(endpoint, modules, incomingParams);
+	  var callInstance = void 0;
+	  var networkingParams = { url: url,
+	    operation: endpoint.getOperation(),
+	    timeout: endpoint.getRequestTimeout(modules)
+	  };
 
 	  outgoingParams.uuid = config.UUID;
 	  outgoingParams.pnsdk = generatePNSDK(config);
@@ -4043,65 +4040,87 @@ return /******/ (function(modules) { // webpackBootstrap
 	    outgoingParams.auth = config.getAuthKey();
 	  }
 
-	  if (endpoint.getOperation() === 'PNAccessManagerGrant') {
-	    var signInput = config.subscribeKey + '\n' + config.publishKey + '\ngrant\n';
-	    signInput += _utils2.default.signPamFromParams(outgoingParams);
-	    outgoingParams.signature = crypto.HMACSHA256(signInput);
-	  }
-
-	  if (endpoint.getOperation() === 'PNAccessManagerAudit') {
-	    var _signInput = config.subscribeKey + '\n' + config.publishKey + '\naudit\n';
-	    _signInput += _utils2.default.signPamFromParams(outgoingParams);
-	    outgoingParams.signature = crypto.HMACSHA256(_signInput);
+	  if (config.secretKey) {
+	    signRequest(modules, url, outgoingParams);
 	  }
 
 	  var onResponse = function onResponse(status, payload) {
-	    if (callback) {
-	      if (status.error) return callback(status);
+	    if (status.error) {
+	      if (callback) {
+	        callback(status);
+	      } else if (promiseComponent) {
+	        promiseComponent.reject(new PubNubError('PubNub call failed, check status for details', status));
+	      }
+	      return;
+	    }
 
-	      callback(status, endpoint.handleResponse(modules, payload, incomingParams));
+	    var parsedPayload = endpoint.handleResponse(modules, payload, incomingParams);
+
+	    if (callback) {
+	      callback(status, parsedPayload);
+	    } else if (promiseComponent) {
+	      promiseComponent.fulfill(parsedPayload);
 	    }
 	  };
 
-	  var callInstance = void 0;
-
 	  if (endpoint.usePost && endpoint.usePost(modules, incomingParams)) {
-	    var url = endpoint.postURL(modules, incomingParams);
-	    var networkingParams = { url: url,
-	      operation: endpoint.getOperation(),
-	      timeout: endpoint.getRequestTimeout(modules)
-	    };
 	    var payload = endpoint.postPayload(modules, incomingParams);
 	    callInstance = networking.POST(outgoingParams, payload, networkingParams, onResponse);
 	  } else {
-	    var _url = endpoint.getURL(modules, incomingParams);
-	    var _networkingParams = { url: _url,
-	      operation: endpoint.getOperation(),
-	      timeout: endpoint.getRequestTimeout(modules)
-	    };
-	    callInstance = networking.GET(outgoingParams, _networkingParams, onResponse);
+	    callInstance = networking.GET(outgoingParams, networkingParams, onResponse);
 	  }
 
-	  if (endpoint.getOperation() === 'PNSubscribeOperation') {
+	  if (endpoint.getOperation() === _operations2.default.PNSubscribeOperation) {
 	    return callInstance;
 	  }
-	};
 
-	var _flow_interfaces = __webpack_require__(13);
+	  if (promiseComponent) {
+	    return promiseComponent.promise;
+	  }
+	};
 
 	var _uuid = __webpack_require__(2);
 
 	var _uuid2 = _interopRequireDefault(_uuid);
 
-	var _utils = __webpack_require__(21);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _utils = __webpack_require__(24);
 
 	var _utils2 = _interopRequireDefault(_utils);
 
-	var _config = __webpack_require__(12);
+	var _config = __webpack_require__(15);
 
 	var _config2 = _interopRequireDefault(_config);
 
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PubNubError = function (_Error) {
+	  _inherits(PubNubError, _Error);
+
+	  function PubNubError(message, status) {
+	    _classCallCheck(this, PubNubError);
+
+	    var _this = _possibleConstructorReturn(this, (PubNubError.__proto__ || Object.getPrototypeOf(PubNubError)).call(this, message));
+
+	    _this.name = _this.constructor.name;
+	    _this.status = status;
+	    _this.message = message;
+	    return _this;
+	  }
+
+	  return PubNubError;
+	}(Error);
 
 	function createError(errorPayload, type) {
 	  errorPayload.type = type;
@@ -4110,6 +4129,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function createValidationError(message) {
 	  return createError({ message: message }, 'validationError');
+	}
+
+	function decideURL(endpoint, modules, incomingParams) {
+	  if (endpoint.usePost && endpoint.usePost(modules, incomingParams)) {
+	    return endpoint.postURL(modules, incomingParams);
+	  } else {
+	    return endpoint.getURL(modules, incomingParams);
+	  }
 	}
 
 	function generatePNSDK(config) {
@@ -4124,12 +4151,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return base;
 	}
 
-	module.exports = exports['default'];
-	//# sourceMappingURL=endpoint.js.map
+	function signRequest(modules, url, outgoingParams) {
+	  var config = modules.config,
+	      crypto = modules.crypto;
 
+
+	  outgoingParams.timestamp = Math.floor(new Date().getTime() / 1000);
+	  var signInput = config.subscribeKey + '\n' + config.publishKey + '\n' + url + '\n';
+	  signInput += _utils2.default.signPamFromParams(outgoingParams);
+
+	  var signature = crypto.HMACSHA256(signInput);
+	  signature = signature.replace(/\+/g, '-');
+	  signature = signature.replace(/\//g, '_');
+
+	  outgoingParams.signature = signature;
+	}
+
+	module.exports = exports['default'];
 
 /***/ },
-/* 23 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4145,15 +4186,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNAddChannelsToGroupOperation';
+	  return _operations2.default.PNAddChannelsToGroupOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
-	  var channels = incomingParams.channels;
-	  var channelGroup = incomingParams.channelGroup;
+	  var channels = incomingParams.channels,
+	      channelGroup = incomingParams.channelGroup;
 	  var config = modules.config;
 
 
@@ -4166,7 +4217,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var channelGroup = incomingParams.channelGroup;
 	  var config = modules.config;
 
-	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + channelGroup;
+	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + _utils2.default.encodeString(channelGroup);
 	}
 
 	function getRequestTimeout(_ref) {
@@ -4180,8 +4231,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 
 	  return {
@@ -4192,11 +4243,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=add_channels.js.map
-
 
 /***/ },
-/* 24 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4212,15 +4261,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNRemoveChannelsFromGroupOperation';
+	  return _operations2.default.PNRemoveChannelsFromGroupOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
-	  var channels = incomingParams.channels;
-	  var channelGroup = incomingParams.channelGroup;
+	  var channels = incomingParams.channels,
+	      channelGroup = incomingParams.channelGroup;
 	  var config = modules.config;
 
 
@@ -4233,7 +4292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var channelGroup = incomingParams.channelGroup;
 	  var config = modules.config;
 
-	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + channelGroup;
+	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + _utils2.default.encodeString(channelGroup);
 	}
 
 	function getRequestTimeout(_ref) {
@@ -4247,8 +4306,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 
 	  return {
@@ -4259,11 +4318,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=remove_channels.js.map
-
 
 /***/ },
-/* 25 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4279,10 +4336,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNRemoveGroupOperation';
+	  return _operations2.default.PNRemoveGroupOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
@@ -4298,7 +4365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var channelGroup = incomingParams.channelGroup;
 	  var config = modules.config;
 
-	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + channelGroup + '/remove';
+	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + _utils2.default.encodeString(channelGroup) + '/remove';
 	}
 
 	function isAuthSupported() {
@@ -4318,11 +4385,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=delete_group.js.map
-
 
 /***/ },
-/* 26 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4338,10 +4403,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNChannelGroupsOperation';
+	  return _operations2.default.PNChannelGroupsOperation;
 	}
 
 	function validateParams(modules) {
@@ -4376,11 +4447,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    groups: serverResponse.payload.groups
 	  };
 	}
-	//# sourceMappingURL=list_groups.js.map
-
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4396,10 +4465,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNChannelsForGroupOperation';
+	  return _operations2.default.PNChannelsForGroupOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
@@ -4415,7 +4494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var channelGroup = incomingParams.channelGroup;
 	  var config = modules.config;
 
-	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + channelGroup;
+	  return '/v1/channel-registration/sub-key/' + config.subscribeKey + '/channel-group/' + _utils2.default.encodeString(channelGroup);
 	}
 
 	function getRequestTimeout(_ref) {
@@ -4437,11 +4516,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    channels: serverResponse.payload.channels
 	  };
 	}
-	//# sourceMappingURL=list_channels.js.map
-
 
 /***/ },
-/* 28 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4457,16 +4534,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNPushNotificationEnabledChannelsOperation';
+	  return _operations2.default.PNPushNotificationEnabledChannelsOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
-	  var device = incomingParams.device;
-	  var pushGateway = incomingParams.pushGateway;
-	  var channels = incomingParams.channels;
+	  var device = incomingParams.device,
+	      pushGateway = incomingParams.pushGateway,
+	      channels = incomingParams.channels;
 	  var config = modules.config;
 
 
@@ -4494,9 +4577,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var pushGateway = incomingParams.pushGateway;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var pushGateway = incomingParams.pushGateway,
+	      _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 	  return { type: pushGateway, add: channels.join(',') };
 	}
@@ -4504,11 +4587,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=add_push_channels.js.map
-
 
 /***/ },
-/* 29 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4524,16 +4605,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNPushNotificationEnabledChannelsOperation';
+	  return _operations2.default.PNPushNotificationEnabledChannelsOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
-	  var device = incomingParams.device;
-	  var pushGateway = incomingParams.pushGateway;
-	  var channels = incomingParams.channels;
+	  var device = incomingParams.device,
+	      pushGateway = incomingParams.pushGateway,
+	      channels = incomingParams.channels;
 	  var config = modules.config;
 
 
@@ -4561,9 +4648,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var pushGateway = incomingParams.pushGateway;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var pushGateway = incomingParams.pushGateway,
+	      _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 	  return { type: pushGateway, remove: channels.join(',') };
 	}
@@ -4571,11 +4658,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=remove_push_channels.js.map
-
 
 /***/ },
-/* 30 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4591,15 +4676,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNPushNotificationEnabledChannelsOperation';
+	  return _operations2.default.PNPushNotificationEnabledChannelsOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
-	  var device = incomingParams.device;
-	  var pushGateway = incomingParams.pushGateway;
+	  var device = incomingParams.device,
+	      pushGateway = incomingParams.pushGateway;
 	  var config = modules.config;
 
 
@@ -4634,11 +4725,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse(modules, serverResponse) {
 	  return { channels: serverResponse };
 	}
-	//# sourceMappingURL=list_push_channels.js.map
-
 
 /***/ },
-/* 31 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4654,15 +4743,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNRemoveAllPushNotificationsOperation';
+	  return _operations2.default.PNRemoveAllPushNotificationsOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
-	  var device = incomingParams.device;
-	  var pushGateway = incomingParams.pushGateway;
+	  var device = incomingParams.device,
+	      pushGateway = incomingParams.pushGateway;
 	  var config = modules.config;
 
 
@@ -4697,11 +4792,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=remove_device.js.map
-
 
 /***/ },
-/* 32 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4717,10 +4810,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNUnsubscribeOperation';
+	  return _operations2.default.PNUnsubscribeOperation;
 	}
 
 	function validateParams(modules) {
@@ -4732,11 +4835,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
-	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + encodeURIComponent(stringifiedChannels) + '/leave';
+	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + _utils2.default.encodeString(stringifiedChannels) + '/leave';
 	}
 
 	function getRequestTimeout(_ref) {
@@ -4750,8 +4853,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
+	  var _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
 
 	  var params = {};
 
@@ -4765,11 +4868,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=leave.js.map
-
 
 /***/ },
-/* 33 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4785,10 +4886,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNWhereNowOperation';
+	  return _operations2.default.PNWhereNowOperation;
 	}
 
 	function validateParams(modules) {
@@ -4800,8 +4907,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var _incomingParams$uuid = incomingParams.uuid;
-	  var uuid = _incomingParams$uuid === undefined ? config.UUID : _incomingParams$uuid;
+	  var _incomingParams$uuid = incomingParams.uuid,
+	      uuid = _incomingParams$uuid === undefined ? config.UUID : _incomingParams$uuid;
 
 	  return '/v2/presence/sub-key/' + config.subscribeKey + '/uuid/' + uuid;
 	}
@@ -4823,11 +4930,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse(modules, serverResponse) {
 	  return { channels: serverResponse.payload.channels };
 	}
-	//# sourceMappingURL=where_now.js.map
-
 
 /***/ },
-/* 34 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4843,10 +4948,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNHeartbeatOperation';
+	  return _operations2.default.PNHeartbeatOperation;
 	}
 
 	function validateParams(modules) {
@@ -4858,11 +4973,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
-	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + encodeURIComponent(stringifiedChannels) + '/heartbeat';
+	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + _utils2.default.encodeString(stringifiedChannels) + '/heartbeat';
 	}
 
 	function isAuthSupported() {
@@ -4876,10 +4991,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
-	  var _incomingParams$state = incomingParams.state;
-	  var state = _incomingParams$state === undefined ? {} : _incomingParams$state;
+	  var _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2,
+	      _incomingParams$state = incomingParams.state,
+	      state = _incomingParams$state === undefined ? {} : _incomingParams$state;
 	  var config = modules.config;
 
 	  var params = {};
@@ -4896,11 +5011,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=heartbeat.js.map
-
 
 /***/ },
-/* 35 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4916,10 +5029,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNGetStateOperation';
+	  return _operations2.default.PNGetStateOperation;
 	}
 
 	function validateParams(modules) {
@@ -4931,13 +5054,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var _incomingParams$uuid = incomingParams.uuid;
-	  var uuid = _incomingParams$uuid === undefined ? config.UUID : _incomingParams$uuid;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var _incomingParams$uuid = incomingParams.uuid,
+	      uuid = _incomingParams$uuid === undefined ? config.UUID : _incomingParams$uuid,
+	      _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
-	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + stringifiedChannels + '/uuid/' + uuid;
+	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + _utils2.default.encodeString(stringifiedChannels) + '/uuid/' + uuid;
 	}
 
 	function getRequestTimeout(_ref) {
@@ -4951,8 +5074,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
+	  var _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
 
 	  var params = {};
 
@@ -4964,10 +5087,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function handleResponse(modules, serverResponse, incomingParams) {
-	  var _incomingParams$chann3 = incomingParams.channels;
-	  var channels = _incomingParams$chann3 === undefined ? [] : _incomingParams$chann3;
-	  var _incomingParams$chann4 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann4 === undefined ? [] : _incomingParams$chann4;
+	  var _incomingParams$chann3 = incomingParams.channels,
+	      channels = _incomingParams$chann3 === undefined ? [] : _incomingParams$chann3,
+	      _incomingParams$chann4 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann4 === undefined ? [] : _incomingParams$chann4;
 
 	  var channelsResponse = {};
 
@@ -4979,11 +5102,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  return { channels: channelsResponse };
 	}
-	//# sourceMappingURL=get_state.js.map
-
 
 /***/ },
-/* 36 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4999,10 +5120,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNSetStateOperation';
+	  return _operations2.default.PNSetStateOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
@@ -5016,11 +5147,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
 
 	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
-	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + stringifiedChannels + '/uuid/' + config.UUID + '/data';
+	  return '/v2/presence/sub-key/' + config.subscribeKey + '/channel/' + _utils2.default.encodeString(stringifiedChannels) + '/uuid/' + config.UUID + '/data';
 	}
 
 	function getRequestTimeout(_ref) {
@@ -5034,9 +5165,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var state = incomingParams.state;
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
+	  var state = incomingParams.state,
+	      _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
 
 	  var params = {};
 
@@ -5052,11 +5183,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse(modules, serverResponse) {
 	  return { state: serverResponse.payload };
 	}
-	//# sourceMappingURL=set_state.js.map
-
 
 /***/ },
-/* 37 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5072,10 +5201,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNHereNowOperation';
+	  return _operations2.default.PNHereNowOperation;
 	}
 
 	function validateParams(modules) {
@@ -5087,16 +5226,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann,
+	      _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
 
 	  var baseURL = '/v2/presence/sub-key/' + config.subscribeKey;
 
 	  if (channels.length > 0 || channelGroups.length > 0) {
 	    var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
-	    baseURL += '/channel/' + encodeURIComponent(stringifiedChannels);
+	    baseURL += '/channel/' + _utils2.default.encodeString(stringifiedChannels);
 	  }
 
 	  return baseURL;
@@ -5113,12 +5252,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann3 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann3 === undefined ? [] : _incomingParams$chann3;
-	  var _incomingParams$inclu = incomingParams.includeUUIDs;
-	  var includeUUIDs = _incomingParams$inclu === undefined ? true : _incomingParams$inclu;
-	  var _incomingParams$inclu2 = incomingParams.includeState;
-	  var includeState = _incomingParams$inclu2 === undefined ? false : _incomingParams$inclu2;
+	  var _incomingParams$chann3 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann3 === undefined ? [] : _incomingParams$chann3,
+	      _incomingParams$inclu = incomingParams.includeUUIDs,
+	      includeUUIDs = _incomingParams$inclu === undefined ? true : _incomingParams$inclu,
+	      _incomingParams$inclu2 = incomingParams.includeState,
+	      includeState = _incomingParams$inclu2 === undefined ? false : _incomingParams$inclu2;
 
 	  var params = {};
 
@@ -5133,14 +5272,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function handleResponse(modules, serverResponse, incomingParams) {
-	  var _incomingParams$chann4 = incomingParams.channels;
-	  var channels = _incomingParams$chann4 === undefined ? [] : _incomingParams$chann4;
-	  var _incomingParams$chann5 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann5 === undefined ? [] : _incomingParams$chann5;
-	  var _incomingParams$inclu3 = incomingParams.includeUUIDs;
-	  var includeUUIDs = _incomingParams$inclu3 === undefined ? true : _incomingParams$inclu3;
-	  var _incomingParams$inclu4 = incomingParams.includeState;
-	  var includeState = _incomingParams$inclu4 === undefined ? false : _incomingParams$inclu4;
+	  var _incomingParams$chann4 = incomingParams.channels,
+	      channels = _incomingParams$chann4 === undefined ? [] : _incomingParams$chann4,
+	      _incomingParams$chann5 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann5 === undefined ? [] : _incomingParams$chann5,
+	      _incomingParams$inclu3 = incomingParams.includeUUIDs,
+	      includeUUIDs = _incomingParams$inclu3 === undefined ? true : _incomingParams$inclu3,
+	      _incomingParams$inclu4 = incomingParams.includeState,
+	      includeState = _incomingParams$inclu4 === undefined ? false : _incomingParams$inclu4;
 
 
 	  var prepareSingularChannel = function prepareSingularChannel() {
@@ -5208,11 +5347,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  return response;
 	}
-	//# sourceMappingURL=here_now.js.map
-
 
 /***/ },
-/* 38 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5228,10 +5365,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNAccessManagerAudit';
+	  return _operations2.default.PNAccessManagerAudit;
 	}
 
 	function validateParams(modules) {
@@ -5244,7 +5387,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function getURL(modules) {
 	  var config = modules.config;
 
-	  return '/v1/auth/audit/sub-key/' + config.subscribeKey;
+	  return '/v2/auth/audit/sub-key/' + config.subscribeKey;
 	}
 
 	function getRequestTimeout(_ref) {
@@ -5258,14 +5401,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var channel = incomingParams.channel;
-	  var channelGroup = incomingParams.channelGroup;
-	  var _incomingParams$authK = incomingParams.authKeys;
-	  var authKeys = _incomingParams$authK === undefined ? [] : _incomingParams$authK;
+	  var channel = incomingParams.channel,
+	      channelGroup = incomingParams.channelGroup,
+	      _incomingParams$authK = incomingParams.authKeys,
+	      authKeys = _incomingParams$authK === undefined ? [] : _incomingParams$authK;
 
 	  var params = {};
-
-	  params.timestamp = Math.floor(new Date().getTime() / 1000);
 
 	  if (channel) {
 	    params.channel = channel;
@@ -5285,11 +5426,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse(modules, serverResponse) {
 	  return serverResponse.payload;
 	}
-	//# sourceMappingURL=audit.js.map
-
 
 /***/ },
-/* 39 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5305,10 +5444,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getOperation() {
-	  return 'PNAccessManagerGrant';
+	  return _operations2.default.PNAccessManagerGrant;
 	}
 
 	function validateParams(modules) {
@@ -5321,7 +5466,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function getURL(modules) {
 	  var config = modules.config;
 
-	  return '/v1/auth/grant/sub-key/' + config.subscribeKey;
+	  return '/v2/auth/grant/sub-key/' + config.subscribeKey;
 	}
 
 	function getRequestTimeout(_ref) {
@@ -5335,26 +5480,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var _incomingParams$chann = incomingParams.channels;
-	  var channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
-	  var _incomingParams$chann2 = incomingParams.channelGroups;
-	  var channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2;
-	  var ttl = incomingParams.ttl;
-	  var _incomingParams$read = incomingParams.read;
-	  var read = _incomingParams$read === undefined ? false : _incomingParams$read;
-	  var _incomingParams$write = incomingParams.write;
-	  var write = _incomingParams$write === undefined ? false : _incomingParams$write;
-	  var _incomingParams$manag = incomingParams.manage;
-	  var manage = _incomingParams$manag === undefined ? false : _incomingParams$manag;
-	  var _incomingParams$authK = incomingParams.authKeys;
-	  var authKeys = _incomingParams$authK === undefined ? [] : _incomingParams$authK;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann,
+	      _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2,
+	      ttl = incomingParams.ttl,
+	      _incomingParams$read = incomingParams.read,
+	      read = _incomingParams$read === undefined ? false : _incomingParams$read,
+	      _incomingParams$write = incomingParams.write,
+	      write = _incomingParams$write === undefined ? false : _incomingParams$write,
+	      _incomingParams$manag = incomingParams.manage,
+	      manage = _incomingParams$manag === undefined ? false : _incomingParams$manag,
+	      _incomingParams$authK = incomingParams.authKeys,
+	      authKeys = _incomingParams$authK === undefined ? [] : _incomingParams$authK;
 
 	  var params = {};
 
 	  params.r = read ? '1' : '0';
 	  params.w = write ? '1' : '0';
 	  params.m = manage ? '1' : '0';
-	  params.timestamp = Math.floor(new Date().getTime() / 1000);
 
 	  if (channels.length > 0) {
 	    params.channel = channels.join(',');
@@ -5378,11 +5522,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse() {
 	  return {};
 	}
-	//# sourceMappingURL=grant.js.map
-
 
 /***/ },
-/* 40 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5391,7 +5533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	exports.getOperation = getOperation;
 	exports.validateParams = validateParams;
@@ -5404,11 +5546,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function prepareMessagePayload(modules, messagePayload) {
-	  var crypto = modules.crypto;
-	  var config = modules.config;
+	  var crypto = modules.crypto,
+	      config = modules.config;
 
 	  var stringifiedPayload = JSON.stringify(messagePayload);
 
@@ -5421,13 +5573,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function getOperation() {
-	  return 'PNPublishOperation';
+	  return _operations2.default.PNPublishOperation;
 	}
 
 	function validateParams(_ref, incomingParams) {
 	  var config = _ref.config;
-	  var message = incomingParams.message;
-	  var channel = incomingParams.channel;
+	  var message = incomingParams.message,
+	      channel = incomingParams.channel;
 
 
 	  if (!channel) return 'Missing Channel';
@@ -5436,26 +5588,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function usePost(modules, incomingParams) {
-	  var _incomingParams$sendB = incomingParams.sendByPost;
-	  var sendByPost = _incomingParams$sendB === undefined ? false : _incomingParams$sendB;
+	  var _incomingParams$sendB = incomingParams.sendByPost,
+	      sendByPost = _incomingParams$sendB === undefined ? false : _incomingParams$sendB;
 
 	  return sendByPost;
 	}
 
 	function getURL(modules, incomingParams) {
 	  var config = modules.config;
-	  var channel = incomingParams.channel;
-	  var message = incomingParams.message;
+	  var channel = incomingParams.channel,
+	      message = incomingParams.message;
 
 	  var stringifiedPayload = prepareMessagePayload(modules, message);
-	  return '/publish/' + config.publishKey + '/' + config.subscribeKey + '/0/' + encodeURIComponent(channel) + '/0/' + encodeURIComponent(stringifiedPayload);
+	  return '/publish/' + config.publishKey + '/' + config.subscribeKey + '/0/' + _utils2.default.encodeString(channel) + '/0/' + _utils2.default.encodeString(stringifiedPayload);
 	}
 
 	function postURL(modules, incomingParams) {
 	  var config = modules.config;
 	  var channel = incomingParams.channel;
 
-	  return '/publish/' + config.publishKey + '/' + config.subscribeKey + '/0/' + encodeURIComponent(channel) + '/0';
+	  return '/publish/' + config.publishKey + '/' + config.subscribeKey + '/0/' + _utils2.default.encodeString(channel) + '/0';
 	}
 
 	function getRequestTimeout(_ref2) {
@@ -5475,10 +5627,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var meta = incomingParams.meta;
-	  var _incomingParams$repli = incomingParams.replicate;
-	  var replicate = _incomingParams$repli === undefined ? true : _incomingParams$repli;
-	  var storeInHistory = incomingParams.storeInHistory;
+	  var meta = incomingParams.meta,
+	      _incomingParams$repli = incomingParams.replicate,
+	      replicate = _incomingParams$repli === undefined ? true : _incomingParams$repli,
+	      storeInHistory = incomingParams.storeInHistory,
+	      ttl = incomingParams.ttl;
 
 	  var params = {};
 
@@ -5488,6 +5641,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } else {
 	      params.store = '0';
 	    }
+	  }
+
+	  if (ttl) {
+	    params.ttl = ttl;
 	  }
 
 	  if (replicate === false) {
@@ -5504,11 +5661,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse(modules, serverResponse) {
 	  return { timetoken: serverResponse[2] };
 	}
-	//# sourceMappingURL=publish.js.map
-
 
 /***/ },
-/* 41 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5524,11 +5679,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.prepareParams = prepareParams;
 	exports.handleResponse = handleResponse;
 
-	var _flow_interfaces = __webpack_require__(13);
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function __processMessage(modules, message) {
-	  var config = modules.config;
-	  var crypto = modules.crypto;
+	  var config = modules.config,
+	      crypto = modules.crypto;
 
 	  if (!config.cipherKey) return message;
 
@@ -5540,7 +5705,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function getOperation() {
-	  return 'PNHistoryOperation';
+	  return _operations2.default.PNHistoryOperation;
 	}
 
 	function validateParams(modules, incomingParams) {
@@ -5556,7 +5721,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var channel = incomingParams.channel;
 	  var config = modules.config;
 
-	  return '/v2/history/sub-key/' + config.subscribeKey + '/channel/' + encodeURIComponent(channel);
+	  return '/v2/history/sub-key/' + config.subscribeKey + '/channel/' + _utils2.default.encodeString(channel);
 	}
 
 	function getRequestTimeout(_ref) {
@@ -5570,19 +5735,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function prepareParams(modules, incomingParams) {
-	  var start = incomingParams.start;
-	  var end = incomingParams.end;
-	  var includeTimetoken = incomingParams.includeTimetoken;
-	  var reverse = incomingParams.reverse;
-	  var _incomingParams$count = incomingParams.count;
-	  var count = _incomingParams$count === undefined ? 100 : _incomingParams$count;
+	  var start = incomingParams.start,
+	      end = incomingParams.end,
+	      reverse = incomingParams.reverse,
+	      _incomingParams$count = incomingParams.count,
+	      count = _incomingParams$count === undefined ? 100 : _incomingParams$count,
+	      _incomingParams$strin = incomingParams.stringifiedTimeToken,
+	      stringifiedTimeToken = _incomingParams$strin === undefined ? false : _incomingParams$strin;
 
-	  var outgoingParams = {};
+	  var outgoingParams = {
+	    include_token: 'true'
+	  };
 
 	  outgoingParams.count = count;
 	  if (start) outgoingParams.start = start;
 	  if (end) outgoingParams.end = end;
-	  if (includeTimetoken != null) outgoingParams.include_token = includeTimetoken.toString();
+	  if (stringifiedTimeToken) outgoingParams.string_message_token = 'true';
 	  if (reverse != null) outgoingParams.reverse = reverse.toString();
 
 	  return outgoingParams;
@@ -5591,30 +5759,251 @@ return /******/ (function(modules) { // webpackBootstrap
 	function handleResponse(modules, serverResponse) {
 	  var response = {
 	    messages: [],
-	    startTimeToken: parseInt(serverResponse[1], 10),
-	    endTimeToken: parseInt(serverResponse[2], 10)
+	    startTimeToken: serverResponse[1],
+	    endTimeToken: serverResponse[2]
 	  };
 
 	  serverResponse[0].forEach(function (serverHistoryItem) {
 	    var item = {
-	      timetoken: null,
-	      entry: null
+	      timetoken: serverHistoryItem.timetoken,
+	      entry: __processMessage(modules, serverHistoryItem.message)
 	    };
-
-	    if (serverHistoryItem.timetoken) {
-	      item.timetoken = serverHistoryItem.timetoken;
-	      item.entry = __processMessage(modules, serverHistoryItem.message);
-	    } else {
-	      item.entry = __processMessage(modules, serverHistoryItem);
-	    }
 
 	    response.messages.push(item);
 	  });
 
 	  return response;
 	}
-	//# sourceMappingURL=history.js.map
 
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getOperation = getOperation;
+	exports.validateParams = validateParams;
+	exports.getURL = getURL;
+	exports.getRequestTimeout = getRequestTimeout;
+	exports.isAuthSupported = isAuthSupported;
+	exports.prepareParams = prepareParams;
+	exports.handleResponse = handleResponse;
+
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function __processMessage(modules, message) {
+	  var config = modules.config,
+	      crypto = modules.crypto;
+
+	  if (!config.cipherKey) return message;
+
+	  try {
+	    return crypto.decrypt(message);
+	  } catch (e) {
+	    return message;
+	  }
+	}
+
+	function getOperation() {
+	  return _operations2.default.PNFetchMessagesOperation;
+	}
+
+	function validateParams(modules, incomingParams) {
+	  var channels = incomingParams.channels;
+	  var config = modules.config;
+
+
+	  if (!channels || channels.length === 0) return 'Missing channels';
+	  if (!config.subscribeKey) return 'Missing Subscribe Key';
+	}
+
+	function getURL(modules, incomingParams) {
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+	  var config = modules.config;
+
+
+	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
+	  return '/v3/history/sub-key/' + config.subscribeKey + '/channel/' + _utils2.default.encodeString(stringifiedChannels);
+	}
+
+	function getRequestTimeout(_ref) {
+	  var config = _ref.config;
+
+	  return config.getTransactionTimeout();
+	}
+
+	function isAuthSupported() {
+	  return true;
+	}
+
+	function prepareParams(modules, incomingParams) {
+	  var start = incomingParams.start,
+	      end = incomingParams.end,
+	      count = incomingParams.count;
+
+	  var outgoingParams = {};
+
+	  if (count) outgoingParams.max = count;
+	  if (start) outgoingParams.start = start;
+	  if (end) outgoingParams.end = end;
+
+	  return outgoingParams;
+	}
+
+	function handleResponse(modules, serverResponse) {
+	  var response = {
+	    channels: {}
+	  };
+
+	  Object.keys(serverResponse.channels || {}).forEach(function (channelName) {
+	    response.channels[channelName] = [];
+
+	    (serverResponse.channels[channelName] || []).forEach(function (messageEnvelope) {
+	      var announce = {};
+	      announce.channel = channelName;
+	      announce.subscription = null;
+	      announce.timetoken = messageEnvelope.timetoken;
+	      announce.message = __processMessage(modules, messageEnvelope.message);
+	      response.channels[channelName].push(announce);
+	    });
+	  });
+
+	  return response;
+	}
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.getOperation = getOperation;
+	exports.validateParams = validateParams;
+	exports.getURL = getURL;
+	exports.getRequestTimeout = getRequestTimeout;
+	exports.isAuthSupported = isAuthSupported;
+	exports.prepareParams = prepareParams;
+	exports.handleResponse = handleResponse;
+
+	var _flow_interfaces = __webpack_require__(16);
+
+	var _operations = __webpack_require__(23);
+
+	var _operations2 = _interopRequireDefault(_operations);
+
+	var _utils = __webpack_require__(24);
+
+	var _utils2 = _interopRequireDefault(_utils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getOperation() {
+	  return _operations2.default.PNSubscribeOperation;
+	}
+
+	function validateParams(modules) {
+	  var config = modules.config;
+
+
+	  if (!config.subscribeKey) return 'Missing Subscribe Key';
+	}
+
+	function getURL(modules, incomingParams) {
+	  var config = modules.config;
+	  var _incomingParams$chann = incomingParams.channels,
+	      channels = _incomingParams$chann === undefined ? [] : _incomingParams$chann;
+
+	  var stringifiedChannels = channels.length > 0 ? channels.join(',') : ',';
+	  return '/v2/subscribe/' + config.subscribeKey + '/' + _utils2.default.encodeString(stringifiedChannels) + '/0';
+	}
+
+	function getRequestTimeout(_ref) {
+	  var config = _ref.config;
+
+	  return config.getSubscribeTimeout();
+	}
+
+	function isAuthSupported() {
+	  return true;
+	}
+
+	function prepareParams(_ref2, incomingParams) {
+	  var config = _ref2.config;
+	  var _incomingParams$chann2 = incomingParams.channelGroups,
+	      channelGroups = _incomingParams$chann2 === undefined ? [] : _incomingParams$chann2,
+	      timetoken = incomingParams.timetoken,
+	      filterExpression = incomingParams.filterExpression,
+	      region = incomingParams.region;
+
+	  var params = {
+	    heartbeat: config.getPresenceTimeout()
+	  };
+
+	  if (channelGroups.length > 0) {
+	    params['channel-group'] = channelGroups.join(',');
+	  }
+
+	  if (filterExpression && filterExpression.length > 0) {
+	    params['filter-expr'] = filterExpression;
+	  }
+
+	  if (timetoken) {
+	    params.tt = timetoken;
+	  }
+
+	  if (region) {
+	    params.tr = region;
+	  }
+
+	  return params;
+	}
+
+	function handleResponse(modules, serverResponse) {
+	  var messages = [];
+
+	  serverResponse.m.forEach(function (rawMessage) {
+	    var publishMetaData = {
+	      publishTimetoken: rawMessage.p.t,
+	      region: rawMessage.p.r
+	    };
+	    var parsedMessage = {
+	      shard: parseInt(rawMessage.a, 10),
+	      subscriptionMatch: rawMessage.b,
+	      channel: rawMessage.c,
+	      payload: rawMessage.d,
+	      flags: rawMessage.f,
+	      issuingClientId: rawMessage.i,
+	      subscribeKey: rawMessage.k,
+	      originationTimetoken: rawMessage.o,
+	      publishMetaData: publishMetaData
+	    };
+	    messages.push(parsedMessage);
+	  });
+
+	  var metadata = {
+	    timetoken: serverResponse.t.t,
+	    region: serverResponse.t.r
+	  };
+
+	  return { messages: messages, metadata: metadata };
+	}
 
 /***/ }
 /******/ ])

@@ -1,6 +1,5 @@
 {
   "name": "pubnub",
-  "version": "4.0.8",
   "main": "dist/web/pubnub.min.js",
   "license": "https://github.com/pubnub/javascript/blob/master/LICENSE",
   "ignore": [
@@ -13,14 +12,15 @@
     "realtime"
   ],
   "homepage": "https://github.com/pubnub/javascript",
-  "_release": "4.0.8",
+  "version": "4.3.3",
+  "_release": "4.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "v4.0.8",
-    "commit": "efaf055db3c8c1c87ab0d6fcb9faa37a926a9c52"
+    "tag": "v4.3.3",
+    "commit": "ce2ab2940688af069d368103b3dfec95e6afa136"
   },
   "_source": "https://github.com/pubnub/javascript.git",
-  "_target": "^4.0.8",
+  "_target": "^4.3.3",
   "_originalSource": "pubnub",
   "_direct": true
 }
