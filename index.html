@@ -138,8 +138,9 @@
     });
 
     var presenceCallback = function(status, response){
+         console.log("presence response:" + JSON.stringify(response));
          if (response.occupancy) {
-           console.log(JSON.toString(response));
+           console.log(JSON.stringify(response));
            if ($("#game").attr('src') !== ("game.html?id=" + rand)){
             $("#game").attr("src", "game.html?id=" + rand);
            }
