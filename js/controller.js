@@ -15,6 +15,7 @@ $("#controls").css("height", ($(window).height()) + "px");
 $("#up").css("height", ($(window).height()/2) + "px");
 $("#down").css("height", ($(window).height()/2) + "px");
 
+
 $(window).resize(function() {
     $("#controls").css("font-size", ($(window).height()) /3+ "px");
     // $("#controls").css("margin-top", "-" + ($(window).height()/) + "px");
