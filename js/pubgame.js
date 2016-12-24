@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     window.pubnub = new PubNub({
       publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
       subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
@@ -52,7 +51,7 @@ $(document).ready(function () {
 
     var id = getURLParameter("id");
 
-    window.pubnub.addEventListener({
+    window.pubnub.addListener({
       status: function(statusEvent) {
             if (statusEvent.category === "PNConnectedCategory") {
                 publishSampleMessage();
@@ -64,7 +63,7 @@ $(document).ready(function () {
 
 
     window.pubnub.subscribe({
-        channel: ["pongnub" + id],
+        channels: ["pongnub" + id],
         withPresence: true
     });
 
