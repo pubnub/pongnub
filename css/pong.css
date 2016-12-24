@@ -1,8 +1,9 @@
-body { 
+body {
     background-color: #f9f9f9;
     color: #ba3925;
     font-family: 'Raleway', sans-serif;
     text-align: center;
+    padding:0px;
 }
 
 #title h1{
