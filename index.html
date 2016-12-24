@@ -121,7 +121,8 @@
        var targ = props.text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
        console.log(targ.length);
        console.log(text.length);
-       var t = text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
+      //  var t = text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
+       var t = targ.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
        console.log(t);
        gameQRCode.addData(t);
        gameQRCode.make();
