@@ -55,7 +55,7 @@ var initTouchers = function(name, pubnub) {
 
     }
 
-    pubnub.addEventListener(listener);
+    pubnub.addListener(listener);
 
 
     var publishAction = function(action) {
