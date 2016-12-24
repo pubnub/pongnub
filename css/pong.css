@@ -3,7 +3,7 @@ body {
     color: #ba3925;
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    padding:0px;
+    padding-top:0px;
 }
 
 #title h1{
@@ -54,24 +54,25 @@ body {
 }
 
 
-@media screen and (min-width: 0px) {
-  #game    { display: none; width: 480px; height: 360px; margin: 0 auto; }
-}
+/*@media screen and (min-width: 0px) {*/
+  /*#game    { display: none; width: 480px; height: 360px; margin: 0 auto; }*/
+/*}*/
 
-@media screen and (min-width: 800px) {
-  #game    { width: 640px; height: 480px; }
-}
+/*@media screen and (min-width: 800px) {*/
+  /*#game    { width: 640px; height: 480px; }*/
+/*}*/
 
-@media screen and (min-width: 1200px) {
-  #game    { width: 800px; height: 600px; }
-}
+/*@media screen and (min-width: 1200px) {*/
+  /*#game    { width: 800px; height: 600px; }*/
+/*}*/
 
-@media screen and (min-width: 1600px) {
-  #game    { width: 1024px; height: 768px; }
-}
+/*@media screen and (min-width: 1600px) {*/
+  /*#game    { width: 1024px; height: 768px; }*/
+/*}*/
 
 .pubred {
     color: #ba3925;
+    
 }
 
 #users {
