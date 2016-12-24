@@ -8,17 +8,18 @@ $(document).ready(function () {
 
     var pongnub = function(m) {
         console.log("inside pongnub: " + JSON.stringify(m));
-        if (m.side === "left") {
-            if (m.target === "up") {
-                if (m.type === "touchstart") {
+
+        if (m.message.side === "left") {
+            if (m.message.target === "up") {
+                if (m.message.type === "touchstart") {
                     PongGame.leftPaddle.moveUp();
                 }
                 else {
                     PongGame.leftPaddle.stopMovingUp();
                 }
             }
-            else if (m.target === "down") {
-                if (m.type === "touchstart") {
+            else if (m.message.target === "down") {
+                if (m.message.type === "touchstart") {
                     PongGame.leftPaddle.moveDown();
                 }
                 else {
@@ -26,17 +27,17 @@ $(document).ready(function () {
                 }
             }
         }
-        else if (m.side === "right") {
-            if (m.target === "up") {
-                if (m.type === "touchstart") {
+        else if (m.message.side === "right") {
+            if (m.message.target === "up") {
+                if (m.message.type === "touchstart") {
                     PongGame.rightPaddle.moveUp();
                 }
                 else {
                     PongGame.rightPaddle.stopMovingUp();
                 }
             }
-            else if (m.target === "down") {
-                if (m.type === "touchstart") {
+            else if (m.message.target === "down") {
+                if (m.message.type === "touchstart") {
                     PongGame.rightPaddle.moveDown();
                 }
                 else {
