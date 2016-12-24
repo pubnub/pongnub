@@ -117,10 +117,10 @@
 
     var makeQRCode = function(props){
        var gameQRCode = qrcode(4,'L');
-       var text = "http://www.google.com";
+      //  var text = "http://www.google.com";
        var targ = props.text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
        console.log(targ.length);
-       console.log(text.length);
+      //  console.log(text.length);
       //  var t = text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
        var t = targ.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
        console.log(t);
