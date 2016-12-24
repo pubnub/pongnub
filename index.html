@@ -138,11 +138,7 @@
     });
 
     var presenceCallback = function(status, response){
-         console.log("presence response:" + JSON.stringify(response));
-         responseObj = JSON.parse(response);
-         var channels = Object.keys(responseObj.channels);
-         var ourChannel = _.find(responseObj.channels, function(i){ return i.name === "pongnub" + rand})
-         if ((ourChannel) && (ourChannel.occupancy > 0)){
+         if ((response.channels["pongnub" + rand]) && (response.channels["pongnub" + rand].occupancy > 0)){
            console.log("detected occupants");
            if ($("#game").attr('src') !== ("game.html?id=" + rand)){
             $("#game").attr("src", "game.html?id=" + rand);
