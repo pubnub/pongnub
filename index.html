@@ -139,8 +139,11 @@
 
     var presenceCallback = function(status, response){
          console.log("presence response:" + JSON.stringify(response));
-         if (response.channels["pongnub" + rand].occupancy) {
-           console.log(JSON.stringify(response));
+         responseObj = JSON.parse(response);
+         var channels = Object.keys(responseObj.channels);
+         var ourChannel = _.find(responseObj.channels, function(i){ return i.name === "pongnub" + rand})
+         if ((ourChannel) && (ourChannel.occupancy > 0)){
+           console.log("detected occupants");
            if ($("#game").attr('src') !== ("game.html?id=" + rand)){
             $("#game").attr("src", "game.html?id=" + rand);
            }
@@ -152,7 +155,8 @@
     var z = setInterval(function() {
         pubnub.hereNow({
           channels: [chan]
-          ,includeState: true},
+          ,includeState: false
+          ,includeUUIDS: false},
           presenceCallback);
     }, 1000);
 
