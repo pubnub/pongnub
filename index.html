@@ -138,9 +138,8 @@
     });
 
     var presenceCallback = function(status, response){
-         console.log("inside presenceCallback:");
-         console.log("");
          if (response.occupancy) {
+           console.log(JSON.toString(response));
            if ($("#game").attr('src') !== ("game.html?id=" + rand)){
             $("#game").attr("src", "game.html?id=" + rand);
            }

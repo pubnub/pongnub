@@ -3,9 +3,7 @@ $(document).ready(function () {
     window.pubnub = new PubNub({
       publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
       subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
-    })
-
-
+    });
 
 
     var pongnub = function(m) {
