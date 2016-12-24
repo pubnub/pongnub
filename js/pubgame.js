@@ -7,6 +7,7 @@ $(document).ready(function () {
 
 
     var pongnub = function(m) {
+        console.log("inside pongnub: " + JSON.stringify(m));
         if (m.side === "left") {
             if (m.target === "up") {
                 if (m.type === "touchstart") {
