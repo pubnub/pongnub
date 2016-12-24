@@ -137,18 +137,22 @@
       subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
 
-    var chan = "pongnub" + rand;
+    var presenceCallback = function(m){
+         if (m.occupancy) {
+           if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
+         }
+      }
+    };
 
+
+    var chan = "pongnub" + rand;
     var z = setInterval(function() {
         pubnub.hereNow({
-          channel: chan,
-          callback: function(m) {
-            if (m.occupancy) {
-              if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
-            }
-          }
-        });
+          channels: [chan]
+          ,includeState: true},
+          presenceCallback);
     }, 1000);
+
 
   $("#controlLink").attr("href", "controller.html?id=" + rand);
 
