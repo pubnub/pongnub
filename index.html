@@ -137,9 +137,13 @@
       subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
 
-    var presenceCallback = function(m){
-         if (m.occupancy) {
-           if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
+    var presenceCallback = function(status, response){
+         console.log("inside presenceCallback:");
+         console.log("");
+         if (response.occupancy) {
+           if ($("#game").attr('src') !== ("game.html?id=" + rand)){
+            $("#game").attr("src", "game.html?id=" + rand);
+           }
          }
       }
     };
