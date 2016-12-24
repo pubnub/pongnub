@@ -52,7 +52,7 @@ $(document).ready(function () {
     window.pubnub.addListener({
       status: function(statusEvent) {
             if (statusEvent.category === "PNConnectedCategory") {
-                publishSampleMessage();
+                //publishSampleMessage();
             }
       }
       ,message: pongnub
