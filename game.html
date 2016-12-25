@@ -30,13 +30,12 @@
     <script type="text/javascript">
 
     $("#REMATCH").click(function() {window.location.reload()});
+
       window.oldSchoolCool = true;
       Game.ready(function() {
-        var pong = Game.start('game', Pong, {
-          sound:       false,
-        });
-        // Game.addEvent(sound,       'change', function() { pong.enableSound(sound.checked);           });
+            var pong = Game.start('game', Pong, {sound: false});
       });
+      
       $("#game").show();
       $(document).ready( function() {
         setTimeout(function() {
