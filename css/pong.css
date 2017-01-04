@@ -1,8 +1,9 @@
-body { 
+body {
     background-color: #f9f9f9;
     color: #ba3925;
     font-family: 'Raleway', sans-serif;
     text-align: center;
+    padding-top:0px;
 }
 
 #title h1{
@@ -53,7 +54,7 @@ body {
 }
 
 
-@media screen and (min-width: 0px) {
+@media screen and (min-width: 0px) {*/
   #game    { display: none; width: 480px; height: 360px; margin: 0 auto; }
 }
 

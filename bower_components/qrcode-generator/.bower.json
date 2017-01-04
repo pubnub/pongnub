@@ -1,0 +1,34 @@
+{
+  "name": "qrcode-generator",
+  "main": [
+    "js/qrcode.js",
+    "js/qrcode_UTF8.js"
+  ],
+  "ignore": [
+    "**/.*",
+    ".settings",
+    "node_modules",
+    "bower_components",
+    ".babelrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitattributes",
+    "package.json",
+    "as3",
+    "java",
+    "php",
+    "python",
+    "ruby",
+    "ts"
+  ],
+  "homepage": "https://github.com/dqmmpb/qrcode-generator",
+  "_release": "7089bcd8ed",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7089bcd8ed1397b8f4a15679868d76a949f24679"
+  },
+  "_source": "https://github.com/dqmmpb/qrcode-generator.git",
+  "_target": "master",
+  "_originalSource": "https://github.com/dqmmpb/qrcode-generator.git"
+}

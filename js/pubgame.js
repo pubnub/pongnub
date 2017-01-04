@@ -1,21 +1,24 @@
 $(document).ready(function () {
-    window.pubnub = PUBNUB.init({
-        publish_key: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
-        subscribe_key: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
+
+    window.pubnub = new PubNub({
+      publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+      subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
 
+
     var pongnub = function(m) {
-        if (m.side === "left") {
-            if (m.target === "up") {
-                if (m.type === "touchstart") {
+        console.log("inside pongnub: " + JSON.stringify(m));
+
+        if (m.message.side === "left") {
+            if (m.message.target === "up") {
+                if (m.message.type === "touchstart") {
                     PongGame.leftPaddle.moveUp();
-                }
-                else {
+                }else {
                     PongGame.leftPaddle.stopMovingUp();
                 }
             }
-            else if (m.target === "down") {
-                if (m.type === "touchstart") {
+            else if (m.message.target === "down") {
+                if (m.message.type === "touchstart") {
                     PongGame.leftPaddle.moveDown();
                 }
                 else {
@@ -23,17 +26,17 @@ $(document).ready(function () {
                 }
             }
         }
-        else if (m.side === "right") {
-            if (m.target === "up") {
-                if (m.type === "touchstart") {
+        else if (m.message.side === "right") {
+            if (m.message.target === "up") {
+                if (m.message.type === "touchstart") {
                     PongGame.rightPaddle.moveUp();
                 }
                 else {
                     PongGame.rightPaddle.stopMovingUp();
                 }
             }
-            else if (m.target === "down") {
-                if (m.type === "touchstart") {
+            else if (m.message.target === "down") {
+                if (m.message.type === "touchstart") {
                     PongGame.rightPaddle.moveDown();
                 }
                 else {
@@ -43,14 +46,22 @@ $(document).ready(function () {
         }
     }
 
-    var presenceHandler = function(m) {}
 
-    var id = getURLParameter("id"); 
+    var id = getURLParameter("id");
 
-    pubnub.subscribe({
-        channel: "pongnub" + id,
-        callback: pongnub,
-        presence: presenceHandler
+    window.pubnub.addListener({
+      status: function(statusEvent) {
+            if (statusEvent.category === "PNConnectedCategory") {
+                //publishSampleMessage();
+            }
+      }
+      ,message: pongnub
+    });
+
+
+    window.pubnub.subscribe({
+        channels: ["pongnub" + id],
+        withPresence: true
     });
 
 });

@@ -12,206 +12,30 @@
   <title>PongNub</title>
 
   <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
-  <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5;">
+  <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5">
 
 
-
+  <script type="text/javascript" src="./assets/main.js"></script>
   <script type="text/javascript" src="./assets/pd.js"></script>
   <script type="text/javascript" async="" src="./assets/inpage_linkid.js" id="undefined"></script>
   <script type="text/javascript" async="" src="./assets/bf.min.js"></script>
   <script type="text/javascript" async="" src="./assets/ga.js"></script>
   <script src="./assets/30715011.js"></script>
 
-  <link rel="icon" type="image/png" href="http://www.pubnub.com/static/images/structure/favicon.png">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Press+Start+2P">
-  <link rel="stylesheet" href="http://www.pubnub.com/static/css/styles.css?ts=1404164785">
+  <link rel="icon" type="image/png" href="//www.pubnub.com/static/images/structure/favicon.png">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Press+Start+2P">
+  <link rel="stylesheet" href="//www.pubnub.com/static/css/styles.css?ts=1404164785">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/pong.css">
   <!--[if lt IE 9]> <script src="/static/js/ie.js?ts=1404164785"></script> <![endif]-->
 
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
- 
+  <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 
 <body id="app" class="satemplate" data-ember-extension="1">
 <!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PZWSZ2"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PZWSZ2');</script>
-<!-- End Google Tag Manager -->
 
-  <header class="navbar-fixed-top card">
-
-    <div class="full-width gray hidden-xs">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <nav class="navbar nav-secondary">
-              <ul class="nav pull-right">
-                <li class=""><a href="http://www.pubnub.com/company/">Company</a>
-                </li>
-                <li><a href="http://www.pubnub.com/customers/" class="">Customers</a>
-                </li>
-                <li class=""><a href="http://www.pubnub.com/events/">Events</a>
-                </li>
-                <li class=""><a href="http://www.pubnub.com/company/contact-us/">Contact</a>
-                </li>
-                <li class=""><a href="http://www.pubnub.com/blog/">Blog</a>
-                </li>
-                <li>
-                  <form class="form-search" action="http://www.pubnub.com/search/">
-                    <input type="hidden" name="cx" value="016318228531359278205:tloy-ifg-ta">
-                    <input type="hidden" name="cof" value="FORID:9">
-                    <input type="hidden" name="ie" value="UTF-8">
-                    <input type="search" value="" class="searchinput full-width" name="q" placeholder="Search">
-                    <button type="submit"><i class="fa fa-search"></i><span class="hidden">Search</span>
-                    </button>
-                  </form>
-                </li>
-                <li id="menu-register"><a href="http://www.pubnub.com/get-started/#get-started" class="btn btn-primary btn-modal">Get Started Free</a>
-                </li>
-                <li id="menu-login"><a href="https://admin.pubnub.com/#login" target="_blank" class="btn btn-login">Log In</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <nav class="navbar nav-main">
-            <h1 class="logo pull-left">
-            <a href="http://www.pubnub.com/"><img src="./assets/pubnub.png" alt="Pub Nub" width="172" height="38"></a>
-          </h1>
-            <ul class="nav pull-right hidden-xs">
-              <li><a href="http://www.pubnub.com/iot-network/">I<span style="text-transform:lowercase;">o</span>T Network</a>
-              </li>
-              <li class="dropdown-link">
-                <a href="http://www.pubnub.com/how-it-works/">How it Works</a>
-                <ul class="dropdown-list animate">
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/data-streams/">
-                      <i><img src="./assets/data-streams.png" alt="data streams icon"></i>
-                      <span>Data Streams</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/presence/">
-                      <i><img src="./assets/presence.png" alt="presence icon"></i>
-                      <span>Presence</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/storage-and-playback/">
-                      <i class="push-down"><img src="./assets/storage.png" alt="storage and playback icon"></i>
-                      <span>Storage &amp; Playback</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/mobile/">
-                      <i class="push-down"><img src="./assets/mobile.png" alt="mobile icon"></i>
-                      Mobile Push Gateway
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/analytics/">
-                      <i><img src="./assets/analytics.png" alt="analytics icon"></i>
-                      <span>Analytics</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/pam/">
-                      <i class="fa fa-key" style="color:#ce1126 !important;font-size: 21px;position: relative;top: 8px;"></i>
-                      <span>
-                      Access Management
-                    </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/security/">
-                      <i><img src="./assets/security.png" alt="security icon"></i>
-                      <span>Security</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/how-it-works/network/">
-                      <i><img src="./assets/network.png" alt="network icon"></i>
-                      Network
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown-link">
-                <a href="http://www.pubnub.com/developers/">Developers</a>
-                <ul class="dropdown-list animate">
-                  <li>
-                    <a href="http://www.pubnub.com/developers/">
-                      <i class="fa fa-cogs"></i>
-                      <span>SDKs</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/console/">
-                      <i class="fa fa-terminal"></i>
-                      <span>Dev Console</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://help.pubnub.com/home" target="_blank">
-                      <i class="fa fa-question-circle"></i>
-                      <span>Support</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/documentation">
-                      <i class="fa fa-book"></i>
-                      <span>Docs</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/demos/" target="_blank">
-                      <i class="fa fa-video-camera"></i>
-                      <span>Demos</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.pubnub.com/quick-start-guides/" target="_blank" style="padding-left: 13px;">
-                      <img src="./assets/quick-start-guides-red.gif" style="height: 22px; width: 22px;">
-                      <span>Quick Start</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="http://www.pubnub.com/pricing/">Pricing</a>
-              </li>
-              <li><a href="http://www.pubnub.com/in-action/">In Action</a>
-              </li>
-            </ul>
-            <ul class="nav pull-right visible-xs">
-              <li><a href="http://www.pubnub.com/how-it-works/">How it Works</a>
-              </li>
-              <li><a href="http://www.pubnub.com/pricing/">Pricing</a>
-              </li>
-              <li><a href="http://www.pubnub.com/developers/">Developers</a>
-              </li>
-              <li><a href="http://www.pubnub.com/in-action/">In Action</a>
-              </li>
-              <li><a href="http://www.pubnub.com/customers/">Customers</a>
-              </li>
-              <li><a href="http://www.pubnub.com/blog/">Blog</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-
-  </header>
 
   <div id="alert_container" class="alert  hidden"></div>
   <style media="screen">
@@ -237,17 +61,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     #game {
       display: block;
-      margin: 0 auto;
+      /*margin: 0 auto;*/
     }
     #qrcode {
       display: block;
       margin: 20px auto;
       text-align: center;
     }
-    #qrcode img{
-      margin: 0 auto;
+
+    #areana {
+      top: 0px;
+      position: relative;
+      left: 126px;
     }
   </style>
+  <!-- <div id="qrcode"></div> -->
   <div class="section gray padding-extra" id="app-hero">
     <div class="container">
       <h1 class="text-center" style="font-family: 'Press Start 2P', cursive;">PongNub</h1>
@@ -269,262 +97,131 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+
   <div class="section padding-extra white" id="demo" style="margin-top: -100px; min-height: 0px;">
-    <iframe id="game" src="img/blank.png" width="640" height="480" scrolling="no" seamless="seamless" frameborder="0"> 
-      <p>Your browser does not support iframes.</p>
-    </iframe>
-    <!--
-    <iframe src="game.html" width="640" height="480" scrolling="no" seamless="seamless" frameborder="0" style="display: block; margin: 0 auto;">
-      <p>Your browser does not support iframes.</p>
-      </iframe>
-      -->
+     <div class="row">
+       <div class="col-xs-2">&nbsp;</div>
+          <div id="areana" class="col-xs-8">
+
+            <div id="row">
+              <div id="col-xs-14">
+                <canvas id="game"></canvas>
+
+                <div class="modal fade bs-example-modal-sm" id="playAgain">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Play Again?</h4>
+                      </div>
+                      <div class="modal-body">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Nah I'm good</button>
+                        <button type="button" class="btn btn-primary" id="REMATCH">REMATCH NOW</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <script src="bower_components/underscore/underscore-min.js"></script>
+                <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+                <script src="js/game.js" type="text/javascript"></script>
+                <script src="js/pong.js" type="text/javascript"></script>
+                <script src="js/pubgame.js" type="text/javascript"></script>
+                <script src="js/utils.js" type+"text/javascript"></script>
+                <script type="text/javascript">
+
+                $("#REMATCH").click(function() {window.location.reload()});
+
+                  window.oldSchoolCool = true;
+                  Game.ready(function() {
+                        var pong = Game.start('game', Pong, {sound: false});
+                  });
+
+                  $("#game").show();
+                  $(document).ready( function() {
+                    setTimeout(function() {
+                      window.PongGame.start(1);
+                    }, 0);
+                  });
+                  </script>
+                  <script src="./js/prefixfree.min.js" type="text/javascript"></script>
+                </div>
+              </div>
+
+
+            <iframe id="game" src="img/blank.png" width="640" height="480" scrolling="no" seamless="seamless" frameborder="0">
+                <p>Your browser does not support iframes.</p>
+              </iframe>
+            </div>
+      <div class="col-xs-2">&nbsp;</div>
+    </div>
   </div>
 
   <a name="tutorial"></a>
 
-<!-- It should be pretty clear how to add or remove lines -->
-<div class="section gray  padding-extra">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-7">
-        <script src="https://gist.github.com/codyjb/598715d5a6d71417e5fb.js"></script>
-      </div>
-      <div class="col-sm-5">
-          <div class="headline h5">Second Screen Gaming Made Easy</div>
-        <p>
-          Setting up a Pong match is as easy as initializing PubNub, publishing actions, and subscribing to messages.
 
-        And use PubNub <a href=“www.pubnub.com/how-it-works/presence/”>Presence</a> to detect when users start engaging with your Pong app.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="section white  padding-extra">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-7">
-          <div class="headline h5">PubNub Data Streams and Presence</div>
-        <p>
-          PubNub <a href=”http://www.pubnub.com/how-it-works/presence/”>Presence</a> allows you to detect when users enter or leave your app.  With PongNub, <code>presence</code> is called within the subscribe call.  And that subscribe selects a unique channel name by using a randomly generated ID, so that multiple users do not subscribe to the same channel and try to play Pong on top of one another!
-        </p>
-      </div>
-      <div class="col-sm-5">
-        <div class="col-sm-6"><img src="http://websiteblog1.us-west-2.pubnub.com/static/images/demos/icons/Icon_DataStreams.png" alt="" /></div>
-        <div class="col-sm-6"><img src="http://websiteblog1.us-west-2.pubnub.com/static/images/demos/icons/Icon_Presence.png" algt="" /></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="section padding-extra gray">
-  <div class="container">
-    <div class="col-sm-6">
-      <div class="headline h3">Blog Posts</div>
-      <ul>
-        <li>None yet, but stay tuned!</li>
-        <li><a href="/blog/">Visit the Blog</a></li>
-      </ul>
-    </div>
-    <div class="col-sm-6">
-      <div class="headline h3">Features Used</div>
-      <ul>
-        <li><a href="/how-it-works/data-streams/" target="_blank">Data Streams</a></li>
-        <li><a href="/how-it-works/presence/" target="_blank">Presence</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-
-  <section class="red">
-    <div class="container">
-      <div class="col-sm-12 text-center">
-        <h4 class="text-thin"><span class="break">Start Building</span> Real-time Apps Now!</h4>
-      </div>
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <a href="http://www.pubnub.com/get-started/#get-started" class="btn btn-white btn-large text-red text-center brt">Get Started</a>
-      </div>
-      <div class="col-sm-4"></div>
-    </div>
-  </section>
-  <footer>
-    <div class="container">
-
-      <div class="row text-center">
-
-        <div class="col-sm-9 clearfix">
-          <nav class="nav-footer">
-            <ul class="nav">
-              <li class="first"><a href="http://www.pubnub.com/how-it-works/">How It Works</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/data-streams/">Data Streams</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/presence/">Presence</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/storage-and-playback/">Storage &amp; Playback</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/mobile/">Mobile Push Gateway</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/analytics/">Analytics</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/security/">Security</a>
-              </li>
-              <li><a href="http://www.pubnub.com/how-it-works/network/">Network</a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li class="first"><a href="http://www.pubnub.com/pricing/">Pricing</a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li class="first"><a href="http://www.pubnub.com/developers/">Developers</a>
-              </li>
-              <li><a href="http://www.pubnub.com/docs/javascript/javascript-sdk.html">Docs</a>
-              </li>
-              <li><a href="http://www.pubnub.com/console/">Dev Console</a>
-              </li>
-              <li><a href="https://help.pubnub.com/home" target="_blank">Support</a>
-              </li>
-              <li><a href="http://www.pubnub.com/demos/">Demos</a>
-              </li>
-              <li><a href="http://www.pubnub.com/quick-start-guides/">Quick Start Guides</a>
-              </li>
-              <li><a href="http://www.pubnub.com/docs/javascript/tutorial/data-push.html">Tutorials</a>
-              </li>
-              <li><a href="http://www.pubnub.com/websockets/">Websockets</a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li class="first"><a href="http://www.pubnub.com/customers/">Customers</a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li class="first"><a href="http://www.pubnub.com/company/">Company</a>
-              </li>
-              <li><a href="http://www.pubnub.com/company/team/">Team</a>
-              </li>
-              <li><a href="http://www.pubnub.com/company/leadership/">Leadership</a>
-              </li>
-              <li><a href="http://www.pubnub.com/press/">Press &amp; News</a>
-              </li>
-              <li><a href="http://www.pubnub.com/events/">Events</a>
-              </li>
-              <li><a href="http://www.pubnub.com/company/careers/">Careers</a>
-              </li>
-              <li><a href="http://www.pubnub.com/company/contact-us/">Contact Us</a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li class="first"><a href="http://www.pubnub.com/blog/">Blog</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div class="col-sm-3">
-          <nav class="nav-social pull-right">
-            <ul class="nav">
-              <li><a href="http://twitter.com/PubNub" target="_blank"><i class="fa fa-twitter"></i></a>
-              </li>
-              <li><a href="http://www.linkedin.com/company/pubnub" target="_blank"><i class="fa fa-linkedin"></i></a>
-              </li>
-              <li><a href="http://www.facebook.com/PubNub" target="_blank"><i class="fa fa-facebook"></i></a>
-              </li>
-              <li><a href="http://plus.google.com/116291363909949130218/posts" target="_blank"><i class="fa fa-google-plus"></i></a>
-              </li>
-              <li><a href="http://www.pubnub.com/blog/feed/" target="_blank"><i class="fa fa-rss"></i></a>
-              </li>
-              <li><a href="http://vimeo.com/pubnub" target="_blank"><i class="fa fa-vimeo-square"></i></a>
-              </li>
-              <li><a href="http://www.youtube.com/pubnubtv" target="_blank"><i class="fa fa-youtube-play"></i></a>
-              </li>
-            </ul>
-          </nav>
-          <nav class="nav-footer pull-right ">
-            <ul class="nav text-right">
-              <li><small>© 2009-2014 PubNub, Inc.</small>
-              </li>
-              <li><a href="http://www.pubnub.com/terms-and-conditions/">Terms &amp; Conditions</a>
-              </li>
-              <li><a href="http://www.pubnub.com/privacy-policy/">Privacy Policy</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-      </div>
-
-    </div>
-  </footer>
-
-  <div id="get-started" class="modal-container">
-    <div class="form-wrap form-wrap-modal hide-labels">
-      <a href="http://www.pubnub.com/" class="close"><i class="fa fa-times-circle"></i></a>
-      <h3>Get Started</h3>
-      <div id="error-codes" class="alert alert-danger" style="display:none;"></div>
-      <form id="sign-up-form-partial" action="https://admin.pubnub.com/api/users" method="POST" class="form-general">
-        <label for="first-name">First Name</label>
-        <input name="first" type="text" id="first-name" placeholder="First Name *" required="">
-        <label for="last-name">Last Name</label>
-        <input name="last" type="text" id="last-name" placeholder="Last Name *" required="">
-        <label for="company">Company</label>
-        <input name="company" type="text" id="company" placeholder="Company *" required="">
-        <label for="company">Phone Number</label>
-        <input name="phone" type="text" id="phone" placeholder="Phone">
-        <label for="email-2">Email</label>
-        <input name="email" type="email" id="email-2" placeholder="Email *" required="">
-        <label for="password">Password</label>
-        <input name="password" type="password" id="password" placeholder="Password *" required="">
-        <input type="hidden" value="1" name="xsite">
-        <p>By clicking <span id="create_account_text">Create Free Account</span>, you agree to <a href="http://www.pubnub.com/terms-and-conditions/" target="_blank">PubNub's terms and conditions</a>.</p>
-        <input type="submit" value="Create Free Account" id="create_account_btn" class="btn btn-primary">
-        <div id="utms">
-          <input id="utm_source" type="hidden" name="utm_source" value="">
-          <input id="utm_medium" type="hidden" name="utm_medium" value="">
-          <input id="utm_content" type="hidden" name="utm_content" value="">
-          <input id="utm_campaign" type="hidden" name="utm_campaign" value="">
-          <input id="utm_keyword" type="hidden" name="utm_keyword" value="">
-        </div>
-      </form>
-    </div>
-    <div class="modal-backdrop"></div>
-  </div>
-
-  <script src="./assets/pubnub.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/pubnub/dist/web/pubnub.min.js"></script>
   <script src="./assets/main.js"></script>
-  <script src="https://rawgit.com/davidshimjs/qrcodejs/master/qrcode.min.js"></script>
-  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script>
-    var rand = Math.floor(Math.random()*10000); 
+  <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
 
-    var pubnub = PUBNUB.init({
-      publish_key: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
-      subscribe_key: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
+
+  <script>
+
+    var makeQRCode = function(props){
+       var gameQRCode = qrcode(4,'L');
+       var targ = props.text.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
+       var t = targ.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');
+       gameQRCode.addData(t);
+       gameQRCode.make();
+       return gameQRCode.createSvgTag();
+    }
+
+
+    var rand = Math.floor(Math.random()*10000);
+
+    var pubnub = new PubNub({
+      publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
+      subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
 
-    var chan = "pongnub" + rand;
 
-    var z = setInterval(function() { 
-        pubnub.here_now({
-          channel: chan,
-          callback: function(m) {
-            if (m.occupancy) {
-              if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
-            }
-          }
-        });
+    var presenceCallback = function(status, response){
+         if ((response.channels["pongnub" + rand]) && (response.channels["pongnub" + rand].occupancy > 0)){
+           if ($("#game").attr('src') !== ("game.html?id=" + rand)){
+            $("#game").attr("src", "game.html?id=" + rand);
+           }
+         }
+      };
+
+
+    var chan = "pongnub" + rand;
+    var z = setInterval(function() {
+        pubnub.hereNow({
+          channels: [chan]
+          ,includeState: false
+          ,includeUUIDS: false},
+          presenceCallback);
     }, 1000);
 
-  $("#controlLink").attr("href", "controller?id=" + rand);
 
-new QRCode(document.getElementById("qrcode"), { 
-  text: "http://pubnub.github.io/pongnub/controller?id=" + rand, 
-  width: 164,
-  height: 164,
-  colorDark: "#444",
-  colorLight: "#ffffff"
-});
+  $("#controlLink").attr("href", "controller.html?id=" + rand);
+
+   var controllerURL = window.location.protocol + "//"
+                       + window.location.hostname
+                       + "/pongnub/controller.html?id=" + rand
+
+  var props = { text: controllerURL,
+                width: 164,
+                height: 164,
+                colorDark: "#444",
+                colorLight: "#ffffff"
+              };
+
+  var qrCode = document.getElementById('qrcode');
+  qrCode.innerHTML = makeQRCode(props);
+
   </script>
 
   <div id="loading">
@@ -534,33 +231,11 @@ new QRCode(document.getElementById("qrcode"), {
       <h3 class="text-red">Loading...</h3>
     </div>
   </div>
-  <script type="text/javascript">
-    /* <![CDATA[ */
-    var google_conversion_id = 1009365105;
-    var google_custom_params = window.google_tag_params;
-    var google_remarketing_only = true;
-    /* ]]> */
-  </script>
-  <script type="text/javascript" src="./assets/conversion.js">
-  </script>
-  <iframe name="google_conversion_frame" title="Google conversion frame" width="300" height="13" src="./assets/saved_resource.html" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" style="display: none !important;">&lt;img height="1" width="1" border="0" alt="" src="http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1009365105/?frame=0&amp;random=1404231211816&amp;cv=7&amp;fst=1404231211816&amp;num=1&amp;fmt=1&amp;guid=ON&amp;u_h=1440&amp;u_w=2560&amp;u_ah=1418&amp;u_aw=2560&amp;u_cd=24&amp;u_his=1&amp;u_tz=-420&amp;u_java=true&amp;u_nplug=14&amp;u_nmime=72&amp;frm=0&amp;url=http%3A//www.pubnub.com/style-guide/demo-template/&amp;ref=http%3A//getpocket.com/a/queue/" /&gt;</iframe>
-  <noscript>
-    &lt;div style="display:inline;"&gt; &lt;img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1009365105/?value=0&amp;amp;guid=ON&amp;amp;script=0"/&gt; &lt;/div&gt;
-  </noscript>
-  <script type="text/javascript">
-    var bf_url = "pubnub";
-    (function () {
-      var e = document.createElement("script");
-      e.type = "text/javascript";
-      e.async = !0;
-      e.src = "//d2sdf28wg0skh3.cloudfront.net/bf.min.js";
-      var t = document.getElementsByTagName("script")[0];
-      t.parentNode.insertBefore(e, t)
-    })();
-  </script>
 
 
-  <script type="text/javascript" src="chrome-extension://bmdblncegkenkacieihfhpjfppoconhi/in-page-script.js"></script>
+
+
+
 </body>
 
 </html>

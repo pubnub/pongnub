@@ -11,6 +11,8 @@ var _gaq = _gaq || [];
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 
+
+
 if(window.location.hostname === 'www.pubnub.com' || window.location.hostname === 'pubnub.com' ){
     window['CONFIG'] = {
         'pardot_account_id': '29622',
@@ -28,6 +30,26 @@ else {
 // Pardot tracking
 piAId = CONFIG['pardot_account_id'];
 piCId = CONFIG['pardot_campaign_id'];
+
+/*
+var PongUtil =  {
+
+  unbind: function(type,el,fn){
+    if ( el.removeEventListener ) el.removeEventListener( type, el, false );
+    else if ( el.detachEvent ) el.detachEvent( 'on' + type, el, false );
+    else  el[ 'on' + type ] = null;
+  }
+
+  bind: function(type,el,fn) {
+
+  }
+
+}
+
+
+
+
+
 
 if (!PUBNUB.unbind) {
   PUBNUB.unbind = function( type, el, fn) {
@@ -563,4 +585,4 @@ PUBNUB.bind('load', window, function() {
     }
 
 
-  }(window));
+  }(window)); */

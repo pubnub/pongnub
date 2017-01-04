@@ -5,7 +5,7 @@ if (!Function.prototype.bind) {
         self  = this,
         nop   = function () {},
         bound = function () {
-          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));   
+          return self.apply(this instanceof nop ? this : (obj || {}), args.concat(slice.call(arguments)));
         };
     nop.prototype   = self.prototype;
     bound.prototype = new nop();
@@ -70,7 +70,7 @@ Game = {
     } catch (e) {}
 
     return {
-      full:      ua, 
+      full:      ua,
       name:      key + (version ? " " + version.toString() : ""),
       version:   version,
       isFirefox: (key == "firefox"),
@@ -127,7 +127,7 @@ Game = {
     return (min + (Math.random() * (max - min)));
   },
 
-  timestamp: function() { 
+  timestamp: function() {
     return new Date().getTime();
   },
 
@@ -161,7 +161,9 @@ Game = {
 
   Runner: {
 
+
     initialize: function(id, game, cfg) {
+      console.log("inside initialize");
       this.cfg          = Object.extend(game.Defaults || {}, cfg || {}); // use game defaults (if any) and extend with custom cfg (if any)
       this.fps          = this.cfg.fps || 60;
       this.interval     = 1000.0 / this.fps;
@@ -183,6 +185,7 @@ Game = {
     },
 
     start: function() { // game instance should call runner.start() when its finished initializing and is ready to start the game loop
+      console.log("inside Runner.start");
       this.lastFrame = Game.timestamp();
       this.timer     = setInterval(this.loop.bind(this), this.interval);
     },
@@ -216,7 +219,7 @@ Game = {
         count:  0,
         fps:    0,
         update: 0,
-        draw:   0, 
+        draw:   0,
         frame:  0  // update + draw
       };
     },
