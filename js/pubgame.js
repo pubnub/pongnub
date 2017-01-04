@@ -13,8 +13,7 @@ $(document).ready(function () {
             if (m.message.target === "up") {
                 if (m.message.type === "touchstart") {
                     PongGame.leftPaddle.moveUp();
-                }
-                else {
+                }else {
                     PongGame.leftPaddle.stopMovingUp();
                 }
             }
@@ -47,7 +46,6 @@ $(document).ready(function () {
         }
     }
 
-    var presenceHandler = function(m) {}
 
     var id = getURLParameter("id");
 
@@ -58,7 +56,6 @@ $(document).ready(function () {
             }
       }
       ,message: pongnub
-      ,presence: presenceHandler
     });
 
 
