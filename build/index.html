@@ -1,0 +1,93 @@
+<html>
+    <head>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Press+Start+2P">
+  <link rel="stylesheet" href="http://www.pubnub.com/static/css/styles.css?ts=1404164785">
+<style type="text/css">
+    iframe { border: 1px solid black; }
+</style>
+    </head>
+    
+    <body>
+    <div class="section gray padding-extra" id="app-hero">
+        <div class="container">
+          <h1 class="text-center" style="font-family: 'Press Start 2P', cursive;">PongNub</h1>
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3" style="margin-bottom: -40px;">
+              <p class="text-center">
+              Build and play the classic arcade video game, Pong, using PubNub. Read the QR code below to play from your mobile device or open up another window to access the controls from your browser.  Or use the q/a & p/l keys for a two player game.
+              </p>
+              <div id="qrcode"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 padding-top text-center">
+              <a href="https://github.com/pubnub/pongnub" target="_blank" class="btn btn-primary card">GitHub</a>
+              <a href="#tutorial" class="btn btn-primary card">Tutorial</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="section padding-extra white" id="demo" style="margin: auto;">
+        <iframe id="game" src="frame.html" width="640" height="600" scrolling="no" seamless="seamless" frameborder="0">
+          <p>Your browser does not support iframes.</p>
+        </iframe>
+      </div>
+
+    </body>
+    <!--
+    <script src="https://rawgit.com/davidshimjs/qrcodejs/master/qrcode.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://cdn.pubnub.com/sdk/javascript/pubnub.4.0.6.js" ></script>
+    -->
+
+    <script type="text/javascript">
+
+/*
+function init() {
+    var rand = Math.floor(Math.random()*10000); 
+    console.log("innitting with id",rand);
+
+    var pubnub = new PubNub({
+      publishKey: 'pub-c-242fbbf1-4cc6-4153-8f20-a671697f15ec',
+      subscribeKey: 'sub-c-2361676c-1e85-11e4-bbbf-02ee2ddab7fe'
+    });
+
+    var chan = "pongnub" + rand;
+
+/*
+    var z = setInterval(function() { 
+        pubnub.here_now({
+          channel: chan,
+          callback: function(m) {
+            if (m.occupancy) {
+              if ($("#game").attr('src') !== ("game.html?id=" + rand)) $("#game").attr("src", "game.html?id=" + rand);
+            }
+          }
+        });
+    }, 1000);
+    */
+/*
+    console.log('setting rand', rand);
+    function $(selector) {
+        return document.querySelector(selector);
+    }
+  $("#controlLink").setAttribute("href", "controller.html?id=" + rand);
+  */
+/*
+//    JOSH: currently this is broken. http vs https ???
+    new QRCode(document.getElementById("qrcode"), { 
+      text: "http://pubnub.github.io/pongnub/controller.html?id=" + rand, 
+      width: 164,
+      height: 164,
+      colorDark: "#444",
+      colorLight: "#ffffff"
+    });
+*/
+
+//}
+
+//setTimeout(init,1000);
+</script>
+</html>
