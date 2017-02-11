@@ -1,0 +1,30 @@
+{
+  "name": "jquery.qrcode.js",
+  "version": "1.0.0",
+  "main": "dist/js/jquery.qrcode.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "build",
+    ".babelrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitattributes",
+    "gulp",
+    "**/demo",
+    "gulpfile.babel.js",
+    "package.json"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "modernizr": "~2.8.1",
+    "jquery": "^2.2.0",
+    "qrcode-generator": "https://github.com/dqmmpb/qrcode-generator.git#master"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "chai": "~3.4.2"
+  }
+}
