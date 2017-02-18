@@ -163,7 +163,6 @@ Game = {
 
 
     initialize: function(id, game, cfg) {
-      console.log("inside initialize");
       this.cfg          = Object.extend(game.Defaults || {}, cfg || {}); // use game defaults (if any) and extend with custom cfg (if any)
       this.fps          = this.cfg.fps || 60;
       this.interval     = 1000.0 / this.fps;
@@ -185,7 +184,6 @@ Game = {
     },
 
     start: function() { // game instance should call runner.start() when its finished initializing and is ready to start the game loop
-      console.log("inside Runner.start");
       this.lastFrame = Game.timestamp();
       this.timer     = setInterval(this.loop.bind(this), this.interval);
     },

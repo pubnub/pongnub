@@ -18,36 +18,36 @@ $(document).ready(function(){
 
     });
 
-    var handleConnect = function(){
-      function() {
-         pubnub.hereNow({
-             channels: ['pongnub_lobby'],
-             callback: function(m) {
-                 $("#spinner").hide();
-                 if (m.occupancy >= 999) { // change 999 to 2 when ready
-                     $("#full").show();
-                     pubnub.unsubscribe({
-                         channel: "pongnub_lobby"
-                     });
-                 }
-                 else {
-                     $("#setup").show();
-                     $("#login").click(function() {
-                         var name = $("#name").val();
-                         if (name.length > 0) {
-                             $("#setup").hide();
-                             $("#title").hide();
-                             $("#controls").show();
-                             initTouchers(name, pubnub);
-                         }
-                     });
-                     $("#name").keypress(function(e) {
-                         if (e.which === 13) {
-                             $("#login").click();
-                         }
-                     });
-                 }
-             }
+    var handleConnect = function() {
+        pubnub.hereNow({
+            channels: ['pongnub_lobby'],
+            callback: function (m) {
+                $("#spinner").hide();
+                if (m.occupancy >= 999) { // change 999 to 2 when ready
+                    $("#full").show();
+                    pubnub.unsubscribe({
+                        channel: "pongnub_lobby"
+                    });
+                }
+                else {
+                    $("#setup").show();
+                    $("#login").click(function () {
+                        var name = $("#name").val();
+                        if (name.length > 0) {
+                            $("#setup").hide();
+                            $("#title").hide();
+                            $("#controls").show();
+                            initTouchers(name, pubnub);
+                        }
+                    });
+                    $("#name").keypress(function (e) {
+                        if (e.which === 13) {
+                            $("#login").click();
+                        }
+                    });
+                }
+            }
+        });
     }
 
 
