@@ -1,0 +1,26 @@
+{
+  "name": "pongnub",
+  "version": "1.0.0",
+  "description": "PongNub =============",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pubnub/pongnub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pubnub/pongnub/issues"
+  },
+  "homepage": "https://github.com/pubnub/pongnub#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "pubnub": "^4.4.4",
+    "qrcode-generator": "^1.1.0"
+  }
+}
