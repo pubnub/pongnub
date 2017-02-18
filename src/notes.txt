@@ -1,6 +1,0 @@
-the main page loads game.html in an iframe.
-
-game.html should show just the game, plus a randomly generated link for the controls
-wait for controller page to engage, then start the game
-
-disable the qr code for now

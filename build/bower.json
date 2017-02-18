@@ -1,0 +1,33 @@
+{
+  "name": "pongnub",
+  "homepage": "https://github.com/pubnub/pongnub",
+  "authors": [
+    "Frederick Brock <fred@pubnub.com>"
+  ],
+  "description": "Pong clone demo of second screen gaming",
+  "main": "index.html",
+  "keywords": [
+    "pubnub",
+    "realtime",
+    "games",
+    "secondscreen",
+    "controller",
+    "pong"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pubnub": "^4.3.3",
+    "jquery": "^3.1.1",
+    "underscore": "^1.8.3",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery.qrcode.js": "^1.0.0"
+  }
+}
