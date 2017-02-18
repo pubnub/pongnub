@@ -5,22 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="google-site-verification" content="X-NyWbTQ-1CgZ7cvLZYPOc0BzO7PblJv201J3PJXAJI">
-
 
   <title>PongNub</title>
 
   <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
   <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5">
 
-
-  <script type="text/javascript" src="./assets/main.js"></script>
-  <script type="text/javascript" src="./assets/pd.js"></script>
-  <script type="text/javascript" async="" src="./assets/inpage_linkid.js" id="undefined"></script>
-  <script type="text/javascript" async="" src="./assets/bf.min.js"></script>
-  <script type="text/javascript" async="" src="./assets/ga.js"></script>
-  <script src="./assets/30715011.js"></script>
 
   <link rel="icon" type="image/png" href="//www.pubnub.com/static/images/structure/favicon.png">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Press+Start+2P">
@@ -31,8 +21,6 @@
 </head>
 
 <body id="app" class="satemplate" data-ember-extension="1">
-<!-- Google Tag Manager -->
-
 
   <div id="alert_container" class="alert  hidden"></div>
   <style media="screen">
@@ -150,7 +138,7 @@
   <script src="../node_modules/qrcode-generator/qrcode.js"></script>
 
 
-  <script>
+  <script type="text/javascript">
 
     var makeQRCode = function(props){
        var gameQRCode = qrcode(4,'L');
@@ -189,11 +177,16 @@
     }, 1000);
 
 
-  $("#controlLink").attr("href", "controller.html?id=" + rand);
-    var controllerURL = window.location.origin + window.location.pathname
-    + "controller.html?id="+rand;
-    console.log("window location is", controllerURL);
-  var props = { text: controllerURL,
+    $("#controlLink").attr("href", "controller.html?id=" + rand);
+    function calculateLink() {
+      var p = window.location.pathname;
+      var n = p.lastIndexOf('/');
+      var p2 = p.substring(0,n+1);
+      var controllerURL = window.location.origin + p2 + "controller.html?id=" + rand;
+      console.log("window location is", controllerURL);
+      return controllerURL;
+    }
+    var props = { text: calculateLink(),
                 width: 164,
                 height: 164,
                 colorDark: "#444",
