@@ -1,4 +1,9 @@
-<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<html>
+<head>
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
 <div id="row">
   <div id="col-xs-14">
     <canvas id="game"></canvas>
@@ -18,31 +23,32 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/pubnub/dist/web/pubnub.js" ></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/pubnub/dist/web/pubnub.min.js"></script>
 
     <script src="js/game.js" type="text/javascript"></script>
     <script src="js/pong.js" type="text/javascript"></script>
     <script src="js/pubgame.js" type="text/javascript"></script>
-    <script src="js/utils.js" type+"text/javascript"></script>
+    <script src="js/utils.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-    $("#REMATCH").click(function() {window.location.reload()});
+        $("#REMATCH").click(function() {window.location.reload()});
 
-      window.oldSchoolCool = true;
-      Game.ready(function() {
-            var pong = Game.start('game', Pong, {sound: false});
-      });
-      
-      $("#game").show();
-      $(document).ready( function() {
-        setTimeout(function() {
-          window.PongGame.start(1);
-        }, 0);
-      });
-      </script>
-      <script src="./js/prefixfree.min.js" type="text/javascript"></script>
-    </div>
+    window.oldSchoolCool = true;
+    Game.ready(function() {
+      var pong = Game.start('game', Pong, {sound: false});
+    });
+
+    $("#game").show();
+    $(document).ready( function() {
+      setTimeout(function() {
+        window.PongGame.start(1);
+      }, 0);
+    });
+    </script>
+    <script src="./js/prefixfree.min.js" type="text/javascript"></script>
   </div>
+</div>
+</body>
+</html>

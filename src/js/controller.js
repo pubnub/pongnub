@@ -5,6 +5,7 @@ $(document).ready(function(){
         publishKey: 'pub-c-0ecaf3c4-bc3a-4e03-94e7-e85e196fdc4c',
         subscribeKey: 'sub-c-673a62aa-24c9-11e4-a77a-02ee2ddab7fe'
     });
+    console.log("we are ready. connecting to pubnub");
 
     $("#controls").show();
     initTouchers("player", pubnub);
@@ -28,7 +29,7 @@ var initTouchers = function(name, pubnub) {
     var mySide = "left";
     document.ontouchstart = function(e){
       e.preventDefault();
-    }
+    };
 
     pubnub.subscribe({
         channels: ["pongnub_game","pongnub" + id],
@@ -40,34 +41,34 @@ var initTouchers = function(name, pubnub) {
 
     var listener = {
       status: function(status){
-        console.log("pongnub" + id);
+        //console.log("status received" + status + 'id = ' + id, status);
       },
       message: function(m){
-        console.log("message received: " + m);
+        //console.log("message received: ", m);
       },
       presence: function(m){
-        console.log("presence received: " + m);
+        //console.log("presence received: ", m);
       }
 
     };
 
     var publishCallback = function(status,response){
-      console.log("status: " + status);
-
-    }
+      //console.log("publish returned with status: " + status, response);
+    };
 
     pubnub.addListener(listener);
 
 
     var publishAction = function(action) {
+        console.log("publishing to pongnub"+id,action);
         pubnub.publish({
             channel: "pongnub" + id,
             message: action
         }, publishCallback);
-    }
+    };
 
     var touchHandler = function(eve) {
-      console.log(eve);
+        //console.log(eve);
         var target = eve.target.id;
         var type = eve.type;
         if (type === "mousedown") type = "touchstart";
@@ -78,7 +79,7 @@ var initTouchers = function(name, pubnub) {
 
 
         publishAction({"target": target, "type": type, side: mySide});
-    }
+    };
 
     document.addEventListener("touchstart", function(e) {touchHandler(e)}, false);
     document.addEventListener("touchend", function(e) {touchHandler(e);}, false);
@@ -91,7 +92,6 @@ var initTouchers = function(name, pubnub) {
     $(document).keydown(function(e) {
       if (e.which == "40") touchHandler({target: {id : "down"}, type: "mousedown" });
       if (e.which == "38") touchHandler({target: {id: "up"}, type: "mousedown" });
-
     });
 
     $(document).keyup(function(e) {

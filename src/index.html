@@ -25,12 +25,9 @@
   <link rel="icon" type="image/png" href="//www.pubnub.com/static/images/structure/favicon.png">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Press+Start+2P">
   <link rel="stylesheet" href="//www.pubnub.com/static/css/styles.css?ts=1404164785">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/pong.css">
-  <!--[if lt IE 9]> <script src="/static/js/ie.js?ts=1404164785"></script> <![endif]-->
-
-  <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
+  <link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body id="app" class="satemplate" data-ember-extension="1">
@@ -79,21 +76,28 @@
   <div class="section gray padding-extra" id="app-hero">
     <div class="container">
       <h1 class="text-center" style="font-family: 'Press Start 2P', cursive;">PongNub</h1>
+
       <div class="row">
-        <div class="col-sm-6 col-sm-offset-3" style="margin-bottom: -40px;">
+        <div class="col-sm-6 col-sm-offset-3" style="">
           <p class="text-center">
           Build and play the classic arcade video game, Pong, using PubNub. Read the QR code below to play from your mobile device or open up another window to access the controls from your browser.
-          <h4 class="text-center"><a href="" id="controlLink">Controls</a></h4>
           </p>
-          <div id="qrcode"></div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-9">
+          <a href="" id="controlLink" target="_blank">Controls</a>
+          <div id="qrcode" style="display: inline-block;"></div>
+        </div>
+      </div>
+      <!--
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3 padding-top text-center">
           <a href="https://github.com/pubnub/pongnub" target="_blank" class="btn btn-primary card">GitHub</a>
           <a href="#tutorial" class="btn btn-primary card">Tutorial</a>
         </div>
       </div>
+      -->
     </div>
   </div>
 
@@ -105,8 +109,6 @@
 
             <div id="row">
               <div id="col-xs-14">
-                <canvas id="game"></canvas>
-
                 <div class="modal fade bs-example-modal-sm" id="playAgain">
                   <div class="modal-dialog modal-sm">
                     <div class="modal-content">
@@ -122,20 +124,21 @@
                   </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
 
-                <script src="bower_components/underscore/underscore-min.js"></script>
-                <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+                <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
                 <script src="js/game.js" type="text/javascript"></script>
                 <script src="js/pong.js" type="text/javascript"></script>
                 <script src="js/pubgame.js" type="text/javascript"></script>
-                <script src="js/utils.js" type+"text/javascript"></script>
+                <script src="js/utils.js" type="text/javascript"></script>
                 <script type="text/javascript">
 
-                $("#REMATCH").click(function() {window.location.reload()});
+                  /*
+                  $("#REMATCH").click(function() {window.location.reload()});
 
                   window.oldSchoolCool = true;
                   Game.ready(function() {
-                        var pong = Game.start('game', Pong, {sound: false});
+                    var pong = Game.start('game', Pong, {sound: false});
                   });
 
                   $("#game").show();
@@ -144,8 +147,8 @@
                       window.PongGame.start(1);
                     }, 0);
                   });
-                  </script>
-                  <script src="./js/prefixfree.min.js" type="text/javascript"></script>
+                  */
+                </script>
                 </div>
               </div>
 
@@ -161,10 +164,9 @@
   <a name="tutorial"></a>
 
 
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/pubnub/dist/web/pubnub.min.js"></script>
+  <script src="../node_modules/pubnub/dist/web/pubnub.min.js"></script>
   <script src="./assets/main.js"></script>
-  <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
+  <script src="../node_modules/qrcode-generator/qrcode.js"></script>
 
 
   <script>
@@ -207,11 +209,9 @@
 
 
   $("#controlLink").attr("href", "controller.html?id=" + rand);
-
-   var controllerURL = window.location.protocol + "//"
-                       + window.location.hostname
-                       + "/pongnub/controller.html?id=" + rand
-
+    var controllerURL = window.location.origin + window.location.pathname
+    + "controller.html?id="+rand;
+    console.log("window location is", controllerURL);
   var props = { text: controllerURL,
                 width: 164,
                 height: 164,
