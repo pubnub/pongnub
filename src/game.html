@@ -1,0 +1,48 @@
+<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<div id="row">
+  <div id="col-xs-14">
+    <canvas id="game"></canvas>
+
+    <div class="modal fade bs-example-modal-sm" id="playAgain">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Play Again?</h4>
+          </div>
+          <div class="modal-body">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Nah I'm good</button>
+            <button type="button" class="btn btn-primary" id="REMATCH">REMATCH NOW</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/pubnub/dist/web/pubnub.js" ></script>
+
+    <script src="js/game.js" type="text/javascript"></script>
+    <script src="js/pong.js" type="text/javascript"></script>
+    <script src="js/pubgame.js" type="text/javascript"></script>
+    <script src="js/utils.js" type+"text/javascript"></script>
+    <script type="text/javascript">
+
+    $("#REMATCH").click(function() {window.location.reload()});
+
+      window.oldSchoolCool = true;
+      Game.ready(function() {
+            var pong = Game.start('game', Pong, {sound: false});
+      });
+      
+      $("#game").show();
+      $(document).ready( function() {
+        setTimeout(function() {
+          window.PongGame.start(1);
+        }, 0);
+      });
+      </script>
+      <script src="./js/prefixfree.min.js" type="text/javascript"></script>
+    </div>
+  </div>

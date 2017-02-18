@@ -1,0 +1,25 @@
+{
+  "name": "qrcode-generator",
+  "version": "0.1.0",
+  "main": [
+    "js/qrcode.js",
+    "js/qrcode_UTF8.js"
+  ],
+  "ignore": [
+    "**/.*",
+    ".settings",
+    "node_modules",
+    "bower_components",
+    ".babelrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitattributes",
+    "package.json",
+    "as3",
+    "java",
+    "php",
+    "python",
+    "ruby",
+    "ts"
+  ]
+}
